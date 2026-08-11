@@ -7,21 +7,40 @@ import { Container } from "@/components/layout/Container";
 
 export default function ContactCTA() {
   return (
-    <section className="relative overflow-hidden bg-white py-10 sm:py-12 dark:bg-[#080808]">
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        py-10
+        sm:py-12
+
+        transition-colors
+        duration-500
+      "
+    >
       {/* Subtle Glow */}
 
-      <div className="absolute inset-0">
+      <div className="pointer-events-none absolute inset-0">
         <div
           className="
             absolute
             left-1/2
             top-1/2
+
             h-[260px]
             w-[260px]
+
             -translate-x-1/2
             -translate-y-1/2
+
             rounded-full
-            bg-red-500/10
+
+            bg-red-500/8
+            dark:bg-red-600/12
+
             blur-[100px]
           "
         />
@@ -36,19 +55,24 @@ export default function ContactCTA() {
             rounded-[26px]
 
             border
-            border-white/10
+            border-[var(--border)]
 
-            bg-gray-50 dark:bg-[#111111]
+            bg-[var(--card)]
 
             px-6
             py-7
 
             text-center
 
-            shadow-[0_15px_45px_rgba(0,0,0,.25)]
+            shadow-[var(--shadow-lg)]
+
+            transition-all
+            duration-500
 
             sm:px-10
             sm:py-8
+
+            hover:border-red-500/30
           "
         >
           {/* Badge */}
@@ -92,14 +116,17 @@ export default function ContactCTA() {
               font-bold
               leading-tight
 
-              text-gray-900 dark:text-white
+              text-[var(--foreground)]
 
               sm:text-4xl
             "
           >
             Have an Idea?
 
-            <span className="text-red-500"> Let's Make It Real.</span>
+            <span className="text-red-500">
+              {" "}
+              Let's Make It Real.
+            </span>
           </h2>
 
           {/* Description */}
@@ -114,7 +141,7 @@ export default function ContactCTA() {
               text-sm
               leading-6
 
-              text-gray-600 dark:text-gray-400
+              text-[var(--muted)]
 
               sm:text-base
             "
@@ -138,11 +165,14 @@ export default function ContactCTA() {
               sm:flex-row
             "
           >
+            {/* Primary CTA */}
+
             <Link
               href="#contact-form"
               className="
                 inline-flex
                 items-center
+                justify-center
                 gap-2
 
                 rounded-full
@@ -154,13 +184,16 @@ export default function ContactCTA() {
 
                 text-sm
                 font-semibold
-                text-gray-900 dark:text-white
+
+                text-white
 
                 transition-all
                 duration-300
 
                 hover:scale-105
                 hover:bg-red-600
+
+                hover:shadow-[0_10px_30px_rgba(239,68,68,.20)]
               "
             >
               Start a Conversation
@@ -168,32 +201,36 @@ export default function ContactCTA() {
               <ArrowRight size={16} />
             </Link>
 
+            {/* Email */}
+
             <a
               href="mailto:hello@atriawebsolutions.com"
               className="
                 inline-flex
                 items-center
+                justify-center
 
                 rounded-full
 
                 border
-                border-white/10
+                border-[var(--border)]
 
-                bg-white/[0.03]
+                bg-[var(--card)]
 
                 px-6
                 py-3
 
                 text-sm
                 font-semibold
-                text-gray-300
+
+                text-[var(--foreground)]
 
                 transition-all
                 duration-300
 
                 hover:border-red-500/30
                 hover:bg-red-500/10
-                hover:text-gray-900 dark:hover:text-white
+                hover:text-red-500
               "
             >
               hello@atriawebsolutions.com

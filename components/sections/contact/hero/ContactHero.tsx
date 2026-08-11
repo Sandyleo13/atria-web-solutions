@@ -12,7 +12,11 @@ export default function ContactHero() {
       className="
         relative
         overflow-hidden
-        bg-[#fafafa]
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
       "
     >
       <HeroBackground />
@@ -21,14 +25,19 @@ export default function ContactHero() {
         <div
           className="
             grid
+
             min-h-[calc(100vh-80px)]
+
             items-center
 
-            gap-16
+            gap-12
 
             px-0
-            pt-28
+            pt-24
             pb-16
+
+            sm:gap-16
+            sm:pt-28
 
             lg:grid-cols-[0.95fr_1.05fr]
             lg:gap-10
@@ -48,10 +57,14 @@ export default function ContactHero() {
           <div
             className="
               relative
+
               flex
-              min-h-[500px]
+              min-h-[480px]
+
               items-center
               justify-center
+
+              sm:min-h-[520px]
 
               lg:min-h-[560px]
             "

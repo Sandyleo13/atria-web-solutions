@@ -32,25 +32,69 @@ const options = [
 
 export default function ContactOptions() {
   return (
-    <section className="bg-white py-24">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        py-24
+
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-10
+
+            h-[500px]
+            w-[500px]
+
+            -translate-x-1/2
+
+            rounded-full
+
+            bg-red-500/5
+            dark:bg-red-600/8
+
+            blur-[150px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
+
         {/* Section Intro */}
 
         <div className="mx-auto max-w-3xl text-center">
+
           <span
             className="
               inline-flex
               rounded-full
+
               border
               border-red-500/20
+
               bg-red-500/10
+
               px-4
               py-2
+
               text-xs
               font-semibold
               uppercase
               tracking-[0.35em]
+
               text-red-600
+              dark:text-red-400
             "
           >
             Get In Touch
@@ -59,10 +103,12 @@ export default function ContactOptions() {
           <h2
             className="
               mt-7
+
               text-4xl
               font-bold
               tracking-tight
-              text-gray-900
+
+              text-[var(--foreground)]
 
               lg:text-5xl
             "
@@ -74,10 +120,16 @@ export default function ContactOptions() {
             className="
               mx-auto
               mt-5
+
               max-w-2xl
-              text-lg
-              leading-8
-              text-gray-600
+
+              text-base
+              leading-7
+
+              text-[var(--muted)]
+
+              sm:text-lg
+              sm:leading-8
             "
           >
             Have a project in mind or simply want to learn more about
@@ -118,18 +170,19 @@ export default function ContactOptions() {
                   rounded-[28px]
 
                   border
-                  border-gray-200
+                  border-[var(--border)]
 
-                  bg-white
+                  bg-[var(--card)]
 
-                  p-8
+                  p-7
+                  sm:p-8
 
-                  shadow-[0_12px_40px_rgba(15,23,42,.05)]
+                  shadow-[var(--shadow-sm)]
 
                   transition-all
                   duration-300
 
-                  hover:border-red-500/25
+                  hover:border-red-500/30
                   hover:shadow-[0_20px_55px_rgba(239,68,68,.10)]
                 "
               >
@@ -167,9 +220,16 @@ export default function ContactOptions() {
                 <h3
                   className="
                     mt-6
+
                     text-2xl
                     font-bold
-                    text-gray-900
+
+                    text-[var(--foreground)]
+
+                    transition-colors
+                    duration-300
+
+                    group-hover:text-red-500
                   "
                 >
                   {option.title}
@@ -180,10 +240,13 @@ export default function ContactOptions() {
                 <p
                   className="
                     mt-4
+
                     break-words
+
                     text-lg
                     font-medium
-                    text-gray-800
+
+                    text-[var(--foreground)]
                   "
                 >
                   {option.value}
@@ -194,8 +257,10 @@ export default function ContactOptions() {
                 <p
                   className="
                     mt-4
+
                     leading-7
-                    text-gray-500
+
+                    text-[var(--muted)]
                   "
                 >
                   {option.description}
@@ -206,8 +271,10 @@ export default function ContactOptions() {
                 <div
                   className="
                     mt-7
+
                     h-px
                     w-12
+
                     bg-red-500/30
 
                     transition-all
@@ -221,6 +288,7 @@ export default function ContactOptions() {
             );
           })}
         </div>
+
       </Container>
     </section>
   );

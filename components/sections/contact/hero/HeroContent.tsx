@@ -31,6 +31,7 @@ export default function HeroContent() {
           tracking-[0.35em]
 
           text-red-600
+          dark:text-red-400
         "
       >
         Contact Us
@@ -53,8 +54,9 @@ export default function HeroContent() {
           leading-[1.05]
           tracking-[-0.05em]
 
-          text-gray-900
+          text-[var(--foreground)]
 
+          sm:text-6xl
           lg:text-7xl
         "
       >
@@ -83,10 +85,13 @@ export default function HeroContent() {
           mt-8
           max-w-xl
 
-          text-lg
-          leading-8
+          text-base
+          leading-7
 
-          text-gray-600
+          text-[var(--muted)]
+
+          sm:text-lg
+          sm:leading-8
         "
       >
         Whether you're planning a new website, building a web application
@@ -103,13 +108,26 @@ export default function HeroContent() {
           delay: 0.45,
           duration: 0.6,
         }}
-        className="mt-10 flex flex-wrap gap-4"
+        className="
+          mt-10
+
+          flex
+          flex-col
+          gap-3
+
+          sm:flex-row
+          sm:flex-wrap
+          sm:gap-4
+        "
       >
+        {/* Primary */}
+
         <Link
           href="#contact-form"
           className="
             inline-flex
             items-center
+            justify-center
             gap-2
 
             rounded-full
@@ -137,35 +155,39 @@ export default function HeroContent() {
           <ArrowRight size={18} />
         </Link>
 
+        {/* Secondary */}
+
         <Link
           href="/portfolio"
           className="
             inline-flex
             items-center
+            justify-center
             gap-2
 
             rounded-full
 
             border
-            border-gray-200
+            border-[var(--border)]
 
-            bg-white
+            bg-[var(--card)]
 
             px-7
             py-4
 
             font-semibold
-            text-gray-800
 
-            shadow-[0_6px_20px_rgba(15,23,42,.04)]
+            text-[var(--foreground)]
+
+            shadow-[var(--shadow-sm)]
 
             transition-all
             duration-300
 
             hover:-translate-y-0.5
             hover:border-red-500/30
-            hover:bg-red-50
-            hover:text-red-600
+            hover:bg-red-500/10
+            hover:text-red-500
           "
         >
           View Our Work
@@ -181,7 +203,17 @@ export default function HeroContent() {
           delay: 0.6,
           duration: 0.6,
         }}
-        className="mt-14 grid grid-cols-3 gap-4"
+        className="
+          mt-12
+
+          grid
+          grid-cols-1
+          gap-3
+
+          sm:mt-14
+          sm:grid-cols-3
+          sm:gap-4
+        "
       >
         {[
           ["24h", "Response Time"],
@@ -194,26 +226,45 @@ export default function HeroContent() {
               rounded-2xl
 
               border
-              border-gray-200
+              border-[var(--border)]
 
-              bg-white
+              bg-[var(--card)]
 
-              p-5
+              p-4
 
-              shadow-[0_8px_30px_rgba(15,23,42,.04)]
+              shadow-[var(--shadow-sm)]
 
               transition-all
               duration-300
 
               hover:-translate-y-1
               hover:border-red-500/20
+
+              sm:p-5
             "
           >
-            <h3 className="text-3xl font-bold text-gray-900">
+            <h3
+              className="
+                text-2xl
+                font-bold
+
+                text-[var(--foreground)]
+
+                sm:text-3xl
+              "
+            >
               {value}
             </h3>
 
-            <p className="mt-2 text-sm text-gray-500">
+            <p
+              className="
+                mt-2
+
+                text-sm
+
+                text-[var(--muted)]
+              "
+            >
               {label}
             </p>
           </div>

@@ -37,11 +37,49 @@ export default function FAQ() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="bg-white py-28">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        py-28
+
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-10
+
+            h-[500px]
+            w-[500px]
+
+            -translate-x-1/2
+
+            rounded-full
+
+            bg-red-500/5
+            dark:bg-red-600/8
+
+            blur-[150px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
+
         {/* Header */}
 
         <div className="mx-auto max-w-3xl text-center">
+
           <span
             className="
               inline-flex
@@ -61,6 +99,7 @@ export default function FAQ() {
               tracking-[0.35em]
 
               text-red-600
+              dark:text-red-400
             "
           >
             Frequently Asked Questions
@@ -69,11 +108,14 @@ export default function FAQ() {
           <h2
             className="
               mt-8
-              text-5xl
+
+              text-4xl
               font-bold
               tracking-tight
-              text-gray-900
 
+              text-[var(--foreground)]
+
+              sm:text-5xl
               lg:text-6xl
             "
           >
@@ -86,10 +128,13 @@ export default function FAQ() {
               mt-7
               max-w-2xl
 
-              text-lg
-              leading-8
+              text-base
+              leading-7
 
-              text-gray-600
+              text-[var(--muted)]
+
+              sm:text-lg
+              sm:leading-8
             "
           >
             Here are some of the questions we receive most often
@@ -112,18 +157,20 @@ export default function FAQ() {
 
                   border
 
-                  bg-white
+                  bg-[var(--card)]
 
                   transition-all
                   duration-300
 
                   ${
                     isActive
-                      ? "border-red-500/25 shadow-[0_12px_40px_rgba(239,68,68,.07)]"
-                      : "border-gray-200 shadow-[0_6px_25px_rgba(15,23,42,.03)] hover:border-gray-300"
+                      ? "border-red-500/30 shadow-[0_12px_40px_rgba(239,68,68,.07)]"
+                      : "border-[var(--border)] shadow-[var(--shadow-sm)] hover:border-red-500/20"
                   }
                 `}
               >
+                {/* Question */}
+
                 <button
                   type="button"
                   onClick={() =>
@@ -137,10 +184,13 @@ export default function FAQ() {
                     justify-between
                     gap-6
 
-                    px-7
-                    py-6
+                    px-5
+                    py-5
 
                     text-left
+
+                    sm:px-7
+                    sm:py-6
 
                     lg:px-8
                     lg:py-7
@@ -148,23 +198,26 @@ export default function FAQ() {
                 >
                   <span
                     className={`
-                      text-lg
+                      text-base
                       font-semibold
 
                       transition-colors
                       duration-300
 
+                      sm:text-lg
                       lg:text-xl
 
                       ${
                         isActive
-                          ? "text-red-600"
-                          : "text-gray-900"
+                          ? "text-red-500"
+                          : "text-[var(--foreground)]"
                       }
                     `}
                   >
                     {faq.question}
                   </span>
+
+                  {/* Icon */}
 
                   <span
                     className={`
@@ -183,7 +236,7 @@ export default function FAQ() {
                       ${
                         isActive
                           ? "bg-red-500 text-white"
-                          : "bg-gray-100 text-gray-500"
+                          : "bg-[var(--card-hover)] text-[var(--muted)]"
                       }
                     `}
                   >
@@ -223,16 +276,19 @@ export default function FAQ() {
                     <div
                       className="
                         border-t
-                        border-gray-100
+                        border-[var(--border)]
 
-                        px-7
-                        pb-7
+                        px-5
+                        pb-6
                         pt-5
 
-                        text-base
+                        text-sm
                         leading-7
 
-                        text-gray-600
+                        text-[var(--muted)]
+
+                        sm:px-7
+                        sm:text-base
 
                         lg:px-8
                       "
@@ -245,6 +301,7 @@ export default function FAQ() {
             );
           })}
         </div>
+
       </Container>
     </section>
   );

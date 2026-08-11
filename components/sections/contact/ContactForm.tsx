@@ -32,20 +32,28 @@ const reasons = [
 
 const inputClassName = `
   w-full
+
   rounded-xl
+
   border
-  border-gray-200
-  bg-gray-50
+  border-[var(--border)]
+
+  bg-[var(--card)]
+
   px-5
   py-4
-  text-gray-900
-  placeholder:text-gray-400
+
+  text-[var(--foreground)]
+
+  placeholder:text-[var(--muted)]
+
   outline-none
+
   transition-all
   duration-300
 
   focus:border-red-500
-  focus:bg-white
+  focus:bg-[var(--card)]
   focus:ring-4
   focus:ring-red-500/10
 `;
@@ -55,35 +63,76 @@ export default function ContactForm() {
     <section
       id="contact-form"
       className="
-        bg-[#f8fafc]
-        py-28
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        py-20
+        sm:py-24
+        lg:py-28
+
+        transition-colors
+        duration-500
       "
     >
-      <Container>
+      {/* Background Glow */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-1/2
+
+            h-[600px]
+            w-[600px]
+
+            -translate-x-1/2
+            -translate-y-1/2
+
+            rounded-full
+
+            bg-red-500/[0.04]
+            dark:bg-red-600/[0.07]
+
+            blur-[160px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
         <div
           className="
             grid
-            gap-10
+            gap-8
 
             lg:grid-cols-[1.15fr_.85fr]
+
+            lg:gap-10
           "
         >
-          {/* Contact Form */}
+          {/* ========================= */}
+          {/* CONTACT FORM */}
+          {/* ========================= */}
 
           <div
             className="
               rounded-[32px]
 
               border
-              border-gray-200
+              border-[var(--border)]
 
-              bg-white
+              bg-[var(--card)]
 
-              p-8
-
-              shadow-[0_20px_60px_rgba(15,23,42,.06)]
-
+              p-6
+              sm:p-8
               lg:p-10
+
+              shadow-[var(--shadow-lg)]
+
+              transition-all
+              duration-500
             "
           >
             {/* Label */}
@@ -107,6 +156,7 @@ export default function ContactForm() {
                 tracking-[0.35em]
 
                 text-red-600
+                dark:text-red-400
               "
             >
               Start Your Project
@@ -117,10 +167,14 @@ export default function ContactForm() {
             <h2
               className="
                 mt-6
-                text-4xl
+
+                text-3xl
                 font-bold
                 tracking-tight
-                text-gray-900
+
+                text-[var(--foreground)]
+
+                sm:text-4xl
               "
             >
               Tell Us About Your Project
@@ -129,9 +183,12 @@ export default function ContactForm() {
             <p
               className="
                 mt-4
+
                 max-w-xl
+
                 leading-7
-                text-gray-600
+
+                text-[var(--muted)]
               "
             >
               Fill out the form below and we'll get back to you
@@ -147,7 +204,15 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Full Name
                   </label>
@@ -163,7 +228,15 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Email Address
                   </label>
@@ -183,10 +256,19 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="company"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Company Name
-                    <span className="ml-1 text-gray-400">
+
+                    <span className="ml-1 text-[var(--muted)]">
                       (Optional)
                     </span>
                   </label>
@@ -202,7 +284,15 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Phone Number
                   </label>
@@ -222,7 +312,15 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="service"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Service
                   </label>
@@ -232,7 +330,10 @@ export default function ContactForm() {
                     defaultValue=""
                     className={`
                       ${inputClassName}
+
                       cursor-pointer
+
+                      appearance-none
                     `}
                   >
                     <option value="" disabled>
@@ -240,7 +341,10 @@ export default function ContactForm() {
                     </option>
 
                     {services.map((service) => (
-                      <option key={service} value={service}>
+                      <option
+                        key={service}
+                        value={service}
+                      >
                         {service}
                       </option>
                     ))}
@@ -250,7 +354,15 @@ export default function ContactForm() {
                 <div>
                   <label
                     htmlFor="budget"
-                    className="mb-2 block text-sm font-medium text-gray-700"
+                    className="
+                      mb-2
+                      block
+
+                      text-sm
+                      font-medium
+
+                      text-[var(--foreground)]
+                    "
                   >
                     Estimated Budget
                   </label>
@@ -260,7 +372,10 @@ export default function ContactForm() {
                     defaultValue=""
                     className={`
                       ${inputClassName}
+
                       cursor-pointer
+
+                      appearance-none
                     `}
                   >
                     <option value="" disabled>
@@ -268,7 +383,10 @@ export default function ContactForm() {
                     </option>
 
                     {budgets.map((budget) => (
-                      <option key={budget} value={budget}>
+                      <option
+                        key={budget}
+                        value={budget}
+                      >
                         {budget}
                       </option>
                     ))}
@@ -281,7 +399,15 @@ export default function ContactForm() {
               <div>
                 <label
                   htmlFor="message"
-                  className="mb-2 block text-sm font-medium text-gray-700"
+                  className="
+                    mb-2
+                    block
+
+                    text-sm
+                    font-medium
+
+                    text-[var(--foreground)]
+                  "
                 >
                   Tell Us About Your Project
                 </label>
@@ -292,6 +418,7 @@ export default function ContactForm() {
                   placeholder="Tell us about your goals, requirements, timeline or anything else you'd like us to know..."
                   className={`
                     ${inputClassName}
+
                     resize-none
                   `}
                 />
@@ -314,6 +441,7 @@ export default function ContactForm() {
                   py-4
 
                   font-semibold
+
                   text-white
 
                   shadow-[0_10px_30px_rgba(239,68,68,.18)]
@@ -323,6 +451,7 @@ export default function ContactForm() {
 
                   hover:-translate-y-0.5
                   hover:bg-red-600
+
                   hover:shadow-[0_15px_35px_rgba(239,68,68,.25)]
                 "
               >
@@ -333,7 +462,9 @@ export default function ContactForm() {
             </form>
           </div>
 
-          {/* Right Side */}
+          {/* ========================= */}
+          {/* WHY CHOOSE ATRIA */}
+          {/* ========================= */}
 
           <div
             className="
@@ -343,21 +474,26 @@ export default function ContactForm() {
               rounded-[32px]
 
               border
-              border-gray-200
+              border-[var(--border)]
 
-              bg-white
+              bg-[var(--card)]
 
-              p-8
-
-              shadow-[0_20px_60px_rgba(15,23,42,.06)]
-
+              p-6
+              sm:p-8
               lg:p-10
+
+              shadow-[var(--shadow-lg)]
+
+              transition-all
+              duration-500
             "
           >
             {/* Accent */}
 
             <div
               className="
+                pointer-events-none
+
                 absolute
                 right-[-100px]
                 top-[-100px]
@@ -368,12 +504,15 @@ export default function ContactForm() {
                 rounded-full
 
                 bg-red-500/[0.06]
+                dark:bg-red-600/[0.10]
 
                 blur-[100px]
               "
             />
 
             <div className="relative z-10">
+              {/* Label */}
+
               <span
                 className="
                   inline-flex
@@ -393,31 +532,42 @@ export default function ContactForm() {
                   tracking-[0.35em]
 
                   text-red-600
+                  dark:text-red-400
                 "
               >
                 Why Choose Atria
               </span>
 
+              {/* Heading */}
+
               <h2
                 className="
                   mt-6
-                  text-4xl
+
+                  text-3xl
                   font-bold
                   leading-tight
-                  text-gray-900
+
+                  text-[var(--foreground)]
+
+                  sm:text-4xl
                 "
               >
                 Let's Build Something
+
                 <span className="text-red-500">
-                  {" "}Amazing.
+                  {" "}
+                  Amazing.
                 </span>
               </h2>
 
               <p
                 className="
                   mt-5
+
                   leading-8
-                  text-gray-600
+
+                  text-[var(--muted)]
                 "
               >
                 We're committed to creating websites and digital
@@ -440,13 +590,16 @@ export default function ContactForm() {
                     <div
                       className="
                         mt-0.5
+
                         flex
                         h-8
                         w-8
                         shrink-0
                         items-center
                         justify-center
+
                         rounded-full
+
                         bg-red-500/10
                       "
                     >
@@ -459,7 +612,8 @@ export default function ContactForm() {
                     <span
                       className="
                         leading-7
-                        text-gray-700
+
+                        text-[var(--foreground)]
                       "
                     >
                       {reason}
@@ -479,7 +633,8 @@ export default function ContactForm() {
                   border
                   border-red-500/15
 
-                  bg-red-50
+                  bg-red-500/5
+                  dark:bg-red-500/[0.08]
 
                   p-6
                 "
@@ -490,9 +645,14 @@ export default function ContactForm() {
                       flex
                       h-10
                       w-10
+
+                      shrink-0
+
                       items-center
                       justify-center
+
                       rounded-xl
+
                       bg-red-500/10
                     "
                   >
@@ -506,7 +666,8 @@ export default function ContactForm() {
                     <h3
                       className="
                         font-bold
-                        text-gray-900
+
+                        text-[var(--foreground)]
                       "
                     >
                       Typical Response Time
@@ -515,8 +676,10 @@ export default function ContactForm() {
                     <p
                       className="
                         mt-1
+
                         text-sm
-                        text-gray-600
+
+                        text-[var(--muted)]
                       "
                     >
                       We usually respond within 24 hours.
