@@ -8,33 +8,54 @@ import HeroVisual from "./HeroVisual";
 
 export default function ContactHero() {
   return (
-    <section className="relative overflow-hidden bg-[#050505]">
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-[#fafafa]
+      "
+    >
       <HeroBackground />
 
       <Container className="relative z-10">
         <div
           className="
             grid
-            min-h-screen
+            min-h-[calc(100vh-80px)]
             items-center
 
-            gap-20
+            gap-16
 
-            pt-32
-            pb-20
+            px-0
+            pt-28
+            pb-16
 
             lg:grid-cols-[0.95fr_1.05fr]
             lg:gap-10
-            lg:pt-36
-            lg:pb-24
+            lg:pt-32
+            lg:pb-20
 
             xl:gap-20
-            xl:pt-40
+            xl:pt-36
           "
         >
+          {/* Left — Content */}
+
           <HeroContent />
 
-          <div className="relative flex items-center justify-center">
+          {/* Right — Visual */}
+
+          <div
+            className="
+              relative
+              flex
+              min-h-[500px]
+              items-center
+              justify-center
+
+              lg:min-h-[560px]
+            "
+          >
             <HeroVisual />
           </div>
         </div>

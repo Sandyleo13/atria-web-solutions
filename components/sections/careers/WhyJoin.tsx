@@ -39,14 +39,41 @@ const benefits = [
 
 export default function WhyJoin() {
   return (
-    <section className="bg-[#080808] py-28">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-[var(--background)]
+        py-28
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-0
+          h-[500px]
+          w-[700px]
+          -translate-x-1/2
+          rounded-full
+          bg-red-500/[0.04]
+          blur-[140px]
+        "
+      />
+
+      <Container className="relative z-10">
         {/* Header */}
 
         <div className="mx-auto max-w-3xl text-center">
           <span
             className="
               inline-flex
+              items-center
               rounded-full
               border
               border-red-500/20
@@ -57,21 +84,57 @@ export default function WhyJoin() {
               font-semibold
               uppercase
               tracking-[0.35em]
-              text-red-500
+              text-red-600
+              dark:text-red-500
             "
           >
             Why Join Atria
           </span>
 
-          <h2 className="mt-8 text-5xl font-bold text-white lg:text-6xl">
+          <h2
+            className="
+              mt-8
+              text-5xl
+              font-bold
+              leading-tight
+              text-gray-900
+              dark:text-white
+              lg:text-6xl
+            "
+          >
             More Than Just a Job
           </h2>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-gray-400">
+          <p
+            className="
+              mx-auto
+              mt-8
+              max-w-2xl
+              text-lg
+              leading-8
+              text-gray-600
+              dark:text-gray-400
+            "
+          >
             At Atria, you'll work on meaningful projects, collaborate with
             talented people and continue growing your technical and creative
             skills every day.
           </p>
+
+          {/* Divider */}
+
+          <div
+            className="
+              mx-auto
+              mt-10
+              h-px
+              w-28
+              bg-gradient-to-r
+              from-transparent
+              via-red-500
+              to-transparent
+            "
+          />
         </div>
 
         {/* Cards */}
@@ -93,6 +156,7 @@ export default function WhyJoin() {
                 }}
                 viewport={{
                   once: true,
+                  amount: 0.2,
                 }}
                 transition={{
                   duration: 0.6,
@@ -102,42 +166,103 @@ export default function WhyJoin() {
                   y: -8,
                 }}
                 className="
+                  group
+                  relative
+                  overflow-hidden
                   rounded-[30px]
+
                   border
-                  border-white/10
-                  bg-[#111111]
+                  border-gray-200
+                  dark:border-white/10
+
+                  bg-white
+                  dark:bg-[#111111]
+
                   p-8
+
+                  shadow-[0_15px_45px_rgba(15,23,42,.06)]
+                  dark:shadow-none
+
                   transition-all
                   duration-300
 
                   hover:border-red-500/30
-                  hover:shadow-[0_20px_60px_rgba(229,57,53,.18)]
+                  hover:shadow-[0_20px_60px_rgba(229,57,53,.12)]
                 "
               >
+                {/* Card Glow */}
+
                 <div
                   className="
-                    flex
-                    h-16
-                    w-16
-                    items-center
-                    justify-center
-                    rounded-2xl
-                    bg-red-500/10
+                    pointer-events-none
+                    absolute
+                    -right-16
+                    -top-16
+                    h-40
+                    w-40
+                    rounded-full
+                    bg-red-500/[0.06]
+                    blur-[70px]
+                    transition-opacity
+                    duration-300
+                    group-hover:bg-red-500/[0.10]
                   "
-                >
-                  <Icon
-                    size={28}
-                    className="text-red-500"
-                  />
+                />
+
+                <div className="relative z-10">
+                  {/* Icon */}
+
+                  <div
+                    className="
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-red-500/10
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  >
+                    <Icon
+                      size={28}
+                      className="text-red-600 dark:text-red-500"
+                    />
+                  </div>
+
+                  {/* Title */}
+
+                  <h3
+                    className="
+                      mt-8
+                      text-2xl
+                      font-bold
+                      text-gray-900
+                      transition-colors
+                      duration-300
+                      group-hover:text-red-600
+                      dark:text-white
+                      dark:group-hover:text-red-400
+                    "
+                  >
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+
+                  <p
+                    className="
+                      mt-5
+                      leading-8
+                      text-gray-600
+                      dark:text-gray-400
+                    "
+                  >
+                    {item.description}
+                  </p>
                 </div>
-
-                <h3 className="mt-8 text-2xl font-bold text-white">
-                  {item.title}
-                </h3>
-
-                <p className="mt-5 leading-8 text-gray-400">
-                  {item.description}
-                </p>
               </motion.div>
             );
           })}

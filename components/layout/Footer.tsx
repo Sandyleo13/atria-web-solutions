@@ -1,5 +1,285 @@
-import { AtSign, Globe2, MapPin, Phone, Send } from "lucide-react";
+"use client";
+
+import Link from "next/link";
+import { AtSign, Globe2, MapPin, Phone } from "lucide-react";
+
 import { Container } from "./Container";
 
-const columns = [["Quick Links", "Home", "About Us", "Services", "Portfolio", "Blog", "Contact"], ["Services", "Web Development", "Mobile Development", "UI/UX Design", "Digital Marketing", "E-Commerce"], ["Company", "About Us", "Careers", "Case Studies", "Privacy Policy", "Terms of Service"]];
-export function Footer() { return <footer className="bg-[#1a0809] py-12 text-white"><Container><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)]"><div><p className="text-2xl font-extrabold tracking-[-0.06em] text-brand">Atria</p><p className="text-sm">Web Solutions</p><p className="mt-5 max-w-xs text-sm leading-6 text-white/60">We build high-performance websites, applications, and digital products that help businesses grow.</p><div className="mt-5 flex gap-3">{[Globe2, AtSign, Send].map((Icon, index) => <span className="grid size-8 place-items-center rounded-full bg-white/10" key={index}><Icon size={15} /></span>)}</div></div>{columns.map(([title, ...links]) => <div key={title}><h3 className="text-sm font-bold">{title}</h3><ul className="mt-4 space-y-2.5">{links.map((link) => <li key={link}><a href="#" className="text-sm text-white/60 transition-colors hover:text-white">{link}</a></li>)}</ul></div>)}<div><h3 className="text-sm font-bold">Get In Touch</h3><ul className="mt-4 space-y-3 text-sm text-white/60"><li className="flex gap-2"><MapPin size={16} className="shrink-0 text-brand" />123, Business Street, Mumbai, India 400001</li><li className="flex gap-2"><Phone size={16} className="shrink-0 text-brand" />+91 98765 43210</li></ul></div></div><div className="mt-10 border-t border-white/10 pt-5 text-center text-xs text-white/40">© 2024 Atria Web Solutions. All rights reserved.</div></Container></footer>; }
+const footerLinks = {
+  quickLinks: [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Blog", href: "/blog" },
+    { label: "Careers", href: "/careers" },
+    { label: "Contact", href: "/contact" },
+  ],
+
+  services: [
+    {
+      label: "Web Development",
+      href: "/services/web-development",
+    },
+    {
+      label: "E-Commerce Solutions",
+      href: "/services/e-commerce",
+    },
+    {
+      label: "SEO Services",
+      href: "/services/seo",
+    },
+    {
+      label: "Mobile App Development",
+      href: "/services/mobile-app-development",
+    },
+    {
+      label: "Email Marketing",
+      href: "/services/email-marketing",
+    },
+    {
+      label: "Online Reputation Management",
+      href: "/services/online-reputation-management",
+    },
+  ],
+};
+
+const socials = [
+  {
+    icon: Globe2,
+    href: "#",
+    label: "Website",
+  },
+  {
+    icon: AtSign,
+    href: "mailto:hello@atriawebsolutions.com",
+    label: "Email",
+  },
+];
+
+export function Footer() {
+  return (
+    <footer className="border-t border-[var(--border)] bg-[var(--surface)]">
+      <Container>
+        <div className="py-20">
+          <div className="grid gap-16 lg:grid-cols-[1.35fr_repeat(3,1fr)]">
+            {/* Left */}
+
+            <div>
+              <h2 className="text-4xl font-black tracking-tight text-[var(--foreground)]">
+                Atria
+              </h2>
+
+              <p className="mt-1 text-lg font-medium text-red-500">
+                Web Solutions
+              </p>
+
+              <p className="mt-6 max-w-sm leading-8 text-[var(--muted)]">
+                Building modern websites, web applications and digital
+                experiences that help startups, businesses and growing brands
+                succeed online.
+              </p>
+
+              <div className="mt-8 flex gap-4">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+
+                      rounded-xl
+
+                      border
+                      border-[var(--border)]
+
+                      bg-[var(--card)]
+
+                      transition-all
+                      duration-300
+
+                      hover:-translate-y-1
+                      hover:border-red-500
+                      hover:bg-red-500
+                      hover:text-white
+                    "
+                  >
+                    <Icon size={18} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+
+            <div>
+              <h3 className="text-lg font-semibold text-[var(--foreground)]">
+                Quick Links
+              </h3>
+
+              <ul className="mt-6 space-y-4">
+                {footerLinks.quickLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="
+                        text-[var(--muted)]
+
+                        transition-all
+                        duration-300
+
+                        hover:translate-x-1
+                        hover:text-red-500
+                      "
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+
+            <div>
+              <h3 className="text-lg font-semibold text-[var(--foreground)]">
+                Services
+              </h3>
+
+              <ul className="mt-6 space-y-4">
+                {footerLinks.services.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="
+                        text-[var(--muted)]
+
+                        transition-all
+                        duration-300
+
+                        hover:translate-x-1
+                        hover:text-red-500
+                      "
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+
+            <div>
+              <h3 className="text-lg font-semibold text-[var(--foreground)]">
+                Contact
+              </h3>
+
+              <div className="mt-6 space-y-6">
+                {/* Location */}
+
+                <div className="flex items-start gap-3">
+                  <MapPin
+                    className="mt-1 shrink-0 text-red-500"
+                    size={18}
+                  />
+
+                  <p className="leading-7 text-[var(--muted)]">
+                    Mumbai,
+                    <br />
+                    Maharashtra, India
+                  </p>
+                </div>
+
+                {/* Phone */}
+
+                <a
+                  href="tel:+919876543210"
+                  className="
+                    flex
+                    items-center
+                    gap-3
+
+                    text-[var(--muted)]
+
+                    transition-colors
+                    duration-300
+
+                    hover:text-red-500
+                  "
+                >
+                  <Phone
+                    className="shrink-0 text-red-500"
+                    size={18}
+                  />
+
+                  <span>+91 98765 43210</span>
+                </a>
+
+                {/* Email */}
+
+                <a
+                  href="mailto:hello@atriawebsolutions.com"
+                  className="
+                    flex
+                    items-center
+                    gap-3
+
+                    text-[var(--muted)]
+
+                    transition-colors
+                    duration-300
+
+                    hover:text-red-500
+                  "
+                >
+                  <AtSign
+                    className="shrink-0 text-red-500"
+                    size={18}
+                  />
+
+                  <span>hello@atriawebsolutions.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom */}
+
+          <div
+            className="
+              mt-16
+              flex
+              flex-col
+              items-center
+              justify-between
+              gap-4
+
+              border-t
+              border-[var(--border)]
+
+              pt-8
+
+              text-sm
+
+              md:flex-row
+            "
+          >
+            <p className="text-[var(--muted)]">
+              © {new Date().getFullYear()} Atria Web Solutions. All rights
+              reserved.
+            </p>
+
+            <p className="text-[var(--muted)]">
+              Made with ❤️ in India
+            </p>
+          </div>
+        </div>
+      </Container>
+    </footer>
+  );
+}

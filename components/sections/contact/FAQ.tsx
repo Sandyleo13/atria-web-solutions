@@ -37,53 +37,213 @@ export default function FAQ() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#080808] py-28">
+    <section className="bg-white py-28">
       <Container>
+        {/* Header */}
+
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex rounded-full border border-red-500/20 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-red-500">
+          <span
+            className="
+              inline-flex
+              rounded-full
+
+              border
+              border-red-500/20
+
+              bg-red-500/10
+
+              px-4
+              py-2
+
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.35em]
+
+              text-red-600
+            "
+          >
             Frequently Asked Questions
           </span>
 
-          <h2 className="mt-8 text-5xl font-bold text-white lg:text-6xl">
+          <h2
+            className="
+              mt-8
+              text-5xl
+              font-bold
+              tracking-tight
+              text-gray-900
+
+              lg:text-6xl
+            "
+          >
             We've Got Answers
           </h2>
 
-          <p className="mt-8 text-lg leading-8 text-gray-400">
-            Here are some of the questions we receive most often before starting
-            a project.
+          <p
+            className="
+              mx-auto
+              mt-7
+              max-w-2xl
+
+              text-lg
+              leading-8
+
+              text-gray-600
+            "
+          >
+            Here are some of the questions we receive most often
+            before starting a project.
           </p>
         </div>
 
-        <div className="mx-auto mt-20 max-w-4xl space-y-5">
-          {faqs.map((faq, index) => (
-            <div
-              key={faq.question}
-              className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111111]"
-            >
-              <button
-                onClick={() =>
-                  setActive(active === index ? null : index)
-                }
-                className="flex w-full items-center justify-between p-7 text-left"
+        {/* FAQ List */}
+
+        <div className="mx-auto mt-16 max-w-4xl space-y-4">
+          {faqs.map((faq, index) => {
+            const isActive = active === index;
+
+            return (
+              <div
+                key={faq.question}
+                className={`
+                  overflow-hidden
+                  rounded-[24px]
+
+                  border
+
+                  bg-white
+
+                  transition-all
+                  duration-300
+
+                  ${
+                    isActive
+                      ? "border-red-500/25 shadow-[0_12px_40px_rgba(239,68,68,.07)]"
+                      : "border-gray-200 shadow-[0_6px_25px_rgba(15,23,42,.03)] hover:border-gray-300"
+                  }
+                `}
               >
-                <span className="text-xl font-semibold text-white">
-                  {faq.question}
-                </span>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActive(isActive ? null : index)
+                  }
+                  aria-expanded={isActive}
+                  className="
+                    flex
+                    w-full
+                    items-center
+                    justify-between
+                    gap-6
 
-                <ChevronDown
-                  className={`transition-transform duration-300 ${
-                    active === index ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+                    px-7
+                    py-6
 
-              {active === index && (
-                <div className="px-7 pb-7 text-gray-400 leading-8">
-                  {faq.answer}
+                    text-left
+
+                    lg:px-8
+                    lg:py-7
+                  "
+                >
+                  <span
+                    className={`
+                      text-lg
+                      font-semibold
+
+                      transition-colors
+                      duration-300
+
+                      lg:text-xl
+
+                      ${
+                        isActive
+                          ? "text-red-600"
+                          : "text-gray-900"
+                      }
+                    `}
+                  >
+                    {faq.question}
+                  </span>
+
+                  <span
+                    className={`
+                      flex
+                      h-9
+                      w-9
+                      shrink-0
+                      items-center
+                      justify-center
+
+                      rounded-full
+
+                      transition-all
+                      duration-300
+
+                      ${
+                        isActive
+                          ? "bg-red-500 text-white"
+                          : "bg-gray-100 text-gray-500"
+                      }
+                    `}
+                  >
+                    <ChevronDown
+                      size={18}
+                      className={`
+                        transition-transform
+                        duration-300
+
+                        ${
+                          isActive
+                            ? "rotate-180"
+                            : ""
+                        }
+                      `}
+                    />
+                  </span>
+                </button>
+
+                {/* Answer */}
+
+                <div
+                  className={`
+                    grid
+                    transition-all
+                    duration-300
+                    ease-in-out
+
+                    ${
+                      isActive
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      className="
+                        border-t
+                        border-gray-100
+
+                        px-7
+                        pb-7
+                        pt-5
+
+                        text-base
+                        leading-7
+
+                        text-gray-600
+
+                        lg:px-8
+                      "
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </Container>
     </section>

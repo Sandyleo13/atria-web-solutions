@@ -58,7 +58,6 @@ export default function Navbar() {
             opacity: 1,
             y: 0,
             scale: 1,
-
             height: scrolled ? 76 : 92,
           }}
           transition={{
@@ -70,23 +69,17 @@ export default function Navbar() {
 
             "rounded-[30px]",
 
-            "border",
+            "border border-[var(--border)]",
 
-            scrolled
-              ? "border-white/10"
-              : "border-white/15",
-
-            scrolled
-              ? "bg-[#0b0b0bf2]"
-              : "bg-[#161616cc]",
+            "bg-[var(--navbar)]",
 
             "backdrop-blur-[30px]",
 
             scrolled
-              ? "shadow-[0_18px_60px_rgba(0,0,0,.45)]"
-              : "shadow-[0_10px_45px_rgba(0,0,0,.28)]",
+              ? "shadow-[var(--shadow-lg)]"
+              : "shadow-[var(--shadow-md)]",
 
-            "transition-all duration-300"
+            "transition-all duration-300",
           )}
         >
           <div

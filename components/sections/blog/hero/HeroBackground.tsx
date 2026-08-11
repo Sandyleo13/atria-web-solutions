@@ -3,34 +3,46 @@
 export default function HeroBackground() {
   return (
     <>
-      {/* Base */}
+      {/* Base Background */}
 
-      <div className="absolute inset-0 bg-[#050505]" />
+      <div className="absolute inset-0 bg-[var(--background)] transition-colors duration-500" />
 
-      {/* Red Glow */}
+      {/* Main Glow */}
 
       <div
         className="
           absolute
           left-[-10%]
           top-[-10%]
+
           h-[600px]
           w-[600px]
+
           rounded-full
-          bg-red-500/10
-          blur-[140px]
+
+          bg-red-500/8
+          dark:bg-red-600/12
+
+          blur-[150px]
         "
       />
+
+      {/* Secondary Glow */}
 
       <div
         className="
           absolute
           right-[-10%]
           bottom-[-10%]
-          h-[500px]
-          w-[500px]
+
+          h-[520px]
+          w-[520px]
+
           rounded-full
+
           bg-red-500/5
+          dark:bg-red-600/8
+
           blur-[160px]
         "
       />
@@ -41,11 +53,31 @@ export default function HeroBackground() {
         className="
           absolute
           inset-0
-          opacity-[0.04]
 
-          [background-image:linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)]
+          opacity-[0.03]
+          dark:opacity-[0.04]
+
+          [background-image:linear-gradient(rgba(17,24,39,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,39,.08)_1px,transparent_1px)]
+
+          dark:[background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)]
 
           [background-size:70px_70px]
+        "
+      />
+
+      {/* Vignette */}
+
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[radial-gradient(circle_at_center,transparent_30%,rgba(250,250,250,.65)_100%)]
+
+          dark:bg-[radial-gradient(circle_at_center,transparent_20%,rgba(5,5,5,.65)_100%)]
+
+          transition-all
+          duration-500
         "
       />
     </>

@@ -24,9 +24,9 @@ export default function ThemeToggle() {
           rounded-full
 
           border
-          border-white/10
+          border-[var(--border)]
 
-          bg-white/5
+          bg-[var(--card)]
 
           backdrop-blur-xl
         "
@@ -52,9 +52,9 @@ export default function ThemeToggle() {
         rounded-full
 
         border
-        border-white/10
+        border-[var(--border)]
 
-        bg-white/[0.04]
+        bg-[var(--card)]/80
 
         p-1
 
@@ -63,21 +63,42 @@ export default function ThemeToggle() {
         transition-all
         duration-300
 
-        hover:border-red-500/25
-        hover:bg-white/[0.06]
+        hover:border-red-500/40
+        hover:bg-[var(--card-hover)]
       "
     >
+      {/* Background Icons */}
+
+      <div className="absolute inset-0 flex items-center justify-between px-3 pointer-events-none">
+        <Moon
+          size={16}
+          className={`transition-opacity duration-300 ${
+            isDark
+              ? "opacity-0"
+              : "opacity-100 text-[var(--muted)]"
+          }`}
+        />
+
+        <Sun
+          size={16}
+          className={`transition-opacity duration-300 ${
+            isDark
+              ? "opacity-100 text-[var(--muted)]"
+              : "opacity-0"
+          }`}
+        />
+      </div>
+
       {/* Sliding Thumb */}
 
       <motion.div
-        layout
         transition={{
           type: "spring",
           stiffness: 450,
           damping: 28,
         }}
         animate={{
-          x: isDark ? 38 : 0,
+          x: isDark ? 40 : 0,
         }}
         className="
           absolute
@@ -92,10 +113,11 @@ export default function ThemeToggle() {
 
           bg-gradient-to-br
           from-red-500
-          via-red-600
-          to-red-700
+          via-red-500
+          to-red-600
 
-          shadow-[0_0_25px_rgba(239,68,68,.45)]
+          shadow-[0_10px_25px_rgba(229,57,53,.28)]
+          dark:shadow-[0_0_25px_rgba(239,68,68,.45)]
         "
       >
         <AnimatePresence mode="wait">
@@ -104,7 +126,7 @@ export default function ThemeToggle() {
             initial={{
               opacity: 0,
               rotate: -90,
-              scale: .6,
+              scale: 0.6,
             }}
             animate={{
               opacity: 1,
@@ -114,60 +136,20 @@ export default function ThemeToggle() {
             exit={{
               opacity: 0,
               rotate: 90,
-              scale: .6,
+              scale: 0.6,
             }}
             transition={{
-              duration: .25,
+              duration: 0.25,
             }}
           >
             {isDark ? (
-              <Moon
-                size={18}
-                className="text-white"
-              />
+              <Moon size={18} className="text-white" />
             ) : (
-              <Sun
-                size={18}
-                className="text-white"
-              />
+              <Sun size={18} className="text-white" />
             )}
           </motion.div>
         </AnimatePresence>
       </motion.div>
-
-      {/* Background Icons */}
-
-      <div
-        className="
-          relative
-          z-10
-
-          flex
-          w-full
-          items-center
-          justify-between
-
-          px-[11px]
-        "
-      >
-        <Moon
-          size={16}
-          className={`transition-colors duration-300 ${
-            isDark
-              ? "text-transparent"
-              : "text-gray-500"
-          }`}
-        />
-
-        <Sun
-          size={16}
-          className={`transition-colors duration-300 ${
-            isDark
-              ? "text-gray-500"
-              : "text-transparent"
-          }`}
-        />
-      </div>
     </button>
   );
 }

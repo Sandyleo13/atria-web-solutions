@@ -7,7 +7,17 @@ export default function AboutBackground() {
     <>
       {/* Base Background */}
 
-      <div className="absolute inset-0 bg-[#050505]" />
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[var(--background)]
+
+          transition-colors
+          duration-500
+        "
+      />
 
       {/* Main Glow */}
 
@@ -33,7 +43,8 @@ export default function AboutBackground() {
 
           rounded-full
 
-          bg-red-600/15
+          bg-red-500/8
+          dark:bg-red-600/15
 
           blur-[180px]
         "
@@ -52,7 +63,8 @@ export default function AboutBackground() {
 
           rounded-full
 
-          bg-red-500/10
+          bg-red-500/6
+          dark:bg-red-500/10
 
           blur-[140px]
         "
@@ -71,7 +83,8 @@ export default function AboutBackground() {
 
           rounded-full
 
-          bg-red-700/10
+          bg-red-600/6
+          dark:bg-red-700/10
 
           blur-[150px]
         "
@@ -85,8 +98,11 @@ export default function AboutBackground() {
           inset-0
 
           opacity-[0.035]
+          dark:opacity-[0.03]
 
-          [background-image:linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)]
+          [background-image:linear-gradient(rgba(17,24,39,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,39,.08)_1px,transparent_1px)]
+
+          dark:[background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)]
 
           [background-size:44px_44px]
         "
@@ -99,7 +115,9 @@ export default function AboutBackground() {
           absolute
           inset-0
 
-          bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,.15)_60%,#050505_100%)]
+          bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,.08)_65%,var(--background)_100%)]
+
+          dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,.15)_60%,var(--background)_100%)]
         "
       />
     </>

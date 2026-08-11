@@ -1,9 +1,14 @@
 export const HERO_IMAGES = {
-  background: "/images/home/hero-bg.webp",
-  hero: "/images/home/hero-a-transperent.png",
-  glow: "/images/home/hero-glow.webp",
-  debris: "/images/home/hero-debris.png",
-  ground: "/images/home/hero-ground.png",
+  backgroundDark: "/images/home/hero-bg.webp",
+  backgroundLight: "/images/home/hero-bg-light.png",
+
+  glowDark: "/images/home/hero-glow.webp",
+  glowLight: "/images/home/hero-glow-light.png",
+
+  heroDark: "/images/home/hero-a-transperent.png",
+
+  // Use the transparent PNG for light mode
+  heroLight: "/images/home/Removal-452.png",
 };
 
 export const HERO_ANIMATION = {

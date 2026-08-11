@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -9,6 +10,7 @@ import {
 } from "lucide-react";
 
 interface ArticleCardProps {
+  slug: string;
   title: string;
   category: string;
   readTime: string;
@@ -16,6 +18,7 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({
+  slug,
   title,
   category,
   readTime,
@@ -23,19 +26,33 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <motion.article
-      whileHover={{ y: -10 }}
-      transition={{ duration: 0.35 }}
+      whileHover={{
+        y: -10,
+        scale: 1.015,
+      }}
+      transition={{
+        duration: 0.35,
+      }}
       className="
         group
         overflow-hidden
         rounded-[30px]
+
         border
-        border-white/10
-        bg-[#111111]
+        border-gray-200
+        dark:border-white/10
+
+        bg-white
+        dark:bg-[#111111]
+
+        shadow-[0_18px_45px_rgba(17,24,39,.06)]
+        dark:shadow-none
+
         transition-all
         duration-500
-        hover:border-red-500/30
-        hover:shadow-[0_25px_70px_rgba(229,57,53,.18)]
+
+        hover:border-red-500/40
+        hover:shadow-[0_25px_70px_rgba(229,57,53,.16)]
       "
     >
       {/* Cover */}
@@ -47,8 +64,10 @@ export default function ArticleCard({
           fill
           className="
             object-cover
+
             transition-transform
             duration-700
+
             group-hover:scale-105
           "
         />
@@ -57,8 +76,9 @@ export default function ArticleCard({
           className="
             absolute
             inset-0
+
             bg-gradient-to-t
-            from-black/70
+            from-black/40
             via-transparent
             to-transparent
           "
@@ -68,39 +88,70 @@ export default function ArticleCard({
       {/* Content */}
 
       <div className="p-7">
+
+        {/* Category */}
+
         <span
           className="
             inline-flex
+            items-center
+
             rounded-full
+
             border
             border-red-500/20
+
             bg-red-500/10
+
             px-3
             py-1
+
             text-xs
             font-semibold
-            text-red-400
+
+            text-red-600
+            dark:text-red-400
           "
         >
           {category}
         </span>
 
+        {/* Title */}
+
         <h3
           className="
             mt-5
+
             text-2xl
             font-bold
             leading-tight
-            text-white
+
+            text-[var(--foreground)]
+
             transition-colors
             duration-300
+
             group-hover:text-red-500
           "
         >
           {title}
         </h3>
 
-        <div className="mt-6 flex items-center justify-between text-sm text-gray-400">
+        {/* Meta */}
+
+        <div
+          className="
+            mt-6
+
+            flex
+            items-center
+            justify-between
+
+            text-sm
+
+            text-[var(--muted)]
+          "
+        >
           <div className="flex items-center gap-2">
             <Calendar size={15} />
             Aug 2026
@@ -112,14 +163,19 @@ export default function ArticleCard({
           </div>
         </div>
 
-        <button
+        {/* CTA */}
+
+        <Link
+          href={`/blog/${slug}`}
           className="
             mt-8
+
             inline-flex
             items-center
             gap-2
 
             font-semibold
+
             text-red-500
 
             transition-all
@@ -132,9 +188,16 @@ export default function ArticleCard({
 
           <ArrowUpRight
             size={18}
-            className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+            className="
+              transition-transform
+              duration-300
+
+              group-hover:-translate-y-1
+              group-hover:translate-x-1
+            "
           />
-        </button>
+        </Link>
+
       </div>
     </motion.article>
   );

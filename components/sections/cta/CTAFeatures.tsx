@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  CheckCircle2,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 const features = [
   "Free Consultation",
@@ -28,6 +26,8 @@ export default function CTAFeatures() {
         <div
           key={feature}
           className="
+            group
+
             flex
             items-center
             gap-3
@@ -35,20 +35,47 @@ export default function CTAFeatures() {
             rounded-xl
 
             border
-            border-white/10
+            border-gray-200
+            dark:border-white/10
 
-            bg-white/5
+            bg-white
+            dark:bg-white/5
 
             px-5
             py-4
+
+            shadow-[0_10px_25px_rgba(17,24,39,.05)]
+            dark:shadow-none
+
+            transition-all
+            duration-300
+
+            hover:-translate-y-1
+            hover:border-red-500/40
+            hover:bg-red-50
+            dark:hover:bg-red-500/10
           "
         >
           <CheckCircle2
             size={18}
-            className="text-red-500"
+            className="
+              text-red-600
+              dark:text-red-500
+
+              transition-transform
+              duration-300
+
+              group-hover:scale-110
+            "
           />
 
-          <span className="text-white">
+          <span
+            className="
+              font-medium
+
+              text-[var(--foreground)]
+            "
+          >
             {feature}
           </span>
         </div>

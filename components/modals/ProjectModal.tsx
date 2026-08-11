@@ -51,8 +51,10 @@ export default function ProjectModal() {
               fixed
               inset-0
               z-[9998]
-              bg-black/75
+              bg-black/40
               backdrop-blur-md
+
+              dark:bg-black/75
             "
           />
 
@@ -100,24 +102,52 @@ export default function ProjectModal() {
                 rounded-[36px]
 
                 border
-                border-white/10
+                border-gray-200
 
-                bg-[#090909]
+                bg-white
 
-                shadow-[0_30px_120px_rgba(0,0,0,.55)]
+                shadow-[0_30px_120px_rgba(0,0,0,.20)]
+
+                dark:border-white/10
+                dark:bg-[#090909]
+                dark:shadow-[0_30px_120px_rgba(0,0,0,.55)]
               "
             >
               {/* Ambient Glow */}
 
               <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -right-32 -top-32 h-72 w-72 rounded-full bg-red-500/10 blur-[120px]" />
-                <div className="absolute -left-24 bottom-0 h-60 w-60 rounded-full bg-red-500/10 blur-[120px]" />
+                <div
+                  className="
+                    absolute
+                    -right-32
+                    -top-32
+                    h-72
+                    w-72
+                    rounded-full
+                    bg-red-500/10
+                    blur-[120px]
+                  "
+                />
+
+                <div
+                  className="
+                    absolute
+                    -left-24
+                    bottom-0
+                    h-60
+                    w-60
+                    rounded-full
+                    bg-red-500/10
+                    blur-[120px]
+                  "
+                />
               </div>
 
               {/* Close */}
 
               <button
                 onClick={closeModal}
+                aria-label="Close project modal"
                 className="
                   absolute
                   right-6
@@ -133,18 +163,25 @@ export default function ProjectModal() {
                   rounded-full
 
                   border
-                  border-white/10
+                  border-gray-200
 
-                  bg-white/5
+                  bg-gray-100
+
+                  text-gray-700
 
                   transition-all
                   duration-300
 
                   hover:border-red-500/30
                   hover:bg-red-500
+                  hover:text-white
+
+                  dark:border-white/10
+                  dark:bg-white/5
+                  dark:text-white
                 "
               >
-                <X size={20} className="text-white" />
+                <X size={20} />
               </button>
 
               {/* Form */}

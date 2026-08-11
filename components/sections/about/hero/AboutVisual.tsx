@@ -1,7 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, MonitorSmartphone, Palette, Rocket } from "lucide-react";
+import {
+  Code2,
+  MonitorSmartphone,
+  Palette,
+  Rocket,
+} from "lucide-react";
 
 const cards = [
   {
@@ -36,17 +41,41 @@ const cards = [
 
 export default function AboutVisual() {
   return (
-    <div className="relative h-[650px] w-full">
+    <div className="relative h-[620px] w-full max-w-[620px]">
+
       {/* Center Glow */}
 
-      <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600/20 blur-[140px]" />
+      <div
+        className="
+          absolute
+          left-1/2
+          top-1/2
+
+          h-80
+          w-80
+
+          -translate-x-1/2
+          -translate-y-1/2
+
+          rounded-full
+
+          bg-red-500/10
+          dark:bg-red-600/20
+
+          blur-[140px]
+        "
+      />
 
       {/* Center Card */}
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
+        whileHover={{
+          y: -8,
+          scale: 1.02,
+        }}
         className="
           absolute
           left-1/2
@@ -68,18 +97,26 @@ export default function AboutVisual() {
           rounded-[36px]
 
           border
-          border-white/10
+          border-gray-200
+          dark:border-white/10
 
-          bg-white/[0.04]
+          bg-white
+          dark:bg-white/[0.04]
 
           backdrop-blur-3xl
 
-          shadow-[0_0_70px_rgba(0,0,0,.45)]
+          shadow-[0_18px_40px_rgba(17,24,39,.08)]
+          dark:shadow-[0_0_70px_rgba(0,0,0,.45)]
+
+          transition-all
+          duration-300
         "
       >
-        <h2 className="text-5xl font-bold text-white">ATRIA</h2>
+        <h2 className="text-5xl font-bold text-[var(--foreground)]">
+          ATRIA
+        </h2>
 
-        <p className="mt-3 text-sm uppercase tracking-[0.45em] text-red-400">
+        <p className="mt-3 text-sm uppercase tracking-[0.45em] text-red-600 dark:text-red-400">
           WEB SOLUTIONS
         </p>
       </motion.div>
@@ -112,6 +149,10 @@ export default function AboutVisual() {
                 delay: card.delay,
               },
             }}
+            whileHover={{
+              y: -8,
+              scale: 1.05,
+            }}
             className={`
               absolute
               ${card.className}
@@ -119,15 +160,21 @@ export default function AboutVisual() {
               rounded-3xl
 
               border
-              border-white/10
+              border-gray-200
+              dark:border-white/10
 
-              bg-white/[0.04]
+              bg-white
+              dark:bg-white/[0.04]
 
               p-5
 
               backdrop-blur-2xl
 
-              shadow-[0_20px_50px_rgba(0,0,0,.35)]
+              shadow-[0_12px_30px_rgba(17,24,39,.06)]
+              dark:shadow-[0_20px_50px_rgba(0,0,0,.35)]
+
+              transition-all
+              duration-300
             `}
           >
             <div
@@ -144,10 +191,22 @@ export default function AboutVisual() {
                 ${card.color}
               `}
             >
-              <Icon size={26} className="text-white" />
+              <Icon
+                size={26}
+                className="text-white"
+              />
             </div>
 
-            <p className="mt-4 text-sm font-semibold text-white">
+            <p
+              className="
+                mt-4
+
+                text-sm
+                font-semibold
+
+                text-[var(--foreground)]
+              "
+            >
               {card.title}
             </p>
           </motion.div>

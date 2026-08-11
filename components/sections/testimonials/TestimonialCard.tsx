@@ -27,32 +27,66 @@ export default function TestimonialCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
+      whileHover={{
+        y: -6,
+      }}
       className="
+        group
         relative
         overflow-hidden
+
         rounded-[32px]
 
         border
-        border-white/10
+        border-gray-200
+        dark:border-white/10
 
-        bg-white/[0.03]
+        bg-white
+        dark:bg-white/[0.03]
 
         p-10
 
         backdrop-blur-2xl
 
-        shadow-[0_0_50px_rgba(0,0,0,.35)]
+        shadow-[0_18px_40px_rgba(17,24,39,.06)]
+        dark:shadow-[0_0_50px_rgba(0,0,0,.35)]
+
+        transition-all
+        duration-300
+
+        hover:border-red-500/30
+        hover:shadow-[0_20px_50px_rgba(239,68,68,.12)]
       "
     >
-      {/* Background Glow */}
+      {/* Hover Glow */}
 
-      <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-red-600/10 blur-[120px]" />
+      <div
+        className="
+          absolute
+          right-0
+          top-0
+
+          h-56
+          w-56
+
+          rounded-full
+
+          bg-red-500/10
+
+          blur-[120px]
+
+          opacity-0
+
+          transition-opacity
+          duration-500
+
+          group-hover:opacity-100
+        "
+      />
 
       <div className="relative z-10">
 
-        <CompanyBadge
-          company={testimonial.company}
-        />
+        <CompanyBadge company={testimonial.company} />
 
         <div className="mt-8">
           <StarRating rating={testimonial.rating} />
@@ -65,7 +99,7 @@ export default function TestimonialCard({
             text-2xl
             leading-relaxed
 
-            text-white
+            text-[var(--foreground)]
 
             lg:text-3xl
           "
@@ -94,6 +128,8 @@ export default function TestimonialCard({
               text-xl
               font-bold
               text-white
+
+              shadow-[0_10px_25px_rgba(239,68,68,.25)]
             "
           >
             {testimonial.name
@@ -108,7 +144,8 @@ export default function TestimonialCard({
               className="
                 text-xl
                 font-semibold
-                text-white
+
+                text-[var(--foreground)]
               "
             >
               {testimonial.name}
@@ -117,7 +154,8 @@ export default function TestimonialCard({
             <p
               className="
                 mt-1
-                text-gray-400
+
+                text-[var(--muted)]
               "
             >
               {testimonial.role} • {testimonial.company}

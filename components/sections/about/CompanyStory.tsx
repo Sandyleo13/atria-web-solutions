@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import {
   CheckCircle2,
   Lightbulb,
@@ -34,9 +35,42 @@ const features = [
 ];
 
 export default function CompanyStory() {
+  const { resolvedTheme } = useTheme();
+
+  const isDark = resolvedTheme === "dark";
+
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-28">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+        py-28
+        bg-[var(--background)]
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-20
+            h-80
+            w-[700px]
+            -translate-x-1/2
+            rounded-full
+            bg-red-500/8
+            dark:bg-red-600/10
+            blur-[180px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
+        {/* Section Header */}
 
         <SectionHeader
           eyebrow="Our Story"
@@ -46,25 +80,70 @@ export default function CompanyStory() {
 
         <div className="mt-20 grid items-center gap-20 lg:grid-cols-2">
 
-          {/* Left */}
+          {/* =========================================
+              LEFT — IMAGE
+          ========================================= */}
 
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: .7 }}
+            transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
+            {/* Image Glow */}
 
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                rounded-[36px]
+                bg-red-500/10
+                blur-3xl
+                dark:bg-red-600/15
+              "
+            />
+
+            {/* Image Container */}
+
+            <div
+              className="
+                relative
+                overflow-hidden
+                rounded-3xl
+                border
+                border-gray-200
+                dark:border-white/10
+                bg-white
+                dark:bg-white/5
+                backdrop-blur-xl
+                shadow-[0_18px_40px_rgba(17,24,39,.06)]
+                dark:shadow-none
+                transition-all
+                duration-500
+              "
+            >
               <Image
-                src="/images/about/company-story.png"
+                src={
+                  isDark
+                    ? "/images/about/about-page-dark.png"
+                    : "/images/about/about-page-light.png"
+                }
                 alt="Atria Web Solutions Team"
                 width={1600}
                 height={1200}
-                className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="
+                  h-auto
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-700
+                  hover:scale-105
+                "
               />
-
             </div>
 
             {/* Floating Badge */}
@@ -76,55 +155,76 @@ export default function CompanyStory() {
               transition={{
                 duration: 4,
                 repeat: Infinity,
+                ease: "easeInOut",
               }}
               className="
                 absolute
                 -bottom-8
                 left-8
-
                 rounded-2xl
-
                 border
-                border-white/10
-
-                bg-black/80
-
+                border-gray-200
+                dark:border-white/10
+                bg-white/95
+                dark:bg-black/80
                 px-6
                 py-4
-
                 backdrop-blur-xl
+                shadow-[0_18px_35px_rgba(17,24,39,.08)]
+                dark:shadow-none
               "
             >
-              <p className="text-3xl font-bold text-white">
+              <p className="text-3xl font-bold text-[var(--foreground)]">
                 50+
               </p>
 
-              <p className="mt-1 text-sm text-gray-400">
+              <p className="mt-1 text-sm text-[var(--muted)]">
                 Successful Projects
               </p>
             </motion.div>
           </motion.div>
 
-          {/* Right */}
+          {/* =========================================
+              RIGHT — CONTENT
+          ========================================= */}
 
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: .7 }}
+            transition={{ duration: 0.7 }}
           >
-            <h3 className="text-4xl font-bold text-white">
+            <h3
+              className="
+                text-4xl
+                font-bold
+                leading-tight
+                text-[var(--foreground)]
+              "
+            >
               More Than Just
-              <span className="text-red-500"> Another Agency.</span>
+              <span className="text-red-500">
+                {" "}
+                Another Agency.
+              </span>
             </h3>
 
-            <p className="mt-8 text-lg leading-8 text-gray-400">
+            <p
+              className="
+                mt-8
+                text-lg
+                leading-8
+                text-[var(--muted)]
+              "
+            >
               We believe every business deserves a digital presence
               that not only looks exceptional but also delivers
               measurable results. Our team blends strategy,
               creativity and engineering to create products that
               customers love and businesses trust.
             </p>
+
+            {/* Benefits */}
 
             <ul className="mt-10 space-y-4">
               {[
@@ -135,11 +235,16 @@ export default function CompanyStory() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-white"
+                  className="
+                    flex
+                    items-center
+                    gap-3
+                    text-[var(--foreground)]
+                  "
                 >
                   <CheckCircle2
                     size={20}
-                    className="text-red-500"
+                    className="shrink-0 text-red-500"
                   />
 
                   {item}
@@ -147,52 +252,85 @@ export default function CompanyStory() {
               ))}
             </ul>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-3">
+            {/* Feature Cards */}
 
+            <div className="mt-14 grid gap-5 sm:grid-cols-3">
               {features.map((feature) => {
                 const Icon = feature.icon;
 
                 return (
-                  <div
+                  <motion.div
                     key={feature.title}
+                    whileHover={{
+                      y: -6,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
                     className="
+                      group
                       rounded-2xl
-
                       border
-                      border-white/10
-
-                      bg-white/[0.03]
-
+                      border-gray-200
+                      dark:border-white/10
+                      bg-white
+                      dark:bg-white/[0.03]
                       p-5
-
                       backdrop-blur-xl
-
+                      shadow-[0_12px_28px_rgba(17,24,39,.05)]
+                      dark:shadow-none
                       transition-all
                       duration-300
-
-                      hover:border-red-500/30
-                      hover:bg-red-500/5
+                      hover:border-red-500/40
+                      hover:bg-red-50
+                      dark:hover:bg-red-500/5
                     "
                   >
-                    <Icon
-                      className="text-red-500"
-                      size={26}
-                    />
+                    <div
+                      className="
+                        flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
+                        rounded-xl
+                        bg-red-50
+                        dark:bg-red-500/10
+                        text-red-500
+                        transition-all
+                        duration-300
+                        group-hover:bg-red-500
+                        group-hover:text-white
+                      "
+                    >
+                      <Icon size={24} />
+                    </div>
 
-                    <h4 className="mt-5 font-semibold text-white">
+                    <h4
+                      className="
+                        mt-5
+                        font-semibold
+                        text-[var(--foreground)]
+                      "
+                    >
                       {feature.title}
                     </h4>
 
-                    <p className="mt-3 text-sm leading-6 text-gray-400">
+                    <p
+                      className="
+                        mt-3
+                        text-sm
+                        leading-6
+                        text-[var(--muted)]
+                      "
+                    >
                       {feature.description}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-
             </div>
           </motion.div>
-
         </div>
       </Container>
     </section>

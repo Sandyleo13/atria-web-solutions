@@ -26,11 +26,10 @@ const budgets = [
 
 export default function ProjectInquiryForm() {
   const [step, setStep] = useState(1);
-
   const [service, setService] = useState("");
 
   return (
-    <div className="relative p-10 lg:p-14">
+    <div className="relative p-8 sm:p-10 lg:p-14">
       {/* Header */}
 
       <div className="mb-10">
@@ -53,11 +52,30 @@ export default function ProjectInquiryForm() {
           Start Your Project
         </span>
 
-        <h2 className="mt-6 text-5xl font-bold text-white">
+        <h2
+          className="
+            mt-6
+            text-4xl
+            font-bold
+            text-gray-900
+            sm:text-5xl
+
+            dark:text-white
+          "
+        >
           Let's Build Something Amazing
         </h2>
 
-        <p className="mt-5 max-w-2xl leading-8 text-gray-400">
+        <p
+          className="
+            mt-5
+            max-w-2xl
+            leading-8
+            text-gray-500
+
+            dark:text-gray-400
+          "
+        >
           Tell us about your idea and we'll get back to you
           within one business day.
         </p>
@@ -70,7 +88,7 @@ export default function ProjectInquiryForm() {
           className={`h-2 flex-1 rounded-full ${
             step >= 1
               ? "bg-red-500"
-              : "bg-white/10"
+              : "bg-gray-200 dark:bg-white/10"
           }`}
         />
 
@@ -78,7 +96,7 @@ export default function ProjectInquiryForm() {
           className={`h-2 flex-1 rounded-full ${
             step >= 2
               ? "bg-red-500"
-              : "bg-white/10"
+              : "bg-gray-200 dark:bg-white/10"
           }`}
         />
       </div>
@@ -87,7 +105,16 @@ export default function ProjectInquiryForm() {
 
       {step === 1 && (
         <>
-          <h3 className="text-3xl font-bold text-white">
+          <h3
+            className="
+              text-2xl
+              font-bold
+              text-gray-900
+              sm:text-3xl
+
+              dark:text-white
+            "
+          >
             What are you looking to build?
           </h3>
 
@@ -108,11 +135,24 @@ export default function ProjectInquiryForm() {
                   ${
                     service === item
                       ? "border-red-500 bg-red-500/10"
-                      : "border-white/10 bg-[#121212] hover:border-red-500/30"
+                      : "border-gray-200 bg-gray-50 hover:border-red-500/30 hover:bg-red-50"
+
                   }
+
+                  dark:bg-[#121212]
+                  dark:border-white/10
+                  dark:hover:bg-red-500/5
                 `}
               >
-                <h4 className="text-lg font-semibold text-white">
+                <h4
+                  className="
+                    text-lg
+                    font-semibold
+                    text-gray-900
+
+                    dark:text-white
+                  "
+                >
                   {item}
                 </h4>
               </button>
@@ -135,6 +175,8 @@ export default function ProjectInquiryForm() {
               text-white
               transition
 
+              hover:bg-red-600
+
               disabled:cursor-not-allowed
               disabled:opacity-40
             "
@@ -150,37 +192,158 @@ export default function ProjectInquiryForm() {
 
       {step === 2 && (
         <>
-          <h3 className="text-3xl font-bold text-white">
+          <h3
+            className="
+              text-2xl
+              font-bold
+              text-gray-900
+              sm:text-3xl
+
+              dark:text-white
+            "
+          >
             Tell us about yourself
           </h3>
 
           <form className="mt-8 space-y-6">
+            {/* Name + Email */}
+
             <div className="grid gap-6 md:grid-cols-2">
               <input
                 placeholder="Full Name"
-                className="rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500"
+                className="
+                  rounded-xl
+                  border
+                  border-gray-200
+                  bg-gray-50
+                  px-5
+                  py-4
+                  text-gray-900
+                  outline-none
+                  transition
+
+                  placeholder:text-gray-400
+
+                  focus:border-red-500
+                  focus:bg-white
+
+                  dark:border-white/10
+                  dark:bg-[#121212]
+                  dark:text-white
+                  dark:placeholder:text-gray-500
+                  dark:focus:bg-[#121212]
+                "
               />
 
               <input
                 placeholder="Email Address"
                 type="email"
-                className="rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500"
+                className="
+                  rounded-xl
+                  border
+                  border-gray-200
+                  bg-gray-50
+                  px-5
+                  py-4
+                  text-gray-900
+                  outline-none
+                  transition
+
+                  placeholder:text-gray-400
+
+                  focus:border-red-500
+                  focus:bg-white
+
+                  dark:border-white/10
+                  dark:bg-[#121212]
+                  dark:text-white
+                  dark:placeholder:text-gray-500
+                  dark:focus:bg-[#121212]
+                "
               />
             </div>
+
+            {/* Company + Phone */}
 
             <div className="grid gap-6 md:grid-cols-2">
               <input
                 placeholder="Company"
-                className="rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500"
+                className="
+                  rounded-xl
+                  border
+                  border-gray-200
+                  bg-gray-50
+                  px-5
+                  py-4
+                  text-gray-900
+                  outline-none
+                  transition
+
+                  placeholder:text-gray-400
+
+                  focus:border-red-500
+                  focus:bg-white
+
+                  dark:border-white/10
+                  dark:bg-[#121212]
+                  dark:text-white
+                  dark:placeholder:text-gray-500
+                  dark:focus:bg-[#121212]
+                "
               />
 
               <input
                 placeholder="Phone Number"
-                className="rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500"
+                type="tel"
+                className="
+                  rounded-xl
+                  border
+                  border-gray-200
+                  bg-gray-50
+                  px-5
+                  py-4
+                  text-gray-900
+                  outline-none
+                  transition
+
+                  placeholder:text-gray-400
+
+                  focus:border-red-500
+                  focus:bg-white
+
+                  dark:border-white/10
+                  dark:bg-[#121212]
+                  dark:text-white
+                  dark:placeholder:text-gray-500
+                  dark:focus:bg-[#121212]
+                "
               />
             </div>
 
-            <select className="w-full rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500">
+            {/* Budget */}
+
+            <select
+              className="
+                w-full
+                rounded-xl
+                border
+                border-gray-200
+                bg-gray-50
+                px-5
+                py-4
+                text-gray-900
+                outline-none
+                transition
+
+                focus:border-red-500
+                focus:bg-white
+
+                dark:border-white/10
+                dark:bg-[#121212]
+                dark:text-white
+                dark:focus:bg-[#121212]
+              "
+            >
               <option>Select Budget</option>
 
               {budgets.map((budget) => (
@@ -190,11 +353,37 @@ export default function ProjectInquiryForm() {
               ))}
             </select>
 
+            {/* Project Description */}
+
             <textarea
               rows={6}
               placeholder="Tell us about your project..."
-              className="w-full rounded-xl border border-white/10 bg-[#121212] px-5 py-4 text-white outline-none focus:border-red-500"
+              className="
+                w-full
+                rounded-xl
+                border
+                border-gray-200
+                bg-gray-50
+                px-5
+                py-4
+                text-gray-900
+                outline-none
+                transition
+
+                placeholder:text-gray-400
+
+                focus:border-red-500
+                focus:bg-white
+
+                dark:border-white/10
+                dark:bg-[#121212]
+                dark:text-white
+                dark:placeholder:text-gray-500
+                dark:focus:bg-[#121212]
+              "
             />
+
+            {/* Actions */}
 
             <div className="flex flex-wrap gap-4">
               <button
@@ -206,10 +395,20 @@ export default function ProjectInquiryForm() {
                   gap-2
                   rounded-full
                   border
-                  border-white/10
+                  border-gray-200
+                  bg-gray-50
                   px-7
                   py-4
-                  text-white
+                  text-gray-700
+                  transition-all
+
+                  hover:border-red-500/30
+                  hover:bg-red-50
+
+                  dark:border-white/10
+                  dark:bg-white/5
+                  dark:text-white
+                  dark:hover:bg-red-500/10
                 "
               >
                 <ArrowLeft size={18} />
@@ -229,6 +428,10 @@ export default function ProjectInquiryForm() {
                   py-4
                   font-semibold
                   text-white
+                  transition-all
+
+                  hover:bg-red-600
+                  hover:shadow-[0_0_30px_rgba(229,57,53,.25)]
                 "
               >
                 Send Project Request

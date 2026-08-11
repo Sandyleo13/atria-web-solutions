@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { NAVIGATION } from "@/data/navigation";
 import ThemeToggle from "./ThemeToggle";
 import CTAButton from "./CTAButton";
+import ServicesMegaMenu from "./ServicesMegaMenu";
 import { cn } from "@/lib/utils";
 
 export default function DesktopNav() {
@@ -16,24 +17,55 @@ export default function DesktopNav() {
 
   const [servicesOpen, setServicesOpen] = useState(false);
 
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const openServices = () => {
+    if (closeTimeout.current) {
+      clearTimeout(closeTimeout.current);
+    }
+
+    setServicesOpen(true);
+  };
+
+  const closeServices = () => {
+    if (closeTimeout.current) {
+      clearTimeout(closeTimeout.current);
+    }
+
+    closeTimeout.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 250);
+  };
 
   return (
     <>
       {/* Navigation */}
 
-      <nav className="hidden lg:flex items-center gap-12 xl:gap-14">
+      <nav className="hidden items-center gap-12 lg:flex xl:gap-14">
         {NAVIGATION.map((item) => (
           <div
             key={item.href}
             className="relative"
-            onMouseEnter={() => item.children && setServicesOpen(true)}
-            onMouseLeave={() => item.children && setServicesOpen(false)}
+            onMouseEnter={() => {
+              if (item.children) {
+                openServices();
+              }
+            }}
+            onMouseLeave={() => {
+              if (item.children) {
+                closeServices();
+              }
+            }}
           >
             {item.children ? (
               <>
+                {/* Services Button */}
+
                 <button
+                  type="button"
                   className="
                     group
                     flex
@@ -44,12 +76,12 @@ export default function DesktopNav() {
                     font-medium
                     tracking-wide
 
-                    text-gray-300
+                    text-[var(--muted)]
 
                     transition-all
                     duration-300
 
-                    hover:text-white
+                    hover:text-[var(--foreground)]
                   "
                 >
                   {item.title}
@@ -58,70 +90,68 @@ export default function DesktopNav() {
                     size={16}
                     className={cn(
                       "transition-all duration-300 group-hover:text-red-500",
-                      servicesOpen && "rotate-180 text-red-500"
+                      servicesOpen &&
+                        "rotate-180 text-red-500",
                     )}
                   />
+
+                  {/* Active / Hover Line */}
+
+                  {servicesOpen && (
+                    <motion.span
+                      layoutId="services-active-line"
+                      className="
+                        absolute
+                        -bottom-[10px]
+                        left-0
+                        h-[3px]
+                        w-full
+                        rounded-full
+                        bg-gradient-to-r
+                        from-red-600
+                        via-red-500
+                        to-red-400
+                        shadow-[0_0_12px_rgba(239,68,68,.8)]
+                      "
+                    />
+                  )}
                 </button>
+
+                {/* Mega Menu */}
 
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 16, scale: 0.98 }}
-                      transition={{ duration: 0.25 }}
+                      initial={{
+                        opacity: 0,
+                        y: 10,
+                        scale: 0.98,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        y: 10,
+                        scale: 0.98,
+                      }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeOut",
+                      }}
+                      onMouseEnter={openServices}
+                      onMouseLeave={closeServices}
                       className="
-                        absolute
-                        left-1/2
-                        top-full
-
-                        mt-7
-                        w-80
-
-                        -translate-x-1/2
-
-                        overflow-hidden
-
-                        rounded-3xl
-
-                        border
-                        border-white/10
-
-                        bg-[#101010ee]
-
-                        p-3
-
-                        backdrop-blur-3xl
-
-                        shadow-[0_20px_60px_rgba(0,0,0,.45)]
+                        fixed
+                        left-0
+                        right-0
+                        top-[110px]
+                        z-[100]
                       "
                     >
-                      {item.children.map((service) => (
-                        <Link
-                          key={service.href}
-                          href={service.href}
-                          className="
-                            block
-
-                            rounded-2xl
-
-                            px-5
-                            py-4
-
-                            text-sm
-                            text-gray-300
-
-                            transition-all
-                            duration-300
-
-                            hover:bg-red-500/10
-                            hover:text-white
-                            hover:translate-x-1
-                          "
-                        >
-                          {service.title}
-                        </Link>
-                      ))}
+                      <ServicesMegaMenu />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -129,13 +159,24 @@ export default function DesktopNav() {
             ) : (
               <Link
                 href={item.href}
-                className={cn(
-                  "group relative py-2 text-[15px] font-medium tracking-wide transition-all duration-300",
+                className="
+                  group
+                  relative
+                  flex
+                  items-center
+                  gap-2
 
-                  isActive(item.href)
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                )}
+                  text-[15px]
+                  font-medium
+                  tracking-wide
+
+                  text-[var(--muted)]
+
+                  transition-all
+                  duration-300
+
+                  hover:text-[var(--foreground)]
+                "
               >
                 {item.title}
 

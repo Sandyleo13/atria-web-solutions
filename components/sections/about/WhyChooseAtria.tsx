@@ -40,8 +40,44 @@ const reasons = [
 
 export default function WhyChooseAtria() {
   return (
-    <section className="bg-[#050505] py-28">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        py-28
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-24
+
+            h-80
+            w-[720px]
+
+            -translate-x-1/2
+
+            rounded-full
+
+            bg-red-500/8
+            dark:bg-red-600/10
+
+            blur-[180px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
 
         <SectionHeader
           eyebrow="Why Choose Us"
@@ -65,30 +101,89 @@ export default function WhyChooseAtria() {
                   delay: index * 0.1,
                 }}
                 whileHover={{
-                  y: -6,
+                  y: -8,
+                  scale: 1.02,
                 }}
                 className="
+                  group
+
                   rounded-3xl
+
                   border
-                  border-white/10
-                  bg-white/[0.04]
+                  border-gray-200
+                  dark:border-white/10
+
+                  bg-white
+                  dark:bg-white/[0.04]
+
                   p-8
+
                   backdrop-blur-xl
+
+                  shadow-[0_16px_40px_rgba(17,24,39,.06)]
+                  dark:shadow-none
+
                   transition-all
                   duration-300
-                  hover:border-red-500/30
-                  hover:bg-red-500/5
+
+                  hover:border-red-500/40
+                  hover:bg-red-50
+                  dark:hover:bg-red-500/5
+
+                  hover:shadow-[0_22px_45px_rgba(239,68,68,.12)]
                 "
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700">
-                  <Icon className="text-white" size={26} />
+                <div
+                  className="
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+
+                    rounded-2xl
+
+                    bg-gradient-to-br
+                    from-red-500
+                    to-red-700
+
+                    shadow-[0_10px_25px_rgba(239,68,68,.25)]
+
+                    transition-transform
+                    duration-300
+
+                    group-hover:scale-110
+                    group-hover:rotate-6
+                  "
+                >
+                  <Icon
+                    className="text-white"
+                    size={26}
+                  />
                 </div>
 
-                <h3 className="mt-6 text-2xl font-bold text-white">
+                <h3
+                  className="
+                    mt-6
+
+                    text-2xl
+                    font-bold
+
+                    text-[var(--foreground)]
+                  "
+                >
                   {reason.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-gray-400">
+                <p
+                  className="
+                    mt-4
+
+                    leading-7
+
+                    text-[var(--muted)]
+                  "
+                >
                   {reason.description}
                 </p>
               </motion.div>
@@ -96,6 +191,7 @@ export default function WhyChooseAtria() {
           })}
 
         </div>
+
       </Container>
     </section>
   );

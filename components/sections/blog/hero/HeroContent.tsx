@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function HeroContent() {
   return (
-    <div className="max-w-2xl">
+    <div>
       {/* Badge */}
 
       <motion.span
@@ -15,17 +15,25 @@ export default function HeroContent() {
         transition={{ duration: 0.5 }}
         className="
           inline-flex
+          items-center
+
           rounded-full
+
           border
           border-red-500/20
+
           bg-red-500/10
+
           px-4
           py-2
+
           text-xs
           font-semibold
           uppercase
           tracking-[0.35em]
-          text-red-500
+
+          text-red-600
+          dark:text-red-500
         "
       >
         Insights & Resources
@@ -42,11 +50,13 @@ export default function HeroContent() {
         }}
         className="
           mt-8
+
           text-5xl
           font-black
           leading-[1.05]
           tracking-[-0.05em]
-          text-white
+
+          text-[var(--foreground)]
 
           lg:text-7xl
         "
@@ -74,10 +84,13 @@ export default function HeroContent() {
         }}
         className="
           mt-8
+
           max-w-xl
+
           text-lg
           leading-8
-          text-gray-400
+
+          text-[var(--muted)]
         "
       >
         Explore expert insights, development tips,
@@ -102,17 +115,25 @@ export default function HeroContent() {
             inline-flex
             items-center
             gap-2
+
             rounded-full
-            bg-red-500
+
+            bg-red-600
+
             px-7
             py-4
+
             font-semibold
+
             text-white
+
             transition-all
             duration-300
 
             hover:scale-105
-            hover:bg-red-600
+            hover:bg-red-700
+
+            hover:shadow-[0_15px_35px_rgba(229,57,53,.25)]
           "
         >
           Explore Articles
@@ -126,19 +147,32 @@ export default function HeroContent() {
             inline-flex
             items-center
             gap-2
+
             rounded-full
+
             border
-            border-white/15
-            bg-white/[0.04]
+            border-gray-200
+            dark:border-white/15
+
+            bg-white
+            dark:bg-white/[0.04]
+
             px-7
             py-4
+
             font-semibold
-            text-white
+
+            text-[var(--foreground)]
+
+            shadow-[0_10px_30px_rgba(17,24,39,.05)]
+            dark:shadow-none
+
             transition-all
             duration-300
 
-            hover:border-red-500/30
-            hover:bg-red-500/10
+            hover:border-red-500/40
+            hover:bg-red-50
+            dark:hover:bg-red-500/10
           "
         >
           Contact Us
@@ -165,17 +199,45 @@ export default function HeroContent() {
             key={label}
             className="
               rounded-2xl
+
               border
-              border-white/10
-              bg-white/[0.03]
+              border-gray-200
+              dark:border-white/10
+
+              bg-white
+              dark:bg-white/[0.03]
+
               p-5
+
+              shadow-[0_12px_28px_rgba(17,24,39,.05)]
+              dark:shadow-none
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-1
+              hover:border-red-500/40
             "
           >
-            <h3 className="text-3xl font-bold text-white">
+            <h3
+              className="
+                text-3xl
+                font-bold
+
+                text-[var(--foreground)]
+              "
+            >
               {value}
             </h3>
 
-            <p className="mt-2 text-sm text-gray-400">
+            <p
+              className="
+                mt-2
+                text-sm
+
+                text-[var(--muted)]
+              "
+            >
               {label}
             </p>
           </div>

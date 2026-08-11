@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -14,98 +15,298 @@ const cards = [
     title: "Email Us",
     value: "hello@atriawebsolutions.com",
     subtitle: "Reply within 24 hours",
-    rotate: -8,
-    x: -40,
-    y: 30,
   },
   {
     icon: Phone,
     title: "Call Us",
     value: "+91 98765 43210",
     subtitle: "Mon - Sat | 10 AM - 7 PM",
-    rotate: 6,
-    x: 60,
-    y: -10,
   },
   {
     icon: MapPin,
     title: "Visit Us",
     value: "Mumbai, India",
     subtitle: "Remote & On-site Meetings",
-    rotate: -2,
-    x: 0,
-    y: 0,
   },
 ];
 
 export default function HeroVisual() {
+  const [order, setOrder] = useState([0, 1, 2]);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleCardClick = () => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+
+    setTimeout(() => {
+      setOrder((current) => {
+        const [first, ...rest] = current;
+
+        // Move front card to the back
+        return [...rest, first];
+      });
+
+      setIsAnimating(false);
+    }, 450);
+  };
+
   return (
-    <div className="relative flex h-[650px] items-center justify-center">
-      {/* Glow */}
+    <div className="relative flex h-[600px] w-full items-center justify-center">
 
-      <div className="absolute h-[420px] w-[420px] rounded-full bg-red-500/10 blur-[130px]" />
+      {/* Soft Red Glow */}
 
-      {cards.map((card, index) => {
-        const Icon = card.icon;
+      <motion.div
+        animate={{
+          opacity: [0.25, 0.45, 0.25],
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="
+          absolute
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-red-500/[0.08]
+          dark:bg-red-600/[0.12]
+          blur-[130px]
+        "
+      />
 
-        return (
-          <motion.div
-            key={card.title}
-            initial={{
-              opacity: 0,
-              y: 80,
-              scale: 0.9,
-            }}
-            animate={{
-              opacity: 1,
-              y: card.y,
-              x: card.x,
-              rotate: card.rotate,
+      {/* Card Deck */}
+
+      <div className="relative h-[430px] w-[350px]">
+
+        {order.map((cardIndex, position) => {
+          const card = cards[cardIndex];
+          const Icon = card.icon;
+
+          const isFront = position === 0;
+
+          const cardStyles = [
+            {
+              x: 0,
+              y: 0,
+              rotate: -2,
               scale: 1,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: index * 0.2,
-            }}
-            whileHover={{
-              rotate: 0,
-              y: card.y - 12,
-              scale: 1.03,
-            }}
-            className="
-              absolute
-              w-[320px]
-              rounded-[30px]
-              border
-              border-white/10
-              bg-[#111111]
-              p-7
-              shadow-[0_25px_70px_rgba(0,0,0,.45)]
-            "
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/10">
-              <Icon
-                size={26}
-                className="text-red-500"
-              />
-            </div>
+              opacity: 1,
+              zIndex: 30,
+            },
+            {
+              x: 55,
+              y: -20,
+              rotate: 6,
+              scale: 0.94,
+              opacity: 0.9,
+              zIndex: 20,
+            },
+            {
+              x: -40,
+              y: 35,
+              rotate: -8,
+              scale: 0.88,
+              opacity: 0.75,
+              zIndex: 10,
+            },
+          ][position];
 
-            <h3 className="mt-6 text-2xl font-bold text-white">
-              {card.title}
-            </h3>
+          return (
+            <motion.div
+              key={cardIndex}
+              initial={{
+                opacity: 0,
+                scale: 0.85,
+                y: 60,
+              }}
+              animate={
+                isAnimating && isFront
+                  ? {
+                      x: 420,
+                      y: -80,
+                      rotate: 18,
+                      scale: 0.85,
+                      opacity: 0,
+                    }
+                  : {
+                      x: cardStyles.x,
+                      y: cardStyles.y,
+                      rotate: cardStyles.rotate,
+                      scale: cardStyles.scale,
+                      opacity: cardStyles.opacity,
+                    }
+              }
+              transition={{
+                duration: 0.55,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              onClick={
+                isFront
+                  ? handleCardClick
+                  : undefined
+              }
+              whileHover={
+                isFront && !isAnimating
+                  ? {
+                      y: -12,
+                      scale: 1.03,
+                      rotate: 0,
+                    }
+                  : undefined
+              }
+              className={`
+                absolute
+                left-1/2
+                top-1/2
 
-            <p className="mt-4 text-lg text-white">
-              {card.value}
-            </p>
+                w-[320px]
 
-            <div className="mt-6 flex items-center gap-2 text-sm text-gray-400">
-              <Clock3 size={16} />
+                -translate-x-1/2
+                -translate-y-1/2
 
-              {card.subtitle}
-            </div>
-          </motion.div>
-        );
-      })}
+                rounded-[30px]
+
+                border
+                border-gray-200
+                dark:border-white/10
+
+                bg-white
+                dark:bg-[#111111]
+
+                p-7
+
+                shadow-[0_25px_70px_rgba(15,23,42,.10)]
+                dark:shadow-[0_25px_70px_rgba(0,0,0,.45)]
+
+                transition-shadow
+                duration-300
+
+                ${
+                  isFront
+                    ? `
+                      cursor-pointer
+                      hover:border-red-500/40
+                      hover:shadow-[0_30px_80px_rgba(239,68,68,.18)]
+                    `
+                    : `
+                      pointer-events-none
+                    `
+                }
+              `}
+              style={{
+                zIndex: cardStyles.zIndex,
+              }}
+            >
+
+              {/* Icon */}
+
+              <div
+                className="
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+
+                  rounded-2xl
+
+                  border
+                  border-red-500/10
+
+                  bg-red-500/10
+                  dark:bg-red-500/10
+                "
+              >
+                <Icon
+                  size={26}
+                  className="text-red-500"
+                />
+              </div>
+
+              {/* Title */}
+
+              <h3
+                className="
+                  mt-6
+
+                  text-2xl
+                  font-bold
+
+                  text-gray-900
+                  dark:text-white
+                "
+              >
+                {card.title}
+              </h3>
+
+              {/* Value */}
+
+              <p
+                className="
+                  mt-4
+
+                  break-words
+
+                  text-lg
+                  font-medium
+
+                  text-gray-800
+                  dark:text-gray-200
+                "
+              >
+                {card.value}
+              </p>
+
+              {/* Availability */}
+
+              <div
+                className="
+                  mt-6
+
+                  flex
+                  items-center
+                  gap-2
+
+                  text-sm
+
+                  text-gray-500
+                  dark:text-gray-400
+                "
+              >
+                <Clock3
+                  size={16}
+                  className="shrink-0 text-red-500"
+                />
+
+                {card.subtitle}
+              </div>
+
+              {/* Click Hint */}
+
+              {isFront && (
+                <p
+                  className="
+                    mt-5
+
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.18em]
+
+                    text-red-500
+                  "
+                >
+                  Click card to explore
+                </p>
+              )}
+
+            </motion.div>
+          );
+        })}
+      </div>
     </div>
   );
 }

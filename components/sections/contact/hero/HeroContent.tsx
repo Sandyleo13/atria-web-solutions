@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 export default function HeroContent() {
   return (
     <div className="max-w-2xl">
+      {/* Eyebrow */}
+
       <motion.span
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -14,20 +16,27 @@ export default function HeroContent() {
         className="
           inline-flex
           rounded-full
+
           border
           border-red-500/20
+
           bg-red-500/10
+
           px-4
           py-2
+
           text-xs
           font-semibold
           uppercase
           tracking-[0.35em]
-          text-red-500
+
+          text-red-600
         "
       >
         Contact Us
       </motion.span>
+
+      {/* Heading */}
 
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
@@ -38,11 +47,14 @@ export default function HeroContent() {
         }}
         className="
           mt-8
+
           text-5xl
           font-black
           leading-[1.05]
           tracking-[-0.05em]
-          text-white
+
+          text-gray-900
+
           lg:text-7xl
         "
       >
@@ -58,6 +70,8 @@ export default function HeroContent() {
         Together.
       </motion.h1>
 
+      {/* Description */}
+
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -68,16 +82,19 @@ export default function HeroContent() {
         className="
           mt-8
           max-w-xl
+
           text-lg
           leading-8
-          text-gray-400
+
+          text-gray-600
         "
       >
-        Whether you're planning a new website,
-        building a web application or looking to
-        grow your business online, we'd love to
-        hear about your ideas.
+        Whether you're planning a new website, building a web application
+        or looking to grow your business online, we'd love to hear about
+        your ideas.
       </motion.p>
+
+      {/* Buttons */}
 
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -94,16 +111,25 @@ export default function HeroContent() {
             inline-flex
             items-center
             gap-2
+
             rounded-full
+
             bg-red-500
+
             px-7
             py-4
+
             font-semibold
             text-white
+
+            shadow-[0_10px_30px_rgba(239,68,68,.18)]
+
             transition-all
             duration-300
+
+            hover:-translate-y-0.5
             hover:bg-red-600
-            hover:scale-105
+            hover:shadow-[0_14px_35px_rgba(239,68,68,.25)]
           "
         >
           Start Your Project
@@ -117,23 +143,36 @@ export default function HeroContent() {
             inline-flex
             items-center
             gap-2
+
             rounded-full
+
             border
-            border-white/15
-            bg-white/[0.04]
+            border-gray-200
+
+            bg-white
+
             px-7
             py-4
+
             font-semibold
-            text-white
+            text-gray-800
+
+            shadow-[0_6px_20px_rgba(15,23,42,.04)]
+
             transition-all
             duration-300
+
+            hover:-translate-y-0.5
             hover:border-red-500/30
-            hover:bg-red-500/10
+            hover:bg-red-50
+            hover:text-red-600
           "
         >
           View Our Work
         </Link>
       </motion.div>
+
+      {/* Trust Stats */}
 
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -153,17 +192,28 @@ export default function HeroContent() {
             key={label}
             className="
               rounded-2xl
+
               border
-              border-white/10
-              bg-white/[0.03]
+              border-gray-200
+
+              bg-white
+
               p-5
+
+              shadow-[0_8px_30px_rgba(15,23,42,.04)]
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-1
+              hover:border-red-500/20
             "
           >
-            <h3 className="text-3xl font-bold text-white">
+            <h3 className="text-3xl font-bold text-gray-900">
               {value}
             </h3>
 
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm text-gray-500">
               {label}
             </p>
           </div>

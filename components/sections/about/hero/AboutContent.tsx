@@ -40,6 +40,7 @@ export default function AboutContent() {
       <span
         className="
           inline-flex
+
           rounded-full
 
           border
@@ -55,7 +56,8 @@ export default function AboutContent() {
           uppercase
           tracking-[0.35em]
 
-          text-red-500
+          text-red-600
+          dark:text-red-500
         "
       >
         About Atria
@@ -71,17 +73,15 @@ export default function AboutContent() {
           font-bold
           leading-tight
 
-          text-white
+          text-[var(--foreground)]
 
           lg:text-7xl
         "
       >
         Building Digital
         <br />
-
         Products That
         <br />
-
         Businesses Trust.
       </h1>
 
@@ -94,7 +94,7 @@ export default function AboutContent() {
           text-lg
           leading-8
 
-          text-gray-400
+          text-[var(--muted)]
         "
       >
         We help startups, businesses and growing brands build
@@ -126,8 +126,11 @@ export default function AboutContent() {
           text-white
 
           transition-all
+          duration-300
 
-          hover:bg-red-500
+          hover:-translate-y-1
+          hover:bg-red-700
+          hover:shadow-[0_18px_35px_rgba(239,68,68,.28)]
         "
       >
         Let's Work Together
@@ -136,6 +139,7 @@ export default function AboutContent() {
           size={18}
           className="
             transition-transform
+            duration-300
 
             group-hover:translate-x-1
           "
@@ -161,13 +165,25 @@ export default function AboutContent() {
               rounded-2xl
 
               border
-              border-white/10
+              border-gray-200
+              dark:border-white/10
 
-              bg-white/[0.03]
+              bg-white
+              dark:bg-white/[0.03]
 
               p-5
 
               backdrop-blur-xl
+
+              shadow-[0_12px_30px_rgba(17,24,39,.05)]
+              dark:shadow-none
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-1
+              hover:border-red-500/40
+              hover:shadow-[0_18px_35px_rgba(239,68,68,.12)]
             "
           >
             <h3
@@ -175,7 +191,7 @@ export default function AboutContent() {
                 text-3xl
                 font-bold
 
-                text-white
+                text-[var(--foreground)]
               "
             >
               {item.value}
@@ -187,7 +203,7 @@ export default function AboutContent() {
 
                 text-sm
 
-                text-gray-400
+                text-[var(--muted)]
               "
             >
               {item.label}

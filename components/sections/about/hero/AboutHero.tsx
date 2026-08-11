@@ -8,7 +8,17 @@ import AboutVisual from "./AboutVisual";
 
 export default function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-black">
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
+      "
+    >
       <AboutBackground />
 
       <Container className="relative z-10">
@@ -27,11 +37,9 @@ export default function AboutHero() {
           "
         >
           {/* Left */}
-
           <AboutContent />
 
           {/* Right */}
-
           <div className="relative flex items-center justify-center">
             <AboutVisual />
           </div>

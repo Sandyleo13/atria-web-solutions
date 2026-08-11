@@ -41,7 +41,8 @@ export function SectionHeader({
           border
           border-red-500/20
 
-          bg-red-500/10
+          bg-red-50
+          dark:bg-red-500/10
 
           px-4
           py-2
@@ -51,7 +52,11 @@ export function SectionHeader({
           uppercase
           tracking-[0.35em]
 
-          text-red-500
+          text-red-600
+          dark:text-red-500
+
+          transition-colors
+          duration-300
         "
       >
         {eyebrow}
@@ -67,9 +72,13 @@ export function SectionHeader({
           font-bold
           leading-tight
 
-          text-white
+          text-gray-900
+          dark:text-white
 
           lg:text-5xl
+
+          transition-colors
+          duration-300
         "
       >
         {title}
@@ -89,7 +98,11 @@ export function SectionHeader({
             text-lg
             leading-8
 
-            text-gray-400
+            text-gray-600
+            dark:text-gray-400
+
+            transition-colors
+            duration-300
           "
         >
           {description}

@@ -23,15 +23,53 @@ const cards = [
 
 export default function MissionVision() {
   return (
-    <section className="relative overflow-hidden bg-[#080808] py-28">
-      <Container>
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        py-28
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
+      "
+    >
+      {/* Background Glow */}
+
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-24
+
+            h-80
+            w-[720px]
+
+            -translate-x-1/2
+
+            rounded-full
+
+            bg-red-500/8
+            dark:bg-red-600/10
+
+            blur-[180px]
+          "
+        />
+      </div>
+
+      <Container className="relative z-10">
+
         <SectionHeader
           eyebrow="Our Purpose"
-          title="Driven by Vision. Built with Purpose."
-          description="Everything we build is guided by clear goals, long-term partnerships and a passion for creating meaningful digital experiences."
+          title="Driven By Purpose. Powered By Innovation."
+          description="Everything we build is guided by a clear mission to help businesses embrace digital transformation through thoughtful design and reliable technology."
         />
 
         <div className="mt-20 grid gap-8 lg:grid-cols-2">
+
           {cards.map((card, index) => {
             const Icon = card.icon;
 
@@ -47,6 +85,7 @@ export default function MissionVision() {
                 }}
                 whileHover={{
                   y: -8,
+                  scale: 1.02,
                 }}
                 className="
                   group
@@ -56,18 +95,27 @@ export default function MissionVision() {
                   rounded-[32px]
 
                   border
-                  border-white/10
+                  border-gray-200
+                  dark:border-white/10
 
-                  bg-white/[0.04]
+                  bg-white
+                  dark:bg-white/[0.04]
 
                   p-10
 
                   backdrop-blur-2xl
 
+                  shadow-[0_18px_40px_rgba(17,24,39,.06)]
+                  dark:shadow-none
+
                   transition-all
                   duration-300
 
-                  hover:border-red-500/30
+                  hover:border-red-500/40
+                  hover:bg-red-50
+                  dark:hover:bg-red-500/5
+
+                  hover:shadow-[0_20px_45px_rgba(239,68,68,.12)]
                 "
               >
                 {/* Glow */}
@@ -83,18 +131,21 @@ export default function MissionVision() {
 
                     rounded-full
 
-                    bg-red-600/10
+                    bg-red-500/8
+                    dark:bg-red-600/10
 
                     blur-[90px]
+
+                    opacity-0
+                    group-hover:opacity-100
+
+                    transition-opacity
+                    duration-500
                   "
                 />
 
-                <div
-                  className="
-                    relative
-                    z-10
-                  "
-                >
+                <div className="relative z-10">
+
                   <div
                     className="
                       flex
@@ -109,7 +160,13 @@ export default function MissionVision() {
                       from-red-500
                       to-red-700
 
-                      shadow-[0_0_30px_rgba(239,68,68,.35)]
+                      shadow-[0_12px_30px_rgba(239,68,68,.25)]
+
+                      transition-transform
+                      duration-300
+
+                      group-hover:scale-110
+                      group-hover:rotate-6
                     "
                   >
                     <Icon
@@ -118,18 +175,40 @@ export default function MissionVision() {
                     />
                   </div>
 
-                  <h3 className="mt-8 text-3xl font-bold text-white">
+                  <h3
+                    className="
+                      mt-8
+
+                      text-3xl
+                      font-bold
+
+                      text-[var(--foreground)]
+                    "
+                  >
                     {card.title}
                   </h3>
 
-                  <p className="mt-6 text-lg leading-8 text-gray-400">
+                  <p
+                    className="
+                      mt-6
+
+                      text-lg
+                      leading-8
+
+                      text-[var(--muted)]
+                    "
+                  >
                     {card.description}
                   </p>
+
                 </div>
+
               </motion.div>
             );
           })}
+
         </div>
+
       </Container>
     </section>
   );

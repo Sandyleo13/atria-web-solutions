@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -11,25 +12,47 @@ import { SectionHeader } from "@/components/common/SectionHeader";
 export function ServicesSection() {
   return (
     <section
-      id="services"
-      className="relative overflow-hidden bg-[#050505] py-28"
+      className="
+        relative
+        overflow-hidden
+        py-28
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
+      "
     >
       {/* Background Glow */}
 
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-20 h-72 w-[700px] -translate-x-1/2 rounded-full bg-red-600/10 blur-[160px]" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="
+            absolute
+            left-1/2
+            top-20
+
+            h-72
+            w-[700px]
+
+            -translate-x-1/2
+
+            rounded-full
+
+            bg-red-500/8
+            dark:bg-red-600/10
+
+            blur-[160px]
+          "
+        />
       </div>
 
       <Container className="relative z-10">
-        {/* Heading */}
-
         <SectionHeader
           eyebrow="What We Do"
           title="Services That Scale Businesses"
           description="We craft modern digital experiences through web development, mobile applications, UI/UX design and digital marketing."
         />
-
-        {/* Cards */}
 
         <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => {
@@ -53,22 +76,30 @@ export function ServicesSection() {
                     rounded-3xl
 
                     border
-                    border-white/10
+                    border-gray-200
+                    dark:border-white/10
 
-                    bg-white/[0.03]
+                    bg-white
+                    dark:bg-white/[0.03]
 
                     p-8
 
                     backdrop-blur-xl
 
+                    shadow-[0_12px_30px_rgba(17,24,39,.05)]
+                    dark:shadow-none
+
                     transition-all
+                    duration-300
 
                     hover:border-red-500/40
-                    hover:bg-red-500/[0.04]
-                    hover:shadow-[0_0_45px_rgba(239,68,68,.15)]
+                    hover:bg-red-50
+                    dark:hover:bg-red-500/[0.04]
+
+                    hover:shadow-[0_20px_45px_rgba(239,68,68,.12)]
                   "
                 >
-                  {/* Glow */}
+                  {/* Hover Glow */}
 
                   <div
                     className="
@@ -88,7 +119,6 @@ export function ServicesSection() {
                       opacity-0
 
                       transition-opacity
-
                       duration-500
 
                       group-hover:opacity-100
@@ -110,12 +140,13 @@ export function ServicesSection() {
 
                       rounded-2xl
 
-                      bg-red-500/10
+                      bg-red-50
+                      dark:bg-red-500/10
 
-                      text-red-500
+                      text-red-600
+                      dark:text-red-500
 
                       transition-all
-
                       duration-300
 
                       group-hover:scale-110
@@ -127,19 +158,43 @@ export function ServicesSection() {
 
                   {/* Title */}
 
-                  <h3 className="relative z-10 mt-8 text-2xl font-bold text-white">
+                  <h3
+                    className="
+                      relative
+                      z-10
+
+                      mt-8
+
+                      text-2xl
+                      font-bold
+
+                      text-[var(--foreground)]
+                    "
+                  >
                     {service.title}
                   </h3>
 
                   {/* Description */}
 
-                  <p className="relative z-10 mt-5 leading-8 text-gray-400">
+                  <p
+                    className="
+                      relative
+                      z-10
+
+                      mt-5
+
+                      leading-8
+
+                      text-[var(--muted)]
+                    "
+                  >
                     {service.description}
                   </p>
 
-                  {/* Button */}
+                  {/* Learn More */}
 
-                  <button
+                  <Link
+                    href={`/services/${service.slug}`}
                     className="
                       relative
                       z-10
@@ -152,16 +207,18 @@ export function ServicesSection() {
 
                       font-semibold
 
-                      text-red-500
+                      text-red-600
+                      dark:text-red-500
 
                       transition-all
+                      duration-300
 
                       group-hover:gap-4
                     "
                   >
                     Learn More
                     <ArrowRight size={18} />
-                  </button>
+                  </Link>
                 </motion.div>
               </FadeIn>
             );

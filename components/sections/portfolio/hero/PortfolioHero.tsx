@@ -8,7 +8,17 @@ import HeroVisual from "./HeroVisual";
 
 export default function PortfolioHero() {
   return (
-    <section className="relative overflow-hidden bg-[#050505]">
+    <section
+      className="
+        relative
+        overflow-hidden
+
+        bg-[var(--background)]
+
+        transition-colors
+        duration-500
+      "
+    >
       <HeroBackground />
 
       <Container className="relative z-10">

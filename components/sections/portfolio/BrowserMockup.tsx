@@ -15,16 +15,22 @@ export default function BrowserMockup({
   return (
     <div
       className="
-        group
-        relative
         overflow-hidden
-        rounded-[22px]
+
+        rounded-2xl
+
         border
-        border-white/10
-        bg-[#111111]
-        shadow-[0_30px_80px_rgba(0,0,0,.45)]
+        border-gray-200
+        dark:border-white/10
+
+        bg-white
+        dark:bg-[#161616]
+
+        shadow-[0_12px_35px_rgba(17,24,39,.06)]
+        dark:shadow-[0_15px_35px_rgba(0,0,0,.25)]
+
         transition-all
-        duration-500
+        duration-300
       "
     >
       {/* Browser Top */}
@@ -36,21 +42,21 @@ export default function BrowserMockup({
           justify-between
 
           border-b
-          border-white/10
+          border-gray-200
+          dark:border-white/10
+
+          bg-gray-50
+          dark:bg-[#1b1b1b]
 
           px-5
           py-4
-
-          bg-[#171717]
         "
       >
         {/* Browser Dots */}
 
         <div className="flex items-center gap-2">
           <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-
           <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-
           <span className="h-3 w-3 rounded-full bg-[#28C840]" />
         </div>
 
@@ -65,15 +71,19 @@ export default function BrowserMockup({
             rounded-full
 
             border
-            border-white/10
+            border-gray-200
+            dark:border-white/10
 
-            bg-black/30
+            bg-white
+            dark:bg-black/30
 
             px-4
             py-2
 
             text-xs
-            text-gray-400
+
+            text-gray-600
+            dark:text-gray-400
           "
         >
           <Globe size={14} />
@@ -87,14 +97,17 @@ export default function BrowserMockup({
       {/* Screenshot */}
 
       <div className="relative aspect-[16/10] overflow-hidden">
+
         <Image
           src={image}
           alt={title}
           fill
           className="
             object-cover
+
             transition-transform
             duration-700
+
             group-hover:scale-105
           "
         />
@@ -105,8 +118,10 @@ export default function BrowserMockup({
           className="
             absolute
             inset-0
+
             bg-gradient-to-t
-            from-black/50
+
+            from-black/35
             via-transparent
             to-transparent
           "
@@ -119,11 +134,12 @@ export default function BrowserMockup({
             absolute
             inset-y-0
             -left-1/2
+
             w-1/3
 
             -skew-x-12
 
-            bg-white/10
+            bg-white/20
 
             opacity-0
 
@@ -134,6 +150,7 @@ export default function BrowserMockup({
             group-hover:opacity-100
           "
         />
+
       </div>
     </div>
   );
