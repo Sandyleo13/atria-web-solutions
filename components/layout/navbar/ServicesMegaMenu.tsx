@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -32,7 +31,6 @@ const services = [
     heading: "Powerful Websites for Modern Businesses",
     description:
       "We build fast, secure and scalable websites that deliver exceptional user experiences.",
-    image: "/images/services/web-development.webp",
 
     features: [
       {
@@ -67,7 +65,6 @@ const services = [
     heading: "Online Stores Built to Convert",
     description:
       "Create a powerful online store with a smooth shopping experience and scalable architecture.",
-    image: "/images/services/ecommerce.webp",
 
     features: [
       {
@@ -104,7 +101,6 @@ const services = [
     heading: "Grow Your Visibility Online",
     description:
       "Data-driven digital marketing strategies designed to increase visibility, traffic and leads.",
-    image: "/images/services/seo.webp",
 
     features: [
       {
@@ -140,7 +136,6 @@ const services = [
     heading: "Mobile Experiences That Users Love",
     description:
       "Build intuitive and reliable mobile applications designed for modern users.",
-    image: "/images/services/mobile.webp",
 
     features: [
       {
@@ -174,7 +169,6 @@ const services = [
     heading: "Build a Brand People Remember",
     description:
       "Create a distinctive visual identity that communicates your brand clearly.",
-    image: "/images/services/branding.webp",
 
     features: [
       {
@@ -209,7 +203,6 @@ const services = [
     heading: "Turn Conversations Into Customers",
     description:
       "Reach your audience with targeted campaigns and effective communication strategies.",
-    image: "/images/services/email.webp",
 
     features: [
       {
@@ -244,7 +237,6 @@ const services = [
     heading: "Build Trust Around Your Brand",
     description:
       "Protect and strengthen your online presence through proactive reputation management.",
-    image: "/images/services/reputation.webp",
 
     features: [
       {
@@ -515,46 +507,116 @@ export default function ServicesMegaMenu() {
                   </p>
                 </div>
 
-                {/* Service Image */}
+                {/* Service Icon */}
 
                 <div
                   className="
-                    relative
-                    h-[180px]
-                    overflow-hidden
-                    rounded-2xl
+    relative
+    flex
+    h-[180px]
+    items-center
+    justify-center
+    overflow-hidden
+    rounded-2xl
 
-                    border
-                    border-gray-200
+    border
+    border-gray-200
 
-                    bg-gray-100
+    bg-gradient-to-br
+    from-red-50
+    via-white
+    to-red-100
 
-                    dark:border-white/10
-                    dark:bg-white/[0.03]
-                  "
+    dark:border-white/10
+    dark:from-red-500/[0.10]
+    dark:via-[#111111]
+    dark:to-red-500/[0.05]
+  "
                 >
-                  <Image
-                    src={activeService.image}
-                    alt={activeService.title}
-                    fill
-                    sizes="260px"
+                  {/* Glow */}
+
+                  <div
                     className="
-                      object-cover
-                      transition-transform
-                      duration-700
-                      hover:scale-105
-                    "
+      absolute
+      h-32
+      w-32
+      rounded-full
+      bg-red-500/20
+      blur-[60px]
+    "
+                  />
+
+                  {/* Service Icon */}
+
+                  <motion.div
+                    key={activeService.title}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.8,
+                      rotate: -8,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: 0,
+                    }}
+                    transition={{
+                      duration: 0.35,
+                      ease: "easeOut",
+                    }}
+                    className="
+      relative
+      flex
+      h-24
+      w-24
+      items-center
+      justify-center
+
+      rounded-[28px]
+
+      border
+      border-red-500/20
+
+      bg-white/80
+
+      shadow-[0_15px_40px_rgba(239,68,68,.12)]
+
+      backdrop-blur-xl
+
+      dark:border-red-500/20
+      dark:bg-[#151515]
+      dark:shadow-[0_15px_40px_rgba(239,68,68,.20)]
+    "
+                  >
+                    <activeService.icon
+                      size={46}
+                      strokeWidth={1.7}
+                      className="text-red-500"
+                    />
+                  </motion.div>
+
+                  {/* Decorative Accent */}
+
+                  <div
+                    className="
+      absolute
+      bottom-5
+      left-5
+      h-px
+      w-12
+      bg-red-500/30
+    "
                   />
 
                   <div
                     className="
-                      absolute
-                      inset-0
-                      bg-gradient-to-t
-                      from-black/40
-                      via-transparent
-                      to-transparent
-                    "
+      absolute
+      right-5
+      top-5
+      h-px
+      w-12
+      bg-red-500/30
+    "
                   />
                 </div>
               </div>

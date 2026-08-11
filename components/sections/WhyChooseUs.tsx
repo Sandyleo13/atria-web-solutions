@@ -23,9 +23,11 @@ export function WhyChooseUs() {
 
   const isDark = resolvedTheme === "dark";
 
+  // Dark → 1.png
+  // Light → 2.jpg
   const imageSrc = isDark
-    ? "/images/home/why-choose-us.png"
-    : "/images/home/why-choose-us-light.png";
+    ? "/images/home/1.png"
+    : "/images/home/2.jpg";
 
   return (
     <section
@@ -40,9 +42,7 @@ export function WhyChooseUs() {
         duration-500
       "
     >
-      {/* =====================================
-          BACKGROUND GLOW
-      ====================================== */}
+      {/* Background Glow */}
 
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -67,9 +67,8 @@ export function WhyChooseUs() {
       </div>
 
       <Container className="relative z-10">
-        {/* =====================================
-            SECTION HEADER
-        ====================================== */}
+
+        {/* Section Header */}
 
         <SectionHeader
           eyebrow="Why Choose Atria"
@@ -79,9 +78,7 @@ export function WhyChooseUs() {
 
         <div className="mt-20 grid items-center gap-20 lg:grid-cols-2">
 
-          {/* =====================================
-              LEFT CONTENT
-          ====================================== */}
+          {/* LEFT CONTENT */}
 
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -203,9 +200,7 @@ export function WhyChooseUs() {
             </Link>
           </motion.div>
 
-          {/* =====================================
-              RIGHT IMAGE
-          ====================================== */}
+          {/* RIGHT IMAGE */}
 
           <motion.div
             initial={{ opacity: 0, x: 40 }}
@@ -256,6 +251,7 @@ export function WhyChooseUs() {
               "
             >
               <Image
+                key={imageSrc}
                 src={imageSrc}
                 alt="Atria Web Solutions Team"
                 width={1200}
@@ -296,6 +292,7 @@ export function WhyChooseUs() {
               />
             </div>
           </motion.div>
+
         </div>
       </Container>
     </section>

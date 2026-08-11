@@ -201,14 +201,17 @@ export default function ContactCTA() {
               <ArrowRight size={16} />
             </Link>
 
-            {/* Email */}
+            {/* Email / Gmail */}
 
-            <a
-              href="mailto:hello@atriawebsolutions.com"
+            <Link
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@atriawebsolutions.in&su=Project%20Inquiry%20-%20Atria%20Web%20Solutions"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-flex
                 items-center
                 justify-center
+                gap-2
 
                 rounded-full
 
@@ -233,8 +236,9 @@ export default function ContactCTA() {
                 hover:text-red-500
               "
             >
-              hello@atriawebsolutions.com
-            </a>
+              <Mail size={16} />
+              contact@atriawebsolutions.in
+            </Link>
           </div>
         </div>
       </Container>

@@ -156,8 +156,8 @@ export default function CallToAction() {
                   sm:text-base
                 "
               >
-                Tell us what you're building and we'll help turn your idea
-                into a modern digital experience.
+                Tell us what you're building and we'll help turn your idea into
+                a modern digital experience.
               </p>
             </div>
 
@@ -196,7 +196,6 @@ export default function CallToAction() {
                 "
               >
                 Start a Project
-
                 <ArrowRight
                   size={17}
                   className="
@@ -208,37 +207,38 @@ export default function CallToAction() {
               </Link>
 
               <Link
-                href="mailto:hello@atriawebsolutions.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@atriawebsolutions.in&su=Project%20Inquiry%20-%20Atria%20Web%20Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
-                  inline-flex
-                  items-center
-                  gap-2
+    inline-flex
+    items-center
+    gap-2
 
-                  rounded-xl
+    rounded-xl
 
-                  border
-                  border-[var(--border)]
+    border
+    border-[var(--border)]
 
-                  bg-[var(--card)]
+    bg-[var(--card)]
 
-                  px-5
-                  py-3
+    px-5
+    py-3
 
-                  text-sm
-                  font-semibold
+    text-sm
+    font-semibold
 
-                  text-[var(--foreground)]
+    text-[var(--foreground)]
 
-                  transition-all
-                  duration-300
+    transition-all
+    duration-300
 
-                  hover:-translate-y-1
-                  hover:border-red-500
-                  hover:text-red-500
-                "
+    hover:-translate-y-1
+    hover:border-red-500
+    hover:text-red-500
+  "
               >
                 <Mail size={17} />
-
                 Email Us
               </Link>
             </div>

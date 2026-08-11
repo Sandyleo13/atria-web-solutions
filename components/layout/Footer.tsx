@@ -22,11 +22,11 @@ const footerLinks = {
     },
     {
       label: "E-Commerce Solutions",
-      href: "/services/e-commerce",
+      href: "/services/ecommerce",
     },
     {
-      label: "SEO Services",
-      href: "/services/seo",
+      label: "SEO & Digital Marketing",
+      href: "/services/seo-digital-marketing",
     },
     {
       label: "Mobile App Development",
@@ -46,12 +46,12 @@ const footerLinks = {
 const socials = [
   {
     icon: Globe2,
-    href: "#",
+    href: "/",
     label: "Website",
   },
   {
     icon: AtSign,
-    href: "mailto:hello@atriawebsolutions.com",
+    href: "mailto:contact@atriawebsolutions.in",
     label: "Email",
   },
 ];
@@ -62,6 +62,7 @@ export function Footer() {
       <Container>
         <div className="py-20">
           <div className="grid gap-16 lg:grid-cols-[1.35fr_repeat(3,1fr)]">
+
             {/* Left */}
 
             <div>
@@ -180,6 +181,7 @@ export function Footer() {
               </h3>
 
               <div className="mt-6 space-y-6">
+
                 {/* Location */}
 
                 <div className="flex items-start gap-3">
@@ -189,9 +191,15 @@ export function Footer() {
                   />
 
                   <p className="leading-7 text-[var(--muted)]">
-                    Mumbai,
+                    Golden Park, 237-238,
                     <br />
-                    Maharashtra, India
+                    Near Parvati Theatre,
+                    <br />
+                    Navghar Manikpur, Dindayal Nagar,
+                    <br />
+                    Vasai West, Vasai-Virar,
+                    <br />
+                    Maharashtra 401202
                   </p>
                 </div>
 
@@ -223,10 +231,10 @@ export function Footer() {
                 {/* Email */}
 
                 <a
-                  href="mailto:hello@atriawebsolutions.com"
+                  href="mailto:contact@atriawebsolutions.in"
                   className="
                     flex
-                    items-center
+                    items-start
                     gap-3
 
                     text-[var(--muted)]
@@ -238,11 +246,13 @@ export function Footer() {
                   "
                 >
                   <AtSign
-                    className="shrink-0 text-red-500"
+                    className="mt-1 shrink-0 text-red-500"
                     size={18}
                   />
 
-                  <span>hello@atriawebsolutions.com</span>
+                  <span className="break-all">
+                    contact@atriawebsolutions.in
+                  </span>
                 </a>
               </div>
             </div>
@@ -272,10 +282,6 @@ export function Footer() {
             <p className="text-[var(--muted)]">
               © {new Date().getFullYear()} Atria Web Solutions. All rights
               reserved.
-            </p>
-
-            <p className="text-[var(--muted)]">
-              Made with ❤️ in India
             </p>
           </div>
         </div>

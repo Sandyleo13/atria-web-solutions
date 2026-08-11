@@ -93,15 +93,20 @@ export default function CareersCTA() {
                   inline-flex
                   items-center
                   rounded-full
+
                   border
                   border-red-500/20
+
                   bg-red-500/10
+
                   px-3
                   py-1.5
+
                   text-[11px]
                   font-semibold
                   uppercase
                   tracking-[0.3em]
+
                   text-red-600
                   dark:text-red-400
                 "
@@ -153,8 +158,12 @@ export default function CareersCTA() {
                 xl:flex-row
               "
             >
+              {/* Send Resume */}
+
               <Link
-                href="/contact"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@atriawebsolutions.in&su=Job%20Application%20-%20Atria%20Web%20Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   group
                   inline-flex
@@ -195,8 +204,12 @@ export default function CareersCTA() {
                 />
               </Link>
 
-              <a
-                href="mailto:careers@atriawebsolutions.com"
+              {/* Email */}
+
+              <Link
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@atriawebsolutions.in&su=Career%20Inquiry%20-%20Atria%20Web%20Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   inline-flex
                   items-center
@@ -232,8 +245,8 @@ export default function CareersCTA() {
               >
                 <Mail size={16} />
 
-                careers@atriawebsolutions.com
-              </a>
+                contact@atriawebsolutions.in
+              </Link>
             </div>
           </div>
         </div>

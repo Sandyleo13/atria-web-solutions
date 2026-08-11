@@ -2,18 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock3,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Clock3 } from "lucide-react";
 
 const cards = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "hello@atriawebsolutions.com",
+    value: "contact@atriawebsolutions.in",
     subtitle: "Reply within 24 hours",
   },
   {
@@ -25,7 +20,8 @@ const cards = [
   {
     icon: MapPin,
     title: "Visit Us",
-    value: "Mumbai, India",
+    value:
+      "Golden Park, 237-238, near Parvati Theatre, Navghar Manikpur, Dindayal Nagar, Vasai West, Mumbai, Vasai-Virar, Maharashtra 401202",
     subtitle: "Remote & On-site Meetings",
   },
 ];
@@ -177,11 +173,7 @@ export default function HeroVisual() {
                 duration: 0.55,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              onClick={
-                isFront
-                  ? handleCardClick
-                  : undefined
-              }
+              onClick={isFront ? handleCardClick : undefined}
               whileHover={
                 isFront && !isAnimating
                   ? {
@@ -262,10 +254,7 @@ export default function HeroVisual() {
                   duration-300
                 "
               >
-                <Icon
-                  size={26}
-                  className="text-red-500"
-                />
+                <Icon size={26} className="text-red-500" />
               </div>
 
               {/* Title */}
@@ -315,14 +304,9 @@ export default function HeroVisual() {
                   text-[var(--muted)]
                 "
               >
-                <Clock3
-                  size={16}
-                  className="shrink-0 text-red-500"
-                />
+                <Clock3 size={16} className="shrink-0 text-red-500" />
 
-                <span>
-                  {card.subtitle}
-                </span>
+                <span>{card.subtitle}</span>
               </div>
 
               {/* Click Hint */}
