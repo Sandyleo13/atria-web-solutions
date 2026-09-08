@@ -1,5 +1,3 @@
-"use client";
-
 import { Container } from "@/components/layout/Container";
 
 import HeroBackground from "./HeroBackground";
@@ -17,11 +15,9 @@ export default function HeroSection() {
             grid
             min-h-screen
             items-center
-
+            gap-12
             pt-32
             pb-16
-
-            gap-12
 
             lg:grid-cols-[0.85fr_1.15fr]
             lg:gap-4
@@ -33,15 +29,11 @@ export default function HeroSection() {
             2xl:gap-10
           "
         >
-          {/* Left */}
-
           <div
             className="
               relative
               z-30
-
               max-w-[620px]
-
               lg:pr-8
               xl:pr-14
             "
@@ -49,16 +41,12 @@ export default function HeroSection() {
             <HeroContent />
           </div>
 
-          {/* Right */}
-
           <div
             className="
               relative
-
               flex
               items-center
               justify-end
-
               overflow-visible
 
               lg:translate-x-8

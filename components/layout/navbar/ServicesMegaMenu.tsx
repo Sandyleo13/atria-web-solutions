@@ -42,17 +42,20 @@ const services = [
       {
         icon: MonitorSmartphone,
         title: "Responsive Web Design",
-        description: "Pixel-perfect designs that look great on every device.",
+        description:
+          "Pixel-perfect designs that look great on every device.",
       },
       {
         icon: Database,
         title: "CMS Development",
-        description: "WordPress, Webflow, Laravel & custom CMS solutions.",
+        description:
+          "WordPress, Webflow, Laravel & custom CMS solutions.",
       },
       {
         icon: Rocket,
         title: "Website Maintenance",
-        description: "Ongoing support to keep your website fast and secure.",
+        description:
+          "Ongoing support to keep your website fast and secure.",
       },
     ],
   },
@@ -88,7 +91,8 @@ const services = [
       {
         icon: Rocket,
         title: "Store Optimization",
-        description: "Improve speed, usability and conversion performance.",
+        description:
+          "Improve speed, usability and conversion performance.",
       },
     ],
   },
@@ -112,12 +116,14 @@ const services = [
       {
         icon: Globe2,
         title: "Local SEO",
-        description: "Help local customers discover your business online.",
+        description:
+          "Help local customers discover your business online.",
       },
       {
         icon: BarChart3,
         title: "Analytics & Reporting",
-        description: "Track performance with meaningful insights and reports.",
+        description:
+          "Track performance with meaningful insights and reports.",
       },
       {
         icon: Rocket,
@@ -141,22 +147,26 @@ const services = [
       {
         icon: Smartphone,
         title: "Custom Applications",
-        description: "Mobile apps tailored to your business requirements.",
+        description:
+          "Mobile apps tailored to your business requirements.",
       },
       {
         icon: MonitorSmartphone,
         title: "Responsive Experiences",
-        description: "Consistent experiences across different screen sizes.",
+        description:
+          "Consistent experiences across different screen sizes.",
       },
       {
         icon: Database,
         title: "API Integration",
-        description: "Connect your application with powerful backend systems.",
+        description:
+          "Connect your application with powerful backend systems.",
       },
       {
         icon: Rocket,
         title: "App Optimization",
-        description: "Fast, stable and performance-focused applications.",
+        description:
+          "Fast, stable and performance-focused applications.",
       },
     ],
   },
@@ -174,7 +184,8 @@ const services = [
       {
         icon: Palette,
         title: "Brand Identity",
-        description: "Create a consistent and memorable visual identity.",
+        description:
+          "Create a consistent and memorable visual identity.",
       },
       {
         icon: MonitorSmartphone,
@@ -185,12 +196,14 @@ const services = [
       {
         icon: Globe2,
         title: "Website Design",
-        description: "Modern interfaces aligned with your brand identity.",
+        description:
+          "Modern interfaces aligned with your brand identity.",
       },
       {
         icon: Rocket,
         title: "Design Systems",
-        description: "Reusable components for consistent digital experiences.",
+        description:
+          "Reusable components for consistent digital experiences.",
       },
     ],
   },
@@ -208,17 +221,20 @@ const services = [
       {
         icon: Mail,
         title: "Campaign Management",
-        description: "Plan and manage effective email campaigns.",
+        description:
+          "Plan and manage effective email campaigns.",
       },
       {
         icon: UserRoundCheck,
         title: "Audience Segmentation",
-        description: "Deliver relevant content to the right audience.",
+        description:
+          "Deliver relevant content to the right audience.",
       },
       {
         icon: BarChart3,
         title: "Performance Tracking",
-        description: "Measure opens, clicks and campaign performance.",
+        description:
+          "Measure opens, clicks and campaign performance.",
       },
       {
         icon: Rocket,
@@ -242,17 +258,20 @@ const services = [
       {
         icon: UserRoundCheck,
         title: "Review Management",
-        description: "Monitor and manage customer reviews across platforms.",
+        description:
+          "Monitor and manage customer reviews across platforms.",
       },
       {
         icon: Globe2,
         title: "Online Presence",
-        description: "Build a consistent and trustworthy digital presence.",
+        description:
+          "Build a consistent and trustworthy digital presence.",
       },
       {
         icon: BarChart3,
         title: "Reputation Monitoring",
-        description: "Track what customers are saying about your brand.",
+        description:
+          "Track what customers are saying about your brand.",
       },
       {
         icon: Rocket,
@@ -461,7 +480,10 @@ export default function ServicesMegaMenu() {
                         bg-red-500/10
                       "
                     >
-                      <ActiveIcon size={27} className="text-red-500" />
+                      <ActiveIcon
+                        size={27}
+                        className="text-red-500"
+                      />
                     </div>
 
                     <span
@@ -511,39 +533,39 @@ export default function ServicesMegaMenu() {
 
                 <div
                   className="
-    relative
-    flex
-    h-[180px]
-    items-center
-    justify-center
-    overflow-hidden
-    rounded-2xl
+                    relative
+                    flex
+                    h-[180px]
+                    items-center
+                    justify-center
+                    overflow-hidden
+                    rounded-2xl
 
-    border
-    border-gray-200
+                    border
+                    border-gray-200
 
-    bg-gradient-to-br
-    from-red-50
-    via-white
-    to-red-100
+                    bg-gradient-to-br
+                    from-red-50
+                    via-white
+                    to-red-100
 
-    dark:border-white/10
-    dark:from-red-500/[0.10]
-    dark:via-[#111111]
-    dark:to-red-500/[0.05]
-  "
+                    dark:border-white/10
+                    dark:from-red-500/[0.10]
+                    dark:via-[#111111]
+                    dark:to-red-500/[0.05]
+                  "
                 >
                   {/* Glow */}
 
                   <div
                     className="
-      absolute
-      h-32
-      w-32
-      rounded-full
-      bg-red-500/20
-      blur-[60px]
-    "
+                      absolute
+                      h-32
+                      w-32
+                      rounded-full
+                      bg-red-500/20
+                      blur-[60px]
+                    "
                   />
 
                   {/* Service Icon */}
@@ -565,30 +587,30 @@ export default function ServicesMegaMenu() {
                       ease: "easeOut",
                     }}
                     className="
-      relative
-      flex
-      h-24
-      w-24
-      items-center
-      justify-center
+                      relative
+                      flex
+                      h-24
+                      w-24
+                      items-center
+                      justify-center
 
-      rounded-[28px]
+                      rounded-[28px]
 
-      border
-      border-red-500/20
+                      border
+                      border-red-500/20
 
-      bg-white/80
+                      bg-white/80
 
-      shadow-[0_15px_40px_rgba(239,68,68,.12)]
+                      shadow-[0_15px_40px_rgba(239,68,68,.12)]
 
-      backdrop-blur-xl
+                      backdrop-blur-xl
 
-      dark:border-red-500/20
-      dark:bg-[#151515]
-      dark:shadow-[0_15px_40px_rgba(239,68,68,.20)]
-    "
+                      dark:border-red-500/20
+                      dark:bg-[#151515]
+                      dark:shadow-[0_15px_40px_rgba(239,68,68,.20)]
+                    "
                   >
-                    <activeService.icon
+                    <ActiveIcon
                       size={46}
                       strokeWidth={1.7}
                       className="text-red-500"
@@ -599,24 +621,24 @@ export default function ServicesMegaMenu() {
 
                   <div
                     className="
-      absolute
-      bottom-5
-      left-5
-      h-px
-      w-12
-      bg-red-500/30
-    "
+                      absolute
+                      bottom-5
+                      left-5
+                      h-px
+                      w-12
+                      bg-red-500/30
+                    "
                   />
 
                   <div
                     className="
-      absolute
-      right-5
-      top-5
-      h-px
-      w-12
-      bg-red-500/30
-    "
+                      absolute
+                      right-5
+                      top-5
+                      h-px
+                      w-12
+                      bg-red-500/30
+                    "
                   />
                 </div>
               </div>
@@ -638,7 +660,20 @@ export default function ServicesMegaMenu() {
                   const FeatureIcon = feature.icon;
 
                   return (
-                    <div key={feature.title} className="group flex gap-4">
+                    <Link
+                      key={feature.title}
+                      href={activeService.href}
+                      className="
+                        group
+                        flex
+                        gap-4
+                        rounded-xl
+                        p-1
+                        transition-all
+                        duration-200
+                        hover:bg-red-500/[0.03]
+                      "
+                    >
                       <div
                         className="
                           flex
@@ -654,11 +689,22 @@ export default function ServicesMegaMenu() {
 
                           bg-gray-50
 
+                          transition-all
+                          duration-200
+
+                          group-hover:border-red-500/30
+                          group-hover:bg-red-500/5
+
                           dark:border-white/10
                           dark:bg-white/[0.04]
+                          dark:group-hover:border-red-500/30
+                          dark:group-hover:bg-red-500/10
                         "
                       >
-                        <FeatureIcon size={21} className="text-red-500" />
+                        <FeatureIcon
+                          size={21}
+                          className="text-red-500"
+                        />
                       </div>
 
                       <div className="min-w-0">
@@ -680,6 +726,7 @@ export default function ServicesMegaMenu() {
                               shrink-0
                               text-red-500
                               transition-transform
+                              duration-200
                               group-hover:translate-x-1
                             "
                           />
@@ -697,7 +744,7 @@ export default function ServicesMegaMenu() {
                           {feature.description}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
@@ -737,7 +784,10 @@ export default function ServicesMegaMenu() {
               bg-red-500/10
             "
           >
-            <Headphones size={23} className="text-red-500" />
+            <Headphones
+              size={23}
+              className="text-red-500"
+            />
           </div>
 
           <div>
@@ -796,6 +846,7 @@ export default function ServicesMegaMenu() {
           "
         >
           Let's Talk
+
           <ArrowRight size={18} />
         </button>
       </div>

@@ -9,20 +9,22 @@ interface ProjectCardProps {
   title: string;
   category: string;
   image: string;
+  description: string;
 }
 
 export default function ProjectCard({
   title,
   category,
   image,
+  description,
 }: ProjectCardProps) {
   return (
     <motion.article
       whileHover={{
-        y: -10,
+        y: -8,
       }}
       transition={{
-        duration: 0.35,
+        duration: 0.3,
       }}
       className="
         group
@@ -33,7 +35,6 @@ export default function ProjectCard({
         bg-[#111111]
         transition-all
         duration-500
-
         hover:border-red-500/30
         hover:shadow-[0_25px_70px_rgba(229,57,53,.18)]
       "
@@ -43,12 +44,12 @@ export default function ProjectCard({
       <div className="p-5 pb-0">
         <motion.div
           whileHover={{
-            rotateX: 2,
-            rotateY: -2,
+            rotateX: 1,
+            rotateY: -1,
             scale: 1.01,
           }}
           transition={{
-            duration: 0.35,
+            duration: 0.3,
           }}
           style={{
             transformStyle: "preserve-3d",
@@ -86,7 +87,7 @@ export default function ProjectCard({
 
         {/* Title */}
 
-        <div className="mt-5 flex items-center justify-between">
+        <div className="mt-5 flex items-center justify-between gap-4">
           <h3
             className="
               text-2xl
@@ -103,10 +104,10 @@ export default function ProjectCard({
           <ArrowUpRight
             size={22}
             className="
+              shrink-0
               text-red-500
               transition-all
               duration-300
-
               group-hover:translate-x-1
               group-hover:-translate-y-1
               group-hover:scale-110
@@ -117,8 +118,7 @@ export default function ProjectCard({
         {/* Description */}
 
         <p className="mt-4 leading-7 text-gray-400">
-          Modern UI/UX, responsive development and scalable architecture
-          designed to deliver exceptional digital experiences.
+          {description}
         </p>
 
         {/* Tech Stack */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -17,28 +17,28 @@ export default function FadeSection({
   children,
   className,
   delay = 0,
-  duration = 0.7,
-  y = 40,
+  duration = 0.45,
+  y = 24,
   once = true,
 }: FadeSectionProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
+      initial={
+        shouldReduceMotion
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y }
+      }
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{
         once,
-        amount: 0.2,
+        amount: 0.15,
       }}
       transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        duration: shouldReduceMotion ? 0 : Math.min(duration, 0.45),
+        delay: shouldReduceMotion ? 0 : delay,
+        ease: "easeOut",
       }}
       className={cn(className)}
     >

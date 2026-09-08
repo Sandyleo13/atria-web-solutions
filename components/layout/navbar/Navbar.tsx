@@ -31,10 +31,8 @@ export default function Navbar() {
         inset-x-0
         top-0
         z-50
-
         px-4
         pt-4
-
         sm:px-6
         lg:px-8
         xl:px-10
@@ -66,19 +64,13 @@ export default function Navbar() {
           }}
           className={cn(
             "flex items-center justify-between",
-
             "rounded-[30px]",
-
             "border border-[var(--border)]",
-
             "bg-[var(--navbar)]",
-
             "backdrop-blur-[30px]",
-
             scrolled
               ? "shadow-[var(--shadow-lg)]"
               : "shadow-[var(--shadow-md)]",
-
             "transition-all duration-300",
           )}
         >
@@ -89,17 +81,18 @@ export default function Navbar() {
               w-full
               items-center
               justify-between
-
               px-6
-
               lg:px-8
               xl:px-10
             "
           >
+            {/* Logo */}
             <Logo scrolled={scrolled} />
 
+            {/* Desktop Navigation + Theme + Phone + CTA */}
             <DesktopNav />
 
+            {/* Mobile Navigation */}
             <MobileNav />
           </div>
         </motion.header>

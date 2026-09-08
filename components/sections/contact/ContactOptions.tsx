@@ -15,7 +15,7 @@ const options = [
   {
     icon: Phone,
     title: "Call Us",
-    value: "+91 98765 43210",
+    value: "91 8766039459",
     description: "Monday – Saturday, 10:00 AM – 7:00 PM",
   },
   {
@@ -143,7 +143,7 @@ export default function ContactOptions() {
             const href = isEmail
               ? "https://mail.google.com/mail/?view=cm&fs=1&to=contact@atriawebsolutions.in&su=Project%20Inquiry%20-%20Atria%20Web%20Solutions"
               : isPhone
-                ? "tel:+919876543210"
+                ? "tel:91 8766039459"
                 : undefined;
 
             return (

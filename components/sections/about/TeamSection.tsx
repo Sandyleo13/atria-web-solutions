@@ -27,19 +27,23 @@ export default function TeamSection() {
             absolute
             left-1/2
             top-24
+
             h-80
             w-[720px]
+
             -translate-x-1/2
+
             rounded-full
+
             bg-red-500/8
             blur-[180px]
+
             dark:bg-red-600/10
           "
         />
       </div>
 
       <Container className="relative z-10">
-
         {/* Section Header */}
 
         <div className="mx-auto max-w-3xl text-center">
@@ -47,16 +51,22 @@ export default function TeamSection() {
             className="
               inline-flex
               items-center
+
               rounded-full
+
               border
               border-red-500/20
+
               bg-red-500/10
+
               px-4
               py-2
+
               text-xs
               font-semibold
               uppercase
               tracking-[0.35em]
+
               text-red-600
               dark:text-red-500
             "
@@ -67,9 +77,12 @@ export default function TeamSection() {
           <h2
             className="
               mt-8
+
               text-5xl
               font-bold
+
               text-[var(--foreground)]
+
               lg:text-6xl
             "
           >
@@ -82,9 +95,12 @@ export default function TeamSection() {
             className="
               mx-auto
               mt-8
+
               max-w-2xl
+
               text-lg
               leading-8
+
               text-[var(--muted)]
             "
           >
@@ -93,20 +109,39 @@ export default function TeamSection() {
             delivering exceptional digital experiences.
           </p>
 
-          <div className="mx-auto mt-10 h-px w-28 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
+          <div
+            className="
+              mx-auto
+              mt-10
+              h-px
+              w-28
+
+              bg-gradient-to-r
+              from-transparent
+              via-red-500
+              to-transparent
+            "
+          />
         </div>
 
         {/* Team Grid */}
 
         <div
           className="
+            mx-auto
             mt-20
+
             grid
+
+            max-w-6xl
+
             grid-cols-1
             gap-8
+
             sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-5
+
+            xl:grid-cols-4
+
             items-stretch
           "
         >
@@ -134,14 +169,12 @@ export default function TeamSection() {
               <TeamCard
                 name={member.name}
                 role={member.role}
-                image={member.image}
                 linkedin={member.linkedin}
                 email={member.email}
               />
             </motion.div>
           ))}
         </div>
-
       </Container>
     </section>
   );

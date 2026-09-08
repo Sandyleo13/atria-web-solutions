@@ -1,9 +1,8 @@
 "use client";
 
-import {
-  CheckCircle2,
-  Send,
-} from "lucide-react";
+import { useState } from "react";
+
+import { CheckCircle2, Send } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 
@@ -59,6 +58,80 @@ const inputClassName = `
 `;
 
 export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({
+    type: null,
+    message: "",
+  });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Save the form reference BEFORE any await
+    const form = event.currentTarget;
+
+    setIsSubmitting(true);
+
+    setStatus({
+      type: null,
+      message: "",
+    });
+
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      budget: formData.get("budget"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message.");
+      }
+
+      // Success
+      setStatus({
+        type: "success",
+        message:
+          "Your message has been sent successfully. We'll get back to you within 24 hours.",
+      });
+
+      // Reset using the saved form reference
+      form.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong while sending your message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contact-form"
@@ -76,7 +149,9 @@ export default function ContactForm() {
         duration-500
       "
     >
-      {/* Background Glow */}
+      {/* =====================================
+          BACKGROUND GLOW
+      ====================================== */}
 
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -112,9 +187,9 @@ export default function ContactForm() {
             lg:gap-10
           "
         >
-          {/* ========================= */}
-          {/* CONTACT FORM */}
-          {/* ========================= */}
+          {/* =====================================
+              CONTACT FORM
+          ====================================== */}
 
           <div
             className="
@@ -191,13 +266,15 @@ export default function ContactForm() {
                 text-[var(--muted)]
               "
             >
-              Fill out the form below and we'll get back to you
-              within one business day.
+              Fill out the form below and we'll get back to you within one
+              business day.
             </p>
 
-            {/* Form */}
+            {/* =====================================
+                FORM
+            ====================================== */}
 
-            <form className="mt-10 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-10 space-y-6">
               {/* Name + Email */}
 
               <div className="grid gap-6 md:grid-cols-2">
@@ -219,8 +296,10 @@ export default function ContactForm() {
 
                   <input
                     id="name"
+                    name="name"
                     type="text"
                     placeholder="Your name"
+                    required
                     className={inputClassName}
                   />
                 </div>
@@ -243,8 +322,10 @@ export default function ContactForm() {
 
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="you@example.com"
+                    required
                     className={inputClassName}
                   />
                 </div>
@@ -267,14 +348,12 @@ export default function ContactForm() {
                     "
                   >
                     Company Name
-
-                    <span className="ml-1 text-[var(--muted)]">
-                      (Optional)
-                    </span>
+                    <span className="ml-1 text-[var(--muted)]">(Optional)</span>
                   </label>
 
                   <input
                     id="company"
+                    name="company"
                     type="text"
                     placeholder="Your company"
                     className={inputClassName}
@@ -299,6 +378,7 @@ export default function ContactForm() {
 
                   <input
                     id="phone"
+                    name="phone"
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     className={inputClassName}
@@ -327,7 +407,9 @@ export default function ContactForm() {
 
                   <select
                     id="service"
+                    name="service"
                     defaultValue=""
+                    required
                     className={`
                       ${inputClassName}
 
@@ -341,10 +423,7 @@ export default function ContactForm() {
                     </option>
 
                     {services.map((service) => (
-                      <option
-                        key={service}
-                        value={service}
-                      >
+                      <option key={service} value={service}>
                         {service}
                       </option>
                     ))}
@@ -369,6 +448,7 @@ export default function ContactForm() {
 
                   <select
                     id="budget"
+                    name="budget"
                     defaultValue=""
                     className={`
                       ${inputClassName}
@@ -383,10 +463,7 @@ export default function ContactForm() {
                     </option>
 
                     {budgets.map((budget) => (
-                      <option
-                        key={budget}
-                        value={budget}
-                      >
+                      <option key={budget} value={budget}>
                         {budget}
                       </option>
                     ))}
@@ -414,7 +491,9 @@ export default function ContactForm() {
 
                 <textarea
                   id="message"
+                  name="message"
                   rows={6}
+                  required
                   placeholder="Tell us about your goals, requirements, timeline or anything else you'd like us to know..."
                   className={`
                     ${inputClassName}
@@ -428,6 +507,7 @@ export default function ContactForm() {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="
                   inline-flex
                   items-center
@@ -453,18 +533,69 @@ export default function ContactForm() {
                   hover:bg-red-600
 
                   hover:shadow-[0_15px_35px_rgba(239,68,68,.25)]
+
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                  disabled:hover:translate-y-0
                 "
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
 
-                <Send size={18} />
+                {isSubmitting ? (
+                  <span
+                    className="
+                      h-4
+                      w-4
+                      animate-spin
+                      rounded-full
+                      border-2
+                      border-white/30
+                      border-t-white
+                    "
+                  />
+                ) : (
+                  <Send size={18} />
+                )}
               </button>
+
+              {/* Status Message */}
+
+              {status.type && (
+                <div
+                  className={`
+                    rounded-2xl
+                    border
+                    px-5
+                    py-4
+                    text-sm
+                    leading-6
+
+                    ${
+                      status.type === "success"
+                        ? `
+                          border-green-500/20
+                          bg-green-500/10
+                          text-green-600
+                          dark:text-green-400
+                        `
+                        : `
+                          border-red-500/20
+                          bg-red-500/10
+                          text-red-600
+                          dark:text-red-400
+                        `
+                    }
+                  `}
+                >
+                  {status.message}
+                </div>
+              )}
             </form>
           </div>
 
-          {/* ========================= */}
-          {/* WHY CHOOSE ATRIA */}
-          {/* ========================= */}
+          {/* =====================================
+              WHY CHOOSE ATRIA
+          ====================================== */}
 
           <div
             className="
@@ -554,11 +685,7 @@ export default function ContactForm() {
                 "
               >
                 Let's Build Something
-
-                <span className="text-red-500">
-                  {" "}
-                  Amazing.
-                </span>
+                <span className="text-red-500"> Amazing.</span>
               </h2>
 
               <p
@@ -570,9 +697,8 @@ export default function ContactForm() {
                   text-[var(--muted)]
                 "
               >
-                We're committed to creating websites and digital
-                products that are fast, scalable and designed to
-                help your business grow.
+                We're committed to creating websites and digital products that
+                are fast, scalable and designed to help your business grow.
               </p>
 
               {/* Reasons */}
@@ -603,10 +729,7 @@ export default function ContactForm() {
                         bg-red-500/10
                       "
                     >
-                      <CheckCircle2
-                        size={18}
-                        className="text-red-500"
-                      />
+                      <CheckCircle2 size={18} className="text-red-500" />
                     </div>
 
                     <span
@@ -656,10 +779,7 @@ export default function ContactForm() {
                       bg-red-500/10
                     "
                   >
-                    <Send
-                      size={18}
-                      className="text-red-500"
-                    />
+                    <Send size={18} className="text-red-500" />
                   </div>
 
                   <div>

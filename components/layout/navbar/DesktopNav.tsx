@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 
@@ -43,8 +43,7 @@ export default function DesktopNav() {
   return (
     <>
       {/* Navigation */}
-
-      <nav className="hidden items-center gap-12 lg:flex xl:gap-14">
+      <nav className="hidden items-center gap-10 lg:flex xl:gap-12">
         {NAVIGATION.map((item) => (
           <div
             key={item.href}
@@ -63,7 +62,6 @@ export default function DesktopNav() {
             {item.children ? (
               <>
                 {/* Services Button */}
-
                 <button
                   type="button"
                   className="
@@ -71,16 +69,12 @@ export default function DesktopNav() {
                     flex
                     items-center
                     gap-2
-
                     text-[15px]
                     font-medium
                     tracking-wide
-
                     text-[var(--muted)]
-
                     transition-all
                     duration-300
-
                     hover:text-[var(--foreground)]
                   "
                 >
@@ -90,13 +84,11 @@ export default function DesktopNav() {
                     size={16}
                     className={cn(
                       "transition-all duration-300 group-hover:text-red-500",
-                      servicesOpen &&
-                        "rotate-180 text-red-500",
+                      servicesOpen && "rotate-180 text-red-500",
                     )}
                   />
 
                   {/* Active / Hover Line */}
-
                   {servicesOpen && (
                     <motion.span
                       layoutId="services-active-line"
@@ -118,7 +110,6 @@ export default function DesktopNav() {
                 </button>
 
                 {/* Mega Menu */}
-
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.div
@@ -165,67 +156,50 @@ export default function DesktopNav() {
                   flex
                   items-center
                   gap-2
-
                   text-[15px]
                   font-medium
                   tracking-wide
-
                   text-[var(--muted)]
-
                   transition-all
                   duration-300
-
                   hover:text-[var(--foreground)]
                 "
               >
                 {item.title}
 
                 {/* Active Line */}
-
                 {isActive(item.href) && (
                   <motion.span
                     layoutId="navbar-active"
                     className="
                       absolute
-
                       -bottom-[10px]
                       left-0
-
                       h-[3px]
                       w-full
-
                       rounded-full
-
                       bg-gradient-to-r
                       from-red-600
                       via-red-500
                       to-red-400
-
                       shadow-[0_0_12px_rgba(239,68,68,.8)]
                     "
                   />
                 )}
 
                 {/* Hover Line */}
-
                 {!isActive(item.href) && (
                   <span
                     className="
                       absolute
-
                       -bottom-[10px]
                       left-0
-
                       h-[2px]
                       w-0
-
                       rounded-full
-
                       bg-red-500
-
                       transition-all
                       duration-300
-
                       group-hover:w-full
                     "
                   />
@@ -237,10 +211,48 @@ export default function DesktopNav() {
       </nav>
 
       {/* Right Side */}
-
-      <div className="hidden items-center gap-5 lg:flex">
+      <div className="hidden items-center gap-4 lg:flex xl:gap-5">
+        {/* Theme Toggle */}
         <ThemeToggle />
 
+        {/* Phone Number */}
+        <a
+          href="tel:+918766039459"
+          aria-label="Call Atria Web Solutions"
+          className="
+            flex
+            shrink-0
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-[var(--border)]
+            bg-[var(--background)]
+            px-4
+            py-2.5
+            text-sm
+            font-semibold
+            text-[var(--foreground)]
+            transition-all
+            duration-300
+            hover:border-red-500/40
+            hover:bg-red-500/10
+            hover:text-red-500
+            xl:px-5
+          "
+        >
+          <Phone
+            size={16}
+            strokeWidth={2}
+            className="shrink-0"
+          />
+
+          <span className="whitespace-nowrap">
+            +91 8766039459
+          </span>
+        </a>
+
+        {/* CTA */}
         <CTAButton />
       </div>
     </>

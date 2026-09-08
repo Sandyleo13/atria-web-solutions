@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
@@ -9,7 +8,6 @@ import { FaLinkedinIn } from "react-icons/fa6";
 interface TeamCardProps {
   name: string;
   role: string;
-  image: string;
   linkedin?: string;
   email?: string;
 }
@@ -17,15 +15,22 @@ interface TeamCardProps {
 export default function TeamCard({
   name,
   role,
-  image,
   linkedin,
   email,
 }: TeamCardProps) {
+  // Generate initials
+  const initials = name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <motion.div
       whileHover={{
-        y: -10,
-        scale: 1.02,
+        y: -8,
+        scale: 1.01,
       }}
       transition={{
         duration: 0.3,
@@ -33,106 +38,125 @@ export default function TeamCard({
       className="
         group
         flex
-        h-[500px]
+        min-h-[280px]
         flex-col
-        overflow-hidden
+        justify-between
+
         rounded-3xl
 
         border
-        border-gray-200
-        dark:border-white/10
+        border-[var(--border)]
 
-        bg-white
-        dark:bg-[#111111]
+        bg-[var(--card)]
 
-        shadow-[0_18px_40px_rgba(17,24,39,.06)]
-        dark:shadow-none
+        p-6
+
+        shadow-[var(--shadow-sm)]
 
         transition-all
         duration-300
 
         hover:border-red-500/40
-        hover:shadow-[0_20px_50px_rgba(229,57,53,.16)]
+        hover:shadow-[0_20px_50px_rgba(229,57,53,.12)]
       "
     >
-      {/* Image */}
+      {/* Top Section */}
 
-      <div className="relative h-[390px] w-full shrink-0 overflow-hidden">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          sizes="(max-width: 768px) 100vw, 20vw"
-          className="
-            object-cover
-            object-center
-
-            transition-transform
-            duration-500
-
-            group-hover:scale-105
-          "
-        />
-
-        {/* Overlay */}
+      <div>
+        {/* Initial Avatar */}
 
         <div
           className="
-            pointer-events-none
-            absolute
-            inset-0
+            flex
+            h-16
+            w-16
+            items-center
+            justify-center
 
-            bg-gradient-to-t
-            from-black/50
-            via-black/10
-            to-transparent
+            rounded-2xl
+
+            border
+            border-red-500/20
+
+            bg-red-500/10
+
+            text-xl
+            font-bold
+
+            text-red-500
+
+            transition-all
+            duration-300
+
+            group-hover:scale-105
+            group-hover:bg-red-500
+            group-hover:text-white
           "
-        />
+        >
+          {initials}
+        </div>
+
+        {/* Name */}
+
+        <h3
+          className="
+            mt-7
+
+            text-2xl
+            font-bold
+            leading-tight
+
+            text-[var(--foreground)]
+
+            transition-colors
+            duration-300
+
+            group-hover:text-red-500
+          "
+        >
+          {name}
+        </h3>
+
+        {/* Role */}
+
+        <p
+          className="
+            mt-2
+
+            text-sm
+            leading-6
+            tracking-wide
+
+            text-[var(--muted)]
+          "
+        >
+          {role}
+        </p>
       </div>
 
-      {/* Content */}
+      {/* Bottom Section */}
 
-      <div className="flex min-h-0 flex-1 items-center justify-between gap-4 p-5">
-        {/* Name + Role */}
+      <div>
+        {/* Divider */}
 
-        <div className="min-w-0">
-          <h3
-            className="
-              line-clamp-2
-              text-xl
-              font-bold
-              leading-tight
+        <div
+          className="
+            mb-5
+            h-px
+            w-full
 
-              text-[var(--foreground)]
+            bg-[var(--border)]
 
-              transition-colors
-              duration-300
+            transition-colors
+            duration-300
 
-              group-hover:text-red-500
-            "
-          >
-            {name}
-          </h3>
-
-          <p
-            className="
-              mt-2
-              line-clamp-2
-
-              text-sm
-              leading-5
-              tracking-wide
-
-              text-[var(--muted)]
-            "
-          >
-            {role}
-          </p>
-        </div>
+            group-hover:bg-red-500/20
+          "
+        />
 
         {/* Social Icons */}
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex items-center gap-2">
           {/* LinkedIn */}
 
           <Link
@@ -145,8 +169,8 @@ export default function TeamCard({
             }}
             className="
               flex
-              h-9
-              w-9
+              h-10
+              w-10
               shrink-0
               items-center
               justify-center
@@ -154,14 +178,11 @@ export default function TeamCard({
               rounded-full
 
               border
-              border-gray-200
-              dark:border-white/10
+              border-[var(--border)]
 
-              bg-gray-50
-              dark:bg-white/5
+              bg-[var(--background)]
 
-              text-gray-600
-              dark:text-gray-400
+              text-[var(--muted)]
 
               transition-all
               duration-300
@@ -177,46 +198,43 @@ export default function TeamCard({
 
           {/* Email */}
 
-          <a
-            href={
-              email
-                ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`
-                : undefined
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Email ${name}`}
-            className="
-    flex
-    h-9
-    w-9
-    shrink-0
-    items-center
-    justify-center
+          {email && (
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+                email
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Email ${name}`}
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
 
-    rounded-full
+                rounded-full
 
-    border
-    border-gray-200
-    dark:border-white/10
+                border
+                border-[var(--border)]
 
-    bg-gray-50
-    dark:bg-white/5
+                bg-[var(--background)]
 
-    text-gray-600
-    dark:text-gray-400
+                text-[var(--muted)]
 
-    transition-all
-    duration-300
+                transition-all
+                duration-300
 
-    hover:-translate-y-1
-    hover:border-red-500
-    hover:bg-red-500
-    hover:text-white
-  "
-          >
-            <Mail size={17} />
-          </a>
+                hover:-translate-y-1
+                hover:border-red-500
+                hover:bg-red-500
+                hover:text-white
+              "
+            >
+              <Mail size={17} />
+            </a>
+          )}
         </div>
       </div>
     </motion.div>

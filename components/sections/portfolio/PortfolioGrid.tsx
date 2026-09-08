@@ -139,10 +139,11 @@ export default function PortfolioGrid() {
               }}
             >
               <ProjectCard
-                title={project.title}
-                category={project.category}
-                image={project.image}
-              />
+  title={project.title}
+  category={project.category}
+  image={project.image}
+  description={project.description}
+/>
             </motion.div>
           ))}
 
