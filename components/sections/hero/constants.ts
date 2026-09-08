@@ -5,10 +5,11 @@ export const HERO_IMAGES = {
   glowDark: "/images/home/hero-glow.webp",
   glowLight: "/images/home/hero-glow-light.png",
 
-  heroDark: "/images/home/hero-a-transperent.png",
+  // Dark mode
+  heroDark: "/images/home/Removal-452.png",
 
-  // Use the transparent PNG for light mode
-  heroLight: "/images/home/Removal-452.png",
+  // Light mode
+  heroLight: "/images/home/hero-a-transperent.png",
 };
 
 export const HERO_ANIMATION = {
