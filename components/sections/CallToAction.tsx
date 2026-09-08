@@ -4,7 +4,17 @@ import { Container } from "@/components/layout/Container";
 
 export function CallToAction() {
   return (
-    <section id="contact" className="scroll-mt-20 bg-white pb-0">
+    <section
+      id="contact"
+      className="
+        scroll-mt-20
+        bg-white
+        pb-0
+        transition-colors
+        duration-300
+        dark:bg-[#050505]
+      "
+    >
       <Container>
         <div
           className="
@@ -27,7 +37,7 @@ export function CallToAction() {
           "
         >
           <div>
-            <h2 className="text-3xl font-bold tracking-[-0.045em]">
+            <h2 className="text-3xl font-bold tracking-[-0.045em] text-white">
               Ready to start your next project?
             </h2>
 
@@ -41,20 +51,22 @@ export function CallToAction() {
             target="_blank"
             rel="noopener noreferrer"
             className="
-    inline-flex
-    min-h-12
-    items-center
-    gap-2
-    rounded-lg
-    bg-white
-    px-5
-    text-sm
-    font-bold
-    text-brand
-    shadow-sm
-    transition-transform
-    hover:scale-[1.02]
-  "
+              inline-flex
+              min-h-12
+              items-center
+              gap-2
+              rounded-lg
+              bg-white
+              px-5
+              text-sm
+              font-bold
+              text-brand
+              shadow-sm
+              transition-all
+              duration-300
+              hover:scale-[1.02]
+              hover:shadow-md
+            "
           >
             Schedule a Free Call
             <ArrowRight size={16} />

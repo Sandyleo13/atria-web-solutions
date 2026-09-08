@@ -225,7 +225,7 @@ export function Footer() {
                     size={18}
                   />
 
-                  <span>+91 98765 43210</span>
+                  <span>+91 8766039459</span>
                 </a>
 
                 {/* Email */}
