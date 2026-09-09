@@ -9,18 +9,15 @@
 @theme inline {
   --font-sans: var(--font-inter);
 
-  /* Brand */
   --color-brand: var(--primary);
   --color-brand-dark: var(--primary-hover);
   --color-brand-soft: var(--primary-soft);
 
-  /* Existing aliases (keeps current components working) */
   --color-surface: var(--background);
   --color-ink: var(--foreground);
   --color-muted: var(--muted);
   --color-line: var(--border);
 
-  /* Shadows */
   --shadow-card: var(--shadow-md);
   --shadow-card-hover: var(--shadow-lg);
 
@@ -36,27 +33,22 @@
 
   --page-gutter: 1.25rem;
 
-  /* Backgrounds */
   --background: #fafafa;
   --foreground: #111827;
 
   --card: #ffffff;
   --card-hover: #f8fafc;
 
-  /* Brand */
   --primary: #e53935;
   --primary-hover: #c62828;
   --primary-soft: #feecec;
 
-  /* UI */
   --muted: #6b7280;
   --border: #e5e7eb;
 
-  /* Glass */
   --glass: rgba(255, 255, 255, 0.75);
   --navbar: rgba(255, 255, 255, 0.82);
 
-  /* Effects */
   --shadow-md: 0 12px 32px rgb(17 24 39 / 0.06);
   --shadow-lg: 0 18px 44px rgb(17 24 39 / 0.12);
 
@@ -113,6 +105,7 @@ html {
   min-width: 320px;
   scroll-behavior: smooth;
   background: var(--background);
+
   transition:
     background-color 0.35s ease,
     color 0.35s ease;
@@ -126,9 +119,11 @@ body {
   color: var(--foreground);
 
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -200,16 +195,234 @@ div {
 }
 
 /* ==========================================================================
+   ATRIA HERO ANIMATIONS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Main A floating
+   -------------------------------------------------------------------------- */
+
+@keyframes atria-hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Red glow breathing
+   -------------------------------------------------------------------------- */
+
+@keyframes atria-hero-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TECHNOLOGY ORBIT
+
+   IMPORTANT:
+   The orbit rotates around its own center.
+
+   Positive rotation = clockwise.
+
+   The HeroVisual positions the pills around the upper/side portion
+   of the ellipse, so they stay close to the A instead of flying
+   around the entire hero section.
+   -------------------------------------------------------------------------- */
+
+@keyframes atria-tech-orbit {
+  0% {
+    opacity: 0;
+    transform: rotate(-7deg);
+  }
+
+  16%,
+  84% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.72;
+    transform: rotate(7deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Technology pill subtle floating
+   -------------------------------------------------------------------------- */
+
+@keyframes atria-tech-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Decorative pulse
+   -------------------------------------------------------------------------- */
+
+@keyframes atria-hero-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+/* ==========================================================================
+   ANIMATION CLASSES
+   ========================================================================== */
+
+.atria-hero-float {
+  animation: atria-hero-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.atria-hero-glow {
+  animation: atria-hero-glow 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/*
+ * Main technology orbit.
+ *
+ * 32 seconds gives the same slow premium movement as the reference.
+ * Do NOT use a huge rectangular orbit.
+ */
+.atria-tech-orbit {
+  --atria-tech-orbit-x: 235px;
+  --atria-tech-orbit-y: 195px;
+  animation: atria-tech-orbit 11s ease-in-out infinite alternate;
+  mask-image: linear-gradient(to right, transparent 4%, rgba(0, 0, 0, 0.35) 14%, #000 28%);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/*
+ * The chips inherit the orbit rotation so each one follows the curve,
+ * matching the circular treatment in the hero artwork.
+ */
+.atria-tech-counter {
+  transform-origin: center center;
+  will-change: auto;
+}
+
+.atria-tech-pill {
+  transform-origin: center center;
+}
+
+/* Keep the semicircle legible on narrow phones. */
+@media (max-width: 639px) {
+  .atria-tech-orbit {
+    --atria-tech-orbit-x: 150px;
+    --atria-tech-orbit-y: 125px;
+    animation-duration: 14s;
+  }
+
+  .atria-tech-orbit > div:nth-child(even) {
+    display: none;
+  }
+
+  .atria-tech-pill {
+    transform: scale(0.72);
+  }
+}
+
+/*
+ * Very subtle individual pill movement.
+ */
+.atria-tech-float {
+  animation: atria-tech-float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.atria-hero-pulse {
+  animation: atria-hero-pulse 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   RESPONSIVE ORBIT TUNING
+   ========================================================================== */
+
+/*
+ * Keep the orbit visually attached to the A on large screens.
+ */
+@media (min-width: 1024px) {
+  .atria-tech-orbit {
+    --atria-tech-orbit-x: 300px;
+    --atria-tech-orbit-y: 245px;
+    animation-duration: 12s;
+  }
+
+}
+
+@media (min-width: 1280px) {
+  .atria-tech-orbit {
+    --atria-tech-orbit-x: 340px;
+    --atria-tech-orbit-y: 260px;
+  }
+}
+
+/*
+ * Slightly slower on very large screens.
+ */
+@media (min-width: 1536px) {
+  .atria-tech-orbit {
+    --atria-tech-orbit-x: 380px;
+    --atria-tech-orbit-y: 270px;
+    animation-duration: 13s;
+  }
+
+}
+
+/* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .atria-hero-float,
+  .atria-hero-glow,
+  .atria-tech-orbit,
+  .atria-tech-counter,
+  .atria-tech-float,
+  .atria-hero-pulse {
+    animation: none !important;
+    will-change: auto;
   }
 }

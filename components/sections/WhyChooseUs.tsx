@@ -4,7 +4,6 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -19,57 +18,37 @@ const features = [
 ];
 
 export function WhyChooseUs() {
-  const { resolvedTheme } = useTheme();
-
-  const isDark = resolvedTheme === "dark";
-
-  // Dark → 1.png
-  // Light → 2.jpg
-  const imageSrc = isDark
-    ? "/images/home/1.png"
-    : "/images/home/2.jpg";
-
   return (
     <section
       className="
         relative
         overflow-hidden
-        py-28
-
         bg-[var(--background)]
-
+        py-28
         transition-colors
         duration-500
       "
     >
       {/* Background Glow */}
-
       <div className="pointer-events-none absolute inset-0">
         <div
           className="
             absolute
             left-1/2
             top-20
-
             h-80
             w-[700px]
-
             -translate-x-1/2
-
             rounded-full
-
             bg-red-500/8
-            dark:bg-red-600/10
-
             blur-[180px]
+            dark:bg-red-600/10
           "
         />
       </div>
 
       <Container className="relative z-10">
-
         {/* Section Header */}
-
         <SectionHeader
           eyebrow="Why Choose Atria"
           title="Building Digital Products That Drive Business Growth"
@@ -77,9 +56,7 @@ export function WhyChooseUs() {
         />
 
         <div className="mt-20 grid items-center gap-20 lg:grid-cols-2">
-
           {/* LEFT CONTENT */}
-
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +87,6 @@ export function WhyChooseUs() {
             </p>
 
             {/* Features */}
-
             <div className="mt-10 space-y-5">
               {features.map((feature) => (
                 <motion.div
@@ -127,17 +103,13 @@ export function WhyChooseUs() {
                       shrink-0
                       items-center
                       justify-center
-
                       rounded-xl
-
                       bg-red-50
-                      dark:bg-red-500/10
-
                       text-red-600
-                      dark:text-red-500
-
                       transition-all
                       duration-300
+                      dark:bg-red-500/10
+                      dark:text-red-500
                     "
                   >
                     <CheckCircle2 size={20} />
@@ -156,31 +128,22 @@ export function WhyChooseUs() {
             </div>
 
             {/* CTA */}
-
             <Link
               href="/about"
               className="
                 group
-
                 mt-12
-
                 inline-flex
                 items-center
                 gap-3
-
                 rounded-2xl
-
                 bg-red-600
-
                 px-7
                 py-4
-
                 font-semibold
                 text-white
-
                 transition-all
                 duration-300
-
                 hover:-translate-y-1
                 hover:bg-red-700
                 hover:shadow-[0_15px_35px_rgba(239,68,68,.25)]
@@ -193,7 +156,6 @@ export function WhyChooseUs() {
                 className="
                   transition-transform
                   duration-300
-
                   group-hover:translate-x-1
                 "
               />
@@ -201,7 +163,6 @@ export function WhyChooseUs() {
           </motion.div>
 
           {/* RIGHT IMAGE */}
-
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -210,89 +171,90 @@ export function WhyChooseUs() {
             className="relative"
           >
             {/* Image Glow */}
-
             <div
               className="
                 absolute
                 inset-0
-
                 rounded-[40px]
-
                 bg-red-600/15
-
                 blur-3xl
-
                 dark:bg-red-600/20
               "
             />
 
             {/* Image Container */}
-
             <div
               className="
                 group
-
                 relative
                 overflow-hidden
-
                 rounded-[32px]
-
                 border
                 border-gray-200
-                dark:border-white/10
-
                 bg-white
-                dark:bg-white/5
-
                 shadow-[0_18px_40px_rgba(17,24,39,.08)]
-                dark:shadow-none
-
                 backdrop-blur-xl
+                dark:border-white/10
+                dark:bg-white/5
+                dark:shadow-none
               "
             >
+              {/* Light Mode Image */}
               <Image
-                key={imageSrc}
-                src={imageSrc}
+                src="/images/home/2.jpg"
                 alt="Atria Web Solutions Team"
                 width={1200}
                 height={900}
-                priority={false}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="
+                  block
                   h-full
                   w-full
-
                   object-cover
-
                   transition-transform
                   duration-700
-
                   group-hover:scale-105
+                  dark:hidden
                 "
               />
 
-              {/* Subtle image overlay */}
+              {/* Dark Mode Image */}
+              <Image
+                src="/images/home/1.png"
+                alt="Atria Web Solutions Team"
+                width={1200}
+                height={900}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="
+                  hidden
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-700
+                  group-hover:scale-105
+                  dark:block
+                "
+              />
 
+              {/* Subtle Image Overlay */}
               <div
                 className="
                   pointer-events-none
                   absolute
                   inset-0
-
                   bg-gradient-to-t
                   from-black/10
                   via-transparent
                   to-transparent
-
                   opacity-0
                   transition-opacity
                   duration-500
-
                   group-hover:opacity-100
                 "
               />
             </div>
           </motion.div>
-
         </div>
       </Container>
     </section>

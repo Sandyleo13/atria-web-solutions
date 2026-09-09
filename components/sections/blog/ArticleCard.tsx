@@ -62,6 +62,7 @@ export default function ArticleCard({
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
           className="
             object-cover
 

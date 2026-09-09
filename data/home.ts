@@ -5,15 +5,6 @@ export const metrics = [
   ["24/7", "Support Available"],
 ] as const;
 
-export const brands = [
-  "SnapEdit",
-  "Box of Vacation",
-  "Travelopod",
-  "ATZ CRM",
-  "Peaceful",
-  "BuzzDeck",
-];
-
 export const projects = [
   {
     name: "SnapEdit",

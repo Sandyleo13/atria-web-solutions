@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock3 } from "lucide-react";
 
@@ -162,47 +163,15 @@ export default function FeaturedArticle() {
 
           {/* Left */}
 
-          <div
-            className="
-              relative
-
-              flex
-              min-h-[430px]
-
-              items-center
-              justify-center
-
-              bg-gradient-to-br
-              from-red-600
-              via-red-500
-              to-[#1b1b1b]
-            "
-          >
-            <div
-              className="
-                rounded-3xl
-
-                border
-                border-white/20
-
-                bg-white/10
-
-                px-12
-                py-16
-
-                backdrop-blur-xl
-
-                shadow-[0_20px_40px_rgba(0,0,0,.15)]
-              "
-            >
-              <h2 className="text-5xl font-black text-white">
-                INSIGHTS
-              </h2>
-
-              <p className="mt-4 text-lg text-white/80">
-                Article Preview
-              </p>
-            </div>
+          <div className="relative min-h-[320px] overflow-hidden lg:min-h-[430px]">
+            <Image
+              src={featuredArticle.image}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
 
           {/* Right */}

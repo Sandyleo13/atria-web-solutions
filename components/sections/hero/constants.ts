@@ -6,10 +6,10 @@ export const HERO_IMAGES = {
   glowLight: "/images/home/hero-glow-light.png",
 
   // Dark mode
-  heroDark: "/images/home/Removal-452.png",
+  heroDark: "/images/home/hero-a-transperent-removebg-preview.png",
 
   // Light mode
-  heroLight: "/images/home/hero-a-transperent.png",
+  heroLight: "/images/home/Removal-452.png",
 };
 
 export const HERO_ANIMATION = {

@@ -45,6 +45,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={inter.variable}
+      data-scroll-behavior="smooth"
     >
       <body className="flex min-h-screen flex-col antialiased">
         <ThemeProvider>

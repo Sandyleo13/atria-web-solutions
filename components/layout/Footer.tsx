@@ -206,7 +206,7 @@ export function Footer() {
                 {/* Phone */}
 
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+918766039459"
                   className="
                     flex
                     items-center

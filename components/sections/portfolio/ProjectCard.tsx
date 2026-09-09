@@ -31,8 +31,12 @@ export default function ProjectCard({
         overflow-hidden
         rounded-[30px]
         border
-        border-white/10
-        bg-[#111111]
+        border-gray-200
+        bg-white
+        shadow-[0_12px_32px_rgba(15,23,42,.08)]
+        dark:border-white/10
+        dark:bg-[#111111]
+        dark:shadow-none
         transition-all
         duration-500
         hover:border-red-500/30
@@ -79,7 +83,8 @@ export default function ProjectCard({
             text-xs
             font-medium
             tracking-wide
-            text-red-400
+            text-red-600
+            dark:text-red-400
           "
         >
           {category}
@@ -92,7 +97,7 @@ export default function ProjectCard({
             className="
               text-2xl
               font-bold
-              text-white
+              text-[var(--foreground)]
               transition-colors
               duration-300
               group-hover:text-red-500
@@ -117,7 +122,7 @@ export default function ProjectCard({
 
         {/* Description */}
 
-        <p className="mt-4 leading-7 text-gray-400">
+        <p className="mt-4 leading-7 text-[var(--muted)]">
           {description}
         </p>
 
@@ -130,12 +135,15 @@ export default function ProjectCard({
               className="
                 rounded-full
                 border
-                border-white/10
-                bg-white/[0.04]
+                border-gray-200
+                bg-gray-50
                 px-3
                 py-1
                 text-xs
-                text-gray-300
+                text-gray-600
+                dark:border-white/10
+                dark:bg-white/[0.04]
+                dark:text-gray-300
               "
             >
               {tech}

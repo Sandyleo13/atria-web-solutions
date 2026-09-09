@@ -14,7 +14,7 @@ const cards = [
   {
     icon: Phone,
     title: "Call Us",
-    value: "+91 98765 43210",
+    value: "+91 8766039459",
     subtitle: "Mon - Sat | 10 AM - 7 PM",
   },
   {

@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
-import { brands } from "@/data/home";
+import {
+  featuredProjects,
+  portfolioProjects,
+} from "@/components/sections/portfolio/portfolio-data";
+
+const brands = [...featuredProjects, ...portfolioProjects].map(
+  (project) => project.title,
+);
 
 export function TrustedBrands() {
   return (

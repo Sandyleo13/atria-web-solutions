@@ -1,580 +1,388 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-
-import {
-  SiNextdotjs,
-  SiReact,
-  SiTypescript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiLaravel,
-  SiPhp,
-  SiMysql,
-} from "react-icons/si";
 
 import { HERO_IMAGES } from "./constants";
 
 const technologies = [
-  { name: "Next.js", icon: SiNextdotjs },
-  { name: "React", icon: SiReact },
-  { name: "TypeScript", icon: SiTypescript },
-  { name: "Tailwind CSS", icon: SiTailwindcss },
-  { name: "Node.js", icon: SiNodedotjs },
-  { name: "Laravel", icon: SiLaravel },
-  { name: "PHP", icon: SiPhp },
-  { name: "MySQL", icon: SiMysql },
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Laravel",
+  "PHP",
+  "MySQL",
+];
+
+const orbitAngles = [
+  -125,
+  -90,
+  -55,
+  -20,
+  15,
+  50,
+  85,
+  120,
 ];
 
 export default function HeroVisual() {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-
-  const orbitPath =
-    "M 25 420 C 65 170 260 25 380 25 C 500 25 695 170 735 420";
+  const heroImage =
+    resolvedTheme === "light" ? HERO_IMAGES.heroLight : HERO_IMAGES.heroDark;
 
   return (
     <div
       className="
         relative
         flex
+        h-[470px]
         w-full
         items-center
         justify-center
-
-        h-[470px]
-
         sm:h-[520px]
-
         lg:h-full
         lg:min-h-[650px]
       "
     >
-      {/* =====================================================
-          LIGHT MODE GLOW
-      ====================================================== */}
-
-      {!isDark && (
-        <motion.div
-          animate={{
-            opacity: [0.08, 0.16, 0.08],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-            absolute
-            h-[380px]
-            w-[380px]
-
-            rounded-full
-
-            bg-[radial-gradient(circle,rgba(239,68,68,.20)_0%,rgba(239,68,68,.08)_40%,transparent_72%)]
-
-            blur-[100px]
-
-            sm:h-[500px]
-            sm:w-[500px]
-            sm:blur-[120px]
-
-            lg:h-[720px]
-            lg:w-[720px]
-            lg:blur-[130px]
-          "
-        />
-      )}
-
-      {/* =====================================================
-          DARK MODE GLOW
-      ====================================================== */}
-
-      {isDark && (
-        <motion.div
-          animate={{
-            opacity: [0.25, 0.45, 0.25],
-            scale: [1, 1.08, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-            absolute
-
-            left-1/2
-            top-1/2
-
-            h-[380px]
-            w-[380px]
-
-            -translate-x-1/2
-            -translate-y-1/2
-
-            rounded-full
-
-            bg-[radial-gradient(circle,rgba(255,30,30,.5)_0%,rgba(255,30,30,.16)_40%,transparent_72%)]
-
-            blur-[90px]
-
-            sm:h-[500px]
-            sm:w-[500px]
-            sm:blur-[100px]
-
-            lg:left-[47%]
-            lg:h-[700px]
-            lg:w-[700px]
-            lg:blur-[110px]
-          "
-        />
-      )}
-
-      {/* =====================================================
-          TECHNOLOGY SEMICIRCLE
-          Desktop / Tablet only
-      ====================================================== */}
+      {/* ================================================================
+          TECHNOLOGY ORBIT
+          ================================================================ */}
 
       <div
         className="
           pointer-events-none
           absolute
-
           left-1/2
-          top-0
-
+          top-[12%]
           z-40
-
-          hidden
-
-          h-[300px]
-          w-[570px]
-
+          block
+          h-[350px]
+          w-[420px]
           -translate-x-1/2
-
-          sm:block
-          sm:h-[340px]
+          sm:top-[2%]
+          sm:h-[430px]
           sm:w-[650px]
-
-          lg:left-[48%]
           lg:top-[-2%]
-          lg:h-[430px]
+          lg:h-[500px]
           lg:w-[800px]
-
-          xl:h-[470px]
-          xl:w-[860px]
-
-          2xl:h-[500px]
-          2xl:w-[920px]
+          xl:h-[540px]
+          xl:w-[880px]
+          2xl:h-[570px]
+          2xl:w-[940px]
         "
       >
-        {/* Semicircle paths */}
-
-        <svg
-          viewBox="0 0 760 500"
+        {/* Orbit ring */}
+        <div
+          aria-hidden="true"
           className="
+            absolute
+            left-1/2
+            top-1/2
+            h-[260px]
+            w-[400px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-[50%]
+            border
+            border-slate-300/80
+            dark:border-red-500/[0.18]
+            sm:h-[370px]
+            sm:w-[630px]
+            lg:h-[440px]
+            lg:w-[820px]
+            xl:h-[480px]
+            xl:w-[900px]
+            2xl:h-[520px]
+            2xl:w-[960px]
+          "
+        />
+
+        {/* Dashed inner orbit */}
+        <div
+          aria-hidden="true"
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            h-[220px]
+            w-[350px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-[50%]
+            border
+            border-dashed
+            border-slate-300/70
+            dark:border-white/[0.05]
+            sm:h-[320px]
+            sm:w-[565px]
+            lg:h-[385px]
+            lg:w-[740px]
+            xl:h-[420px]
+            xl:w-[820px]
+            2xl:h-[460px]
+            2xl:w-[900px]
+          "
+        />
+
+        {/* Moving orbit */}
+        <div
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            h-full
+            w-full
+            -translate-x-1/2
+            -translate-y-1/2
+          "
+        >
+          <div className="atria-tech-orbit absolute inset-0">
+            {technologies.map((name, index) => {
+              const angle = orbitAngles[index];
+              const radians = (angle * Math.PI) / 180;
+              const x = Math.sin(radians).toFixed(6);
+              const y = (-Math.cos(radians)).toFixed(6);
+
+              return (
+                <div
+                  key={name}
+                  className="absolute left-1/2 top-1/2 h-0 w-0"
+                  style={{
+                    transform: `translate(calc(var(--atria-tech-orbit-x) * ${x}), calc(var(--atria-tech-orbit-y) * ${y})) rotate(${angle}deg)`,
+                  }}
+                >
+                  <div
+                    className="
+                      atria-tech-counter
+                      absolute
+                      left-1/2
+                      top-1/2
+                      -translate-x-1/2
+                      -translate-y-1/2
+                    "
+                  >
+                    <div
+                      className="
+                        atria-tech-pill
+                        flex
+                        h-10
+                        items-center
+                        gap-2
+                        rounded-full
+                        border
+                        border-slate-200/90
+                        bg-white/95
+                        px-3
+                        shadow-[0_8px_25px_rgba(15,23,42,.14)]
+                        backdrop-blur-xl
+                        dark:border-white/10
+                        dark:bg-[#111111]/95
+                        dark:shadow-[0_8px_25px_rgba(0,0,0,.35)]
+                        sm:h-11
+                        sm:px-3.5
+                        lg:h-[48px]
+                        lg:px-4
+                      "
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="
+                          flex
+                          h-4
+                          w-4
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-md
+                          border
+                          border-slate-300
+                          text-[7px]
+                          font-black
+                          text-slate-700
+                          dark:border-white/10
+                          dark:text-white
+                          sm:h-[17px]
+                          sm:w-[17px]
+                          lg:h-[18px]
+                          lg:w-[18px]
+                        "
+                      >
+                        {name.charAt(0)}
+                      </span>
+
+                      <span
+                        className="
+                          h-1.5
+                          w-1.5
+                          shrink-0
+                          rounded-full
+                          bg-red-500
+                          shadow-[0_0_8px_rgba(239,68,68,.8)]
+                        "
+                      />
+
+                      <span
+                        className="
+                          whitespace-nowrap
+                          text-[9px]
+                          font-semibold
+                          tracking-wide
+                          text-slate-700
+                          dark:text-white
+                          sm:text-[10px]
+                          lg:text-[11px]
+                        "
+                      >
+                        {name}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================
+          HERO GLOW
+          ================================================================ */}
+
+      <div
+        aria-hidden="true"
+        className="
+          atria-hero-glow
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          z-10
+          h-[260px]
+          w-[260px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-red-500/10
+          blur-[70px]
+          dark:bg-red-500/15
+          sm:h-[320px]
+          sm:w-[320px]
+          lg:h-[460px]
+          lg:w-[460px]
+          xl:h-[520px]
+          xl:w-[520px]
+        "
+      />
+
+      {/* ================================================================
+          HERO A
+          ================================================================ */}
+
+      <div
+        className="
+          relative
+          z-20
+          h-[330px]
+          w-[330px]
+          sm:h-[390px]
+          sm:w-[390px]
+          md:h-[460px]
+          md:w-[460px]
+          lg:h-[620px]
+          lg:w-[620px]
+          xl:h-[680px]
+          xl:w-[680px]
+        "
+      >
+        <img
+          src={heroImage}
+          alt="Atria Web Solutions"
+          width={680}
+          height={680}
+          fetchPriority="high"
+          className="
+            atria-hero-float
             absolute
             inset-0
             h-full
             w-full
-            overflow-visible
-          "
-          fill="none"
-        >
-          <path
-            d="
-              M 25 420
-              C 65 170
-                260 25
-                380 25
-              C 500 25
-                695 170
-                735 420
-            "
-            stroke="currentColor"
-            strokeWidth="1.2"
-            className="
-              text-red-500/[0.14]
-              dark:text-red-500/[0.12]
-            "
-          />
-
-          <path
-            d="
-              M 65 420
-              C 105 205
-                270 65
-                380 65
-              C 490 65
-                655 205
-                695 420
-            "
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeDasharray="4 10"
-            className="
-              text-red-500/[0.07]
-              dark:text-white/[0.05]
-            "
-          />
-        </svg>
-
-        {/* Moving Technologies */}
-
-        {technologies.map((tech, index) => {
-          const Icon = tech.icon;
-
-          return (
-            <motion.div
-              key={tech.name}
-              className="
-                absolute
-                left-0
-                top-0
-
-                flex
-                items-center
-                justify-center
-              "
-              style={{
-                offsetPath: `path("${orbitPath}")`,
-                offsetRotate: "0deg",
-              }}
-              animate={{
-                offsetDistance: ["0%", "100%"],
-                opacity: [0, 0, 1, 1, 1, 0, 0],
-              }}
-              transition={{
-                offsetDistance: {
-                  duration: 16,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: index * -2,
-                },
-
-                opacity: {
-                  duration: 16,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: index * -2,
-                  times: [0, 0.07, 0.14, 0.68, 0.82, 0.95, 1],
-                },
-              }}
-            >
-              <div
-                className="
-                  flex
-                  h-10
-                  items-center
-                  gap-2
-
-                  rounded-full
-
-                  border
-                  border-black/[0.06]
-
-                  bg-white/95
-
-                  px-3
-
-                  shadow-[0_10px_25px_rgba(17,24,39,.10)]
-
-                  backdrop-blur-xl
-
-                  dark:border-white/10
-                  dark:bg-[#111111]/95
-                  dark:shadow-[0_10px_25px_rgba(0,0,0,.35)]
-
-                  sm:h-11
-                  sm:px-3.5
-
-                  lg:h-[48px]
-                  lg:gap-2.5
-                  lg:px-4
-                "
-              >
-                <Icon
-                  size={16}
-                  className="text-[var(--foreground)] sm:size-[17px] lg:size-[18px]"
-                />
-
-                <span
-                  className="
-                    h-1.5
-                    w-1.5
-                    shrink-0
-                    rounded-full
-                    bg-red-500
-                    shadow-[0_0_10px_rgba(239,68,68,.65)]
-                  "
-                />
-
-                <span
-                  className="
-                    whitespace-nowrap
-
-                    text-[9px]
-                    font-semibold
-                    tracking-wide
-
-                    text-[var(--foreground)]
-
-                    sm:text-[10px]
-
-                    lg:text-[11px]
-                  "
-                >
-                  {tech.name}
-                </span>
-              </div>
-            </motion.div>
-          );
-        })}
-
-        {/* Arc Particles */}
-
-        <span
-          className="
-            absolute
-            left-[2%]
-            bottom-[12%]
-
-            h-1.5
-            w-1.5
-
-            rounded-full
-            bg-red-500
-            shadow-[0_0_12px_rgba(239,68,68,.75)]
-          "
-        />
-
-        <span
-          className="
-            absolute
-            left-1/2
-            top-[2%]
-
-            h-1.5
-            w-1.5
-
-            -translate-x-1/2
-
-            rounded-full
-            bg-red-500
-            shadow-[0_0_12px_rgba(239,68,68,.75)]
-          "
-        />
-
-        <span
-          className="
-            absolute
-            right-[2%]
-            bottom-[12%]
-
-            h-1.5
-            w-1.5
-
-            rounded-full
-            bg-red-400
-            shadow-[0_0_12px_rgba(239,68,68,.65)]
+            object-contain
           "
         />
       </div>
 
-      {/* =====================================================
-          HERO IMAGE / A
-      ====================================================== */}
+      {/* ================================================================
+          PROJECT STAT — MOBILE
+          ================================================================ */}
 
-      <motion.div
-        animate={{
-          y: [0, -10, 0],
-          rotate: [0, 1.2, 0, -1.2, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          relative
-          z-20
-
-          translate-x-0
-
-          h-[330px]
-          w-[330px]
-
-          sm:h-[390px]
-          sm:w-[390px]
-
-          md:h-[460px]
-          md:w-[460px]
-
-          lg:-translate-x-2
-          lg:h-[620px]
-          lg:w-[620px]
-
-          xl:-translate-x-6
-          xl:h-[680px]
-          xl:w-[680px]
-
-          2xl:-translate-x-10
-        "
-      >
-        <Image
-          src={isDark ? HERO_IMAGES.heroDark : HERO_IMAGES.heroLight}
-          alt="Atria Web Solutions"
-          fill
-          priority
-          className={`object-contain ${
-            isDark
-              ? "drop-shadow-[0_0_60px_rgba(220,38,38,.40)] sm:drop-shadow-[0_0_70px_rgba(220,38,38,.45)]"
-              : "drop-shadow-[0_20px_35px_rgba(229,57,53,.15)]"
-          }`}
-        />
-      </motion.div>
-
-      {/* =====================================================
-          MOBILE PROJECT STAT
-      ====================================================== */}
-
-      <motion.div
-        animate={{
-          y: [0, -6, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      <div
         className="
           absolute
           bottom-2
           right-1/2
-
           z-50
-
           translate-x-1/2
-
           rounded-2xl
-
           bg-[var(--card)]/90
-
           px-4
           py-3
-
           text-center
-
-          backdrop-blur-2xl
-
           shadow-[var(--shadow-lg)]
-
+          backdrop-blur-xl
           dark:bg-white/5
-
           sm:bottom-4
           sm:px-5
           sm:py-4
-
           lg:hidden
         "
       >
-        <p
-          className="
-            text-[9px]
-            font-semibold
-            uppercase
-            tracking-[0.25em]
-            text-red-500
-          "
-        >
+        <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-red-500">
           Delivered
         </p>
 
-        <h3
-          className="
-            mt-1
-            text-2xl
-            font-black
-            text-[var(--foreground)]
-          "
-        >
+        <h3 className="mt-1 text-2xl font-black text-[var(--foreground)]">
           50+
         </h3>
 
         <p className="mt-0.5 text-xs text-[var(--muted)]">
           Successful Projects
         </p>
-      </motion.div>
+      </div>
 
-      {/* =====================================================
-          DESKTOP PROJECT CARD
-      ====================================================== */}
+      {/* ================================================================
+          PROJECT STAT — DESKTOP
+          ================================================================ */}
 
-      <motion.div
-        animate={{
-          y: [0, -8, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      <div
         className="
           absolute
-          bottom-16
+          bottom-24
           right-2
-
           z-50
-
           hidden
-
           rounded-3xl
-
           bg-[var(--card)]/90
-
           px-7
           py-6
-
-          backdrop-blur-2xl
-
           shadow-[var(--shadow-lg)]
-
+          backdrop-blur-xl
           dark:bg-white/5
-
           lg:block
         "
       >
-        <p
-          className="
-            text-xs
-            font-semibold
-            uppercase
-            tracking-[0.28em]
-            text-red-500
-          "
-        >
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
           Delivered
         </p>
 
-        <h3
-          className="
-            mt-2
-            text-4xl
-            font-black
-            text-[var(--foreground)]
-          "
-        >
+        <h3 className="mt-2 text-4xl font-black text-[var(--foreground)]">
           50+
         </h3>
 
         <p className="mt-1 text-sm text-[var(--muted)]">
           Successful Projects
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

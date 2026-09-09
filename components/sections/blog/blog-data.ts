@@ -11,7 +11,7 @@ export const featuredArticle = {
 
   date: "August 10, 2026",
 
-  image: "/images/blog/featured.jpg",
+  image: "/images/blog/high-performance-website.png",
 
   description:
     "Discover how modern websites improve credibility, user experience, search rankings and business growth in today's competitive digital landscape.",
@@ -54,7 +54,7 @@ export const articles = [
 
     date: "August 8, 2026",
 
-    image: "/images/blog/blog-1.jpg",
+    image: "/images/blog/modern-ui-trends.png",
 
     description:
       "Explore modern UI trends that can help business websites look professional, engaging and easy to use.",
@@ -89,7 +89,7 @@ export const articles = [
 
     date: "August 5, 2026",
 
-    image: "/images/blog/blog-2.jpg",
+    image: "/images/blog/nextjs-vs-react.png",
 
     description:
       "Understand the differences between React and Next.js and when each technology makes sense for your project.",
@@ -123,7 +123,7 @@ export const articles = [
 
     date: "August 2, 2026",
 
-    image: "/images/blog/blog-3.jpg",
+    image: "/images/blog/seo-checklist.png",
 
     description:
       "A practical SEO checklist to help small businesses improve their online visibility.",
@@ -156,7 +156,7 @@ export const articles = [
 
     date: "July 30, 2026",
 
-    image: "/images/blog/blog-4.jpg",
+    image: "/images/blog/website-performance.png",
 
     description:
       "Learn why website speed matters and how performance improvements can create better user experiences.",
@@ -184,7 +184,7 @@ export const articles = [
 
     date: "July 27, 2026",
 
-    image: "/images/blog/blog-5.jpg",
+    image: "/images/blog/website-mistakes.png",
 
     description:
       "Discover common website mistakes that can affect usability, credibility and business growth.",
@@ -217,7 +217,7 @@ export const articles = [
 
     date: "July 24, 2026",
 
-    image: "/images/blog/blog-6.jpg",
+    image: "/images/blog/scalable-applications.png",
 
     description:
       "Explore important considerations when building web applications that can grow with your business.",
