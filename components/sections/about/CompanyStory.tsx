@@ -175,7 +175,7 @@ export default function CompanyStory() {
               "
             >
               <p className="text-3xl font-bold text-[var(--foreground)]">
-                50+
+                400+
               </p>
 
               <p className="mt-1 text-sm text-[var(--muted)]">

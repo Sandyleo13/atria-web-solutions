@@ -231,16 +231,7 @@ div {
 }
 
 /* --------------------------------------------------------------------------
-   TECHNOLOGY ORBIT
-
-   IMPORTANT:
-   The orbit rotates around its own center.
-
-   Positive rotation = clockwise.
-
-   The HeroVisual positions the pills around the upper/side portion
-   of the ellipse, so they stay close to the A instead of flying
-   around the entire hero section.
+   Technology orbit
    -------------------------------------------------------------------------- */
 
 @keyframes atria-tech-orbit {
@@ -293,6 +284,40 @@ div {
 }
 
 /* ==========================================================================
+   COMPANY MARQUEE
+   ========================================================================== */
+
+/*
+   One continuous horizontal row.
+
+   The track contains two identical sets of companies.
+   Moving from -50% to 0% creates a seamless loop.
+*/
+
+@keyframes atria-company-marquee {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.atria-company-marquee {
+  animation: atria-company-marquee 32s linear infinite;
+  will-change: transform;
+}
+
+/*
+   Pause immediately when the user hovers the company strip.
+*/
+
+.atria-company-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
    ANIMATION CLASSES
    ========================================================================== */
 
@@ -307,24 +332,31 @@ div {
 }
 
 /*
- * Main technology orbit.
- *
- * 32 seconds gives the same slow premium movement as the reference.
- * Do NOT use a huge rectangular orbit.
- */
+   Technology orbit around the A.
+*/
+
 .atria-tech-orbit {
   --atria-tech-orbit-x: 235px;
   --atria-tech-orbit-y: 195px;
+
   animation: atria-tech-orbit 11s ease-in-out infinite alternate;
-  mask-image: linear-gradient(to right, transparent 4%, rgba(0, 0, 0, 0.35) 14%, #000 28%);
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 4%,
+      rgba(0, 0, 0, 0.35) 14%,
+      #000 28%
+    );
+
   transform-origin: center center;
   will-change: transform;
 }
 
 /*
- * The chips inherit the orbit rotation so each one follows the curve,
- * matching the circular treatment in the hero artwork.
- */
+   Technology chips.
+*/
+
 .atria-tech-counter {
   transform-origin: center center;
   will-change: auto;
@@ -334,11 +366,29 @@ div {
   transform-origin: center center;
 }
 
-/* Keep the semicircle legible on narrow phones. */
+/*
+   Individual subtle technology movement.
+*/
+
+.atria-tech-float {
+  animation: atria-tech-float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.atria-hero-pulse {
+  animation: atria-hero-pulse 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   RESPONSIVE TECHNOLOGY ORBIT
+   ========================================================================== */
+
 @media (max-width: 639px) {
   .atria-tech-orbit {
     --atria-tech-orbit-x: 150px;
     --atria-tech-orbit-y: 125px;
+
     animation-duration: 14s;
   }
 
@@ -351,33 +401,13 @@ div {
   }
 }
 
-/*
- * Very subtle individual pill movement.
- */
-.atria-tech-float {
-  animation: atria-tech-float 4s ease-in-out infinite;
-  will-change: transform;
-}
-
-.atria-hero-pulse {
-  animation: atria-hero-pulse 4s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-/* ==========================================================================
-   RESPONSIVE ORBIT TUNING
-   ========================================================================== */
-
-/*
- * Keep the orbit visually attached to the A on large screens.
- */
 @media (min-width: 1024px) {
   .atria-tech-orbit {
     --atria-tech-orbit-x: 300px;
     --atria-tech-orbit-y: 245px;
+
     animation-duration: 12s;
   }
-
 }
 
 @media (min-width: 1280px) {
@@ -387,16 +417,159 @@ div {
   }
 }
 
-/*
- * Slightly slower on very large screens.
- */
 @media (min-width: 1536px) {
   .atria-tech-orbit {
     --atria-tech-orbit-x: 380px;
     --atria-tech-orbit-y: 270px;
+
     animation-duration: 13s;
   }
+}
 
+/* ==========================================================================
+   COMPANY MARQUEE RESPONSIVE SPEED
+   ========================================================================== */
+
+@media (max-width: 639px) {
+  .atria-company-marquee {
+    animation-duration: 24s;
+  }
+}
+
+@media (min-width: 1536px) {
+  .atria-company-marquee {
+    animation-duration: 36s;
+  }
+}
+/* ==========================================================================
+   SERVICE TECHNOLOGY MARQUEE
+   ========================================================================== */
+
+/*
+   One single horizontal technology strip.
+
+   Structure:
+
+   viewport
+      └── track
+            ├── set 1
+            │    ├── Next.js
+            │    ├── React
+            │    ├── TypeScript
+            │    └── ...
+            │
+            └── set 2
+                 ├── Next.js
+                 ├── React
+                 ├── TypeScript
+                 └── ...
+
+   The second set allows the animation to loop seamlessly.
+*/
+
+.atria-service-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+/*
+   IMPORTANT:
+   The track itself MUST be flex.
+   This is what keeps everything on ONE horizontal row.
+*/
+
+.atria-service-marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 0;
+
+  /*
+     -50% → 0%
+
+     This makes the technology strip move
+     from LEFT to RIGHT.
+  */
+
+  animation: atria-service-tech-marquee 32s linear infinite;
+
+  will-change: transform;
+}
+
+/*
+   Each technology set is also one horizontal row.
+*/
+
+.atria-service-marquee-set {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding-right: 0.75rem;
+}
+
+/*
+   LEFT → RIGHT
+*/
+
+@keyframes atria-service-tech-marquee {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*
+   Pause the ENTIRE marquee when the user
+   places the cursor over the technology strip.
+*/
+
+.atria-service-marquee:hover
+  .atria-service-marquee-track {
+  animation-play-state: paused;
+}
+
+/*
+   Slightly faster on mobile.
+*/
+
+@media (max-width: 639px) {
+  .atria-service-marquee-track {
+    animation-duration: 26s;
+  }
+
+  .atria-service-marquee-set {
+    gap: 0.625rem;
+    padding-right: 0.625rem;
+  }
+}
+
+/*
+   Large screens:
+   slower and more premium feeling.
+*/
+
+@media (min-width: 1536px) {
+  .atria-service-marquee-track {
+    animation-duration: 38s;
+  }
+}
+
+/*
+   Accessibility:
+   Respect users who have requested reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  .atria-service-marquee-track {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
 }
 
 /* ==========================================================================
@@ -421,7 +594,8 @@ div {
   .atria-tech-orbit,
   .atria-tech-counter,
   .atria-tech-float,
-  .atria-hero-pulse {
+  .atria-hero-pulse,
+  .atria-company-marquee {
     animation: none !important;
     will-change: auto;
   }

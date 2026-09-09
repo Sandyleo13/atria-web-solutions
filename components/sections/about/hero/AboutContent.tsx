@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const stats = [
   {
-    value: "50+",
+    value: "400+",
     label: "Projects Delivered",
   },
   {

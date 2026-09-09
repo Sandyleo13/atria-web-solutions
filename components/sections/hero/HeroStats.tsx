@@ -6,7 +6,7 @@ import { Rocket, Users, Star, Headphones } from "lucide-react";
 const stats = [
   {
     icon: Rocket,
-    value: "150+",
+    value: "400+",
     label: "Projects Delivered",
   },
   {

@@ -1,17 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-import { Container } from "@/components/layout/Container";
-import { SectionHeader } from "@/components/common/SectionHeader";
-import {
-  featuredProjects,
-  portfolioProjects,
-} from "@/components/sections/portfolio/portfolio-data";
-
-const brands = [...featuredProjects, ...portfolioProjects].map(
-  (project) => project.title,
-);
+const companies = [
+  "Pargad",
+  "Altitude Quest",
+  "Snapp Editt",
+  "Baldev Advertising",
+  "Evently",
+  "OneAxis Partners",
+  "OutPlay Sports Foundation",
+  "Mumbai Boxing Association",
+];
 
 export function TrustedBrands() {
   return (
@@ -19,114 +17,156 @@ export function TrustedBrands() {
       className="
         relative
         overflow-hidden
-        py-24
-
-        bg-[#FAFAFA]
-        dark:bg-[#050505]
-
-        transition-colors
-        duration-500
+        border-y
+        border-[var(--border)]
+        bg-[var(--background)]
+        py-10
+        sm:py-12
+        lg:py-14
       "
     >
-      {/* Background Glow */}
-
-      <div className="absolute inset-0 pointer-events-none">
-        <div
+      {/* Section heading */}
+      <div className="mx-auto mb-7 max-w-[1440px] px-5 text-center sm:px-6 lg:mb-9">
+        <p
           className="
-            absolute
-            left-1/2
-            top-0
-
-            h-44
-            w-[720px]
-
-            -translate-x-1/2
-
-            rounded-full
-
-            bg-red-500/8
-            dark:bg-red-600/12
-
-            blur-[160px]
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.28em]
+            text-[var(--muted)]
+            sm:text-sm
           "
-        />
+        >
+          Companies We've Worked With
+        </p>
       </div>
 
-      <Container className="relative z-10">
-        <SectionHeader
-          eyebrow="Trusted By"
-          title="Companies We've Worked With"
-          description="We're proud to collaborate with startups, growing businesses and enterprises to build modern digital products."
+      {/* Marquee viewport */}
+      <div
+        className="
+          group
+          relative
+          w-full
+          overflow-hidden
+        "
+      >
+        {/* Left fade */}
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            left-0
+            top-0
+            z-10
+            h-full
+            w-16
+            bg-gradient-to-r
+            from-[var(--background)]
+            to-transparent
+            sm:w-24
+            lg:w-40
+          "
         />
 
-        <div className="mt-16 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-          {brands.map((brand, index) => (
-            <motion.div
-              key={brand}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                y: -6,
-                scale: 1.03,
-              }}
+        {/* Right fade */}
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            right-0
+            top-0
+            z-10
+            h-full
+            w-16
+            bg-gradient-to-l
+            from-[var(--background)]
+            to-transparent
+            sm:w-24
+            lg:w-40
+          "
+        />
+
+        {/* Moving track */}
+        <div
+          className="
+            atria-company-marquee
+            flex
+            w-max
+            items-center
+            gap-4
+            group-hover:[animation-play-state:paused]
+            sm:gap-5
+            lg:gap-6
+          "
+        >
+          {/* First set */}
+          {companies.map((company) => (
+            <div
+              key={`first-${company}`}
               className="
-                group
-
+                flex
+                h-16
+                shrink-0
+                items-center
                 rounded-2xl
-
                 border
-                border-gray-200
-                dark:border-white/10
-
-                bg-white
-                dark:bg-white/[0.03]
-
-                px-6
-                py-7
-
-                text-center
-
-                backdrop-blur-xl
-
-                shadow-[0_10px_30px_rgba(17,24,39,.05)]
-                dark:shadow-none
-
+                border-[var(--border)]
+                bg-[var(--card)]
+                px-8
+                text-sm
+                font-semibold
+                text-[var(--foreground)]
+                shadow-[var(--shadow-md)]
                 transition-all
                 duration-300
-
-                hover:border-red-500/40
-                hover:bg-red-50
-                dark:hover:bg-red-500/5
-
-                hover:shadow-[0_20px_40px_rgba(239,68,68,.12)]
+                hover:border-red-500/30
+                hover:text-red-500
+                sm:h-[72px]
+                sm:px-10
+                sm:text-base
+                lg:h-20
+                lg:px-12
               "
             >
-              <span
-                className="
-                  text-lg
-                  font-bold
-                  tracking-wide
+              {company}
+            </div>
+          ))}
 
-                  text-gray-700
-                  dark:text-[var(--muted)]
-
-                  transition-colors
-                  duration-300
-
-                  group-hover:text-red-600
-                  dark:group-hover:text-[var(--foreground)]
-                "
-              >
-                {brand}
-              </span>
-            </motion.div>
+          {/* Exact duplicate for seamless loop */}
+          {companies.map((company) => (
+            <div
+              key={`second-${company}`}
+              aria-hidden="true"
+              className="
+                flex
+                h-16
+                shrink-0
+                items-center
+                rounded-2xl
+                border
+                border-[var(--border)]
+                bg-[var(--card)]
+                px-8
+                text-sm
+                font-semibold
+                text-[var(--foreground)]
+                shadow-[var(--shadow-md)]
+                transition-all
+                duration-300
+                sm:h-[72px]
+                sm:px-10
+                sm:text-base
+                lg:h-20
+                lg:px-12
+              "
+            >
+              {company}
+            </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

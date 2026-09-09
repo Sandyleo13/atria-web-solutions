@@ -1,5 +1,6 @@
 "use client";
 
+import { BadgeCheck } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { HERO_IMAGES } from "./constants";
@@ -316,6 +317,15 @@ export default function HeroVisual() {
           PROJECT STAT — MOBILE
           ================================================================ */}
 
+      <div className="absolute bottom-5 left-1/2 z-30 hidden -translate-x-1/2 items-center gap-3 lg:flex">
+        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur-xl">
+          <BadgeCheck size={16} className="text-red-500" /> Meta Partner
+        </div>
+        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur-xl">
+          <BadgeCheck size={16} className="text-red-500" /> Google Partner
+        </div>
+      </div>
+
       <div
         className="
           absolute
@@ -342,7 +352,7 @@ export default function HeroVisual() {
         </p>
 
         <h3 className="mt-1 text-2xl font-black text-[var(--foreground)]">
-          50+
+          400+
         </h3>
 
         <p className="mt-0.5 text-xs text-[var(--muted)]">
@@ -376,7 +386,7 @@ export default function HeroVisual() {
         </p>
 
         <h3 className="mt-2 text-4xl font-black text-[var(--foreground)]">
-          50+
+          400+
         </h3>
 
         <p className="mt-1 text-sm text-[var(--muted)]">

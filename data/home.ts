@@ -1,5 +1,5 @@
 export const metrics = [
-  ["50+", "Projects Delivered"],
+  ["400+", "Projects Delivered"],
   ["100+", "Happy Clients"],
   ["5+", "Years Experience"],
   ["24/7", "Support Available"],
