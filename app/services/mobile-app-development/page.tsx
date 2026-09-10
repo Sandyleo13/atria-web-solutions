@@ -1042,162 +1042,342 @@ export default function MobileAppDevelopmentPage() {
       </section>
 
       {/* ====================================================================
-          TECHNOLOGIES
-          ==================================================================== */}
+    TECHNOLOGIES
+    ==================================================================== */}
 
-      <section className="bg-[var(--card)] py-24 sm:py-28">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
+<section
+  aria-label="Mobile technology stack"
+  className="
+    relative
+    overflow-hidden
+    bg-[var(--background)]
+    py-14
+    sm:py-16
+    lg:py-20
+  "
+>
+  <Container>
+    {/* Section heading */}
+    <div
+      className="
+        mx-auto
+        mb-10
+        max-w-3xl
+        text-center
+        sm:mb-12
+        lg:mb-14
+      "
+    >
+      <p
+        className="
+          text-[11px]
+          font-bold
+          uppercase
+          tracking-[0.32em]
+          text-[var(--foreground)]
+          sm:text-xs
+        "
+      >
+        Mobile Technology Stack
+      </p>
+
+      <h2
+        className="
+          mt-4
+          text-3xl
+          font-bold
+          tracking-tight
+          text-[var(--foreground)]
+          sm:text-4xl
+        "
+      >
+        Built With the Right Mobile Technology
+      </h2>
+
+      <p
+        className="
+          mx-auto
+          mt-3
+          max-w-2xl
+          text-sm
+          leading-6
+          text-[var(--muted)]
+          sm:text-[15px]
+          sm:leading-7
+        "
+      >
+        We select the right mobile technologies based on your
+        application's platform, performance requirements,
+        functionality, integrations and long-term growth.
+      </p>
+    </div>
+  </Container>
+
+  {/* ================================================================
+      TECHNOLOGY MARQUEE
+      ================================================================ */}
+
+  <div className="atria-service-marquee">
+    <div className="atria-service-marquee-track">
+
+      {/* ============================================================
+          FIRST SET
+          ============================================================ */}
+
+      <div className="atria-service-marquee-set">
+        {technologies.map((technology) => (
+          <div
+            key={`mobile-first-${technology.name}`}
+            className="
+              group
+              flex
+              h-[68px]
+              shrink-0
+              items-center
+              gap-3
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              px-5
+              shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+              transition-all
+              duration-300
+
+              hover:-translate-y-0.5
+              hover:border-slate-300
+              hover:shadow-[0_8px_22px_rgba(15,23,42,0.09)]
+
+              sm:h-[74px]
+              sm:gap-3.5
+              sm:px-6
+
+              lg:h-[78px]
+              lg:px-7
+
+              dark:border-white/10
+              dark:bg-[#111111]
+              dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+
+              dark:hover:border-white/15
+              dark:hover:shadow-[0_8px_22px_rgba(0,0,0,0.28)]
+            "
+          >
+            {/* Logo container */}
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-slate-200
+                bg-slate-50
+                p-2
+
+                sm:h-11
+                sm:w-11
+
+                dark:border-white/10
+                dark:bg-white/5
+              "
+            >
+              {/* Light logo */}
+              <Image
+                src={technology.image}
+                alt=""
+                width={36}
+                height={36}
+                sizes="36px"
+                className="
+                  h-7
+                  w-7
+                  object-contain
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                  dark:hidden
+                "
+              />
+
+              {/* Dark logo */}
+              <Image
+                src={technology.darkImage}
+                alt=""
+                width={36}
+                height={36}
+                sizes="36px"
+                className="
+                  hidden
+                  h-7
+                  w-7
+                  object-contain
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                  dark:block
+                "
+              />
+            </div>
+
+            {/* Technology name */}
             <span
               className="
-                inline-flex
-                rounded-full
-                border
-                border-red-500/20
-                bg-red-500/10
-                px-4
-                py-2
-                text-xs
-                font-semibold
-                uppercase
-                tracking-[0.3em]
-                text-red-500
+                whitespace-nowrap
+                text-sm
+                font-bold
+                tracking-[-0.01em]
+                text-slate-800
+                sm:text-[15px]
+                dark:text-white
               "
             >
-              Mobile Technology Stack
+              {technology.name}
             </span>
 
-            <h2
+            {/* Red separator */}
+            <span
+              aria-hidden="true"
               className="
-                mt-7
-                text-4xl
+                h-1.5
+                w-1.5
+                shrink-0
+                rounded-full
+                bg-red-500
+                shadow-[0_0_8px_rgba(239,68,68,.65)]
+              "
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* ============================================================
+          SECOND SET — SEAMLESS LOOP
+          ============================================================ */}
+
+      <div
+        aria-hidden="true"
+        className="atria-service-marquee-set"
+      >
+        {technologies.map((technology) => (
+          <div
+            key={`mobile-second-${technology.name}`}
+            className="
+              flex
+              h-[68px]
+              shrink-0
+              items-center
+              gap-3
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              px-5
+              shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+
+              sm:h-[74px]
+              sm:gap-3.5
+              sm:px-6
+
+              lg:h-[78px]
+              lg:px-7
+
+              dark:border-white/10
+              dark:bg-[#111111]
+              dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+            "
+          >
+            {/* Logo container */}
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-slate-200
+                bg-slate-50
+                p-2
+
+                sm:h-11
+                sm:w-11
+
+                dark:border-white/10
+                dark:bg-white/5
+              "
+            >
+              {/* Light logo */}
+              <Image
+                src={technology.image}
+                alt=""
+                width={36}
+                height={36}
+                sizes="36px"
+                className="
+                  h-7
+                  w-7
+                  object-contain
+                  dark:hidden
+                "
+              />
+
+              {/* Dark logo */}
+              <Image
+                src={technology.darkImage}
+                alt=""
+                width={36}
+                height={36}
+                sizes="36px"
+                className="
+                  hidden
+                  h-7
+                  w-7
+                  object-contain
+                  dark:block
+                "
+              />
+            </div>
+
+            {/* Technology name */}
+            <span
+              className="
+                whitespace-nowrap
+                text-sm
                 font-bold
-                tracking-tight
-                text-[var(--foreground)]
-                sm:text-5xl
+                tracking-[-0.01em]
+                text-slate-800
+                sm:text-[15px]
+                dark:text-white
               "
             >
-              Built With the Right Mobile Technology
-            </h2>
+              {technology.name}
+            </span>
 
-            <p
+            {/* Red separator */}
+            <span
+              aria-hidden="true"
               className="
-                mt-6
-                text-lg
-                leading-8
-                text-[var(--muted)]
+                h-1.5
+                w-1.5
+                shrink-0
+                rounded-full
+                bg-red-500
+                shadow-[0_0_8px_rgba(239,68,68,.65)]
               "
-            >
-              We select the right mobile technologies based on your
-              application's platform, performance requirements,
-              functionality, integrations and long-term growth.
-            </p>
+            />
           </div>
+        ))}
+      </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-5">
-            {technologies.map((technology) => {
-              return (
-                <article
-                  key={technology.name}
-                  className="
-                    group
-                    rounded-[24px]
-                    border
-                    border-[var(--border)]
-                    bg-[var(--background)]
-                    p-5
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:border-red-500/30
-                    hover:shadow-[var(--shadow-md)]
-                    sm:p-6
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
-                      rounded-2xl
-                      border
-                      border-[var(--border)]
-                      bg-[var(--card)]
-                      transition-all
-                      duration-300
-                      group-hover:border-red-500/20
-                      group-hover:bg-red-500/5
-                    "
-                  >
-                    {/* Light logo */}
-                    <Image
-                      src={technology.image}
-                      alt={`${technology.name} logo`}
-                      width={44}
-                      height={44}
-                      sizes="44px"
-                      className="
-                        h-11
-                        w-11
-                        object-contain
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                        dark:hidden
-                      "
-                    />
-
-                    {/* Dark logo */}
-                    <Image
-                      src={technology.darkImage}
-                      alt={`${technology.name} logo`}
-                      width={44}
-                      height={44}
-                      sizes="44px"
-                      className="
-                        hidden
-                        h-11
-                        w-11
-                        object-contain
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                        dark:block
-                      "
-                    />
-                  </div>
-
-                  <h3
-                    className="
-                      mt-5
-                      text-base
-                      font-bold
-                      text-[var(--foreground)]
-                      sm:text-lg
-                    "
-                  >
-                    {technology.name}
-                  </h3>
-
-                  <p
-                    className="
-                      mt-2
-                      text-xs
-                      leading-5
-                      text-[var(--muted)]
-                      sm:text-sm
-                    "
-                  >
-                    {technology.description}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
+    </div>
+  </div>
+</section>
 
       {/* ====================================================================
           CTA

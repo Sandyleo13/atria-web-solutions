@@ -107,8 +107,8 @@ html {
   background: var(--background);
 
   transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 body {
@@ -128,31 +128,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 /* ==========================================================================
-   TRANSITIONS
+   PERFORMANCE-FRIENDLY INTERACTIVE TRANSITIONS
    ========================================================================== */
+
+/*
+   Do NOT apply transitions to every div/section/svg.
+
+   That creates unnecessary style and paint work across the entire page,
+   especially on mobile devices.
+
+   Only interactive elements receive transitions.
+*/
 
 button,
 a,
 input,
 textarea,
-select,
-svg,
-section,
-article,
-header,
-footer,
-nav,
-div {
+select {
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* ==========================================================================
@@ -221,12 +224,12 @@ div {
   0%,
   100% {
     opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate3d(-50%, -50%, 0) scale(1);
   }
 
   50% {
     opacity: 0.78;
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate3d(-50%, -50%, 0) scale(1.06);
   }
 }
 
@@ -258,11 +261,11 @@ div {
 @keyframes atria-tech-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
-    transform: translateY(-4px);
+    transform: translate3d(0, -4px, 0);
   }
 }
 
@@ -287,31 +290,26 @@ div {
    COMPANY MARQUEE
    ========================================================================== */
 
-/*
-   One continuous horizontal row.
-
-   The track contains two identical sets of companies.
-   Moving from -50% to 0% creates a seamless loop.
-*/
-
 @keyframes atria-company-marquee {
   from {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .atria-company-marquee {
   animation: atria-company-marquee 32s linear infinite;
+
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/*
-   Pause immediately when the user hovers the company strip.
-*/
+/* Pause company marquee on hover */
 
 .atria-company-marquee:hover {
   animation-play-state: paused;
@@ -323,17 +321,23 @@ div {
 
 .atria-hero-float {
   animation: atria-hero-float 6s ease-in-out infinite;
+
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .atria-hero-glow {
   animation: atria-hero-glow 7s ease-in-out infinite;
+
   will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/*
-   Technology orbit around the A.
-*/
+/* --------------------------------------------------------------------------
+   Technology orbit around the A
+   -------------------------------------------------------------------------- */
 
 .atria-tech-orbit {
   --atria-tech-orbit-x: 235px;
@@ -350,12 +354,16 @@ div {
     );
 
   transform-origin: center center;
-  will-change: transform;
+
+  will-change: transform, opacity;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/*
-   Technology chips.
-*/
+/* --------------------------------------------------------------------------
+   Technology chips
+   -------------------------------------------------------------------------- */
 
 .atria-tech-counter {
   transform-origin: center center;
@@ -366,18 +374,26 @@ div {
   transform-origin: center center;
 }
 
-/*
-   Individual subtle technology movement.
-*/
+/* --------------------------------------------------------------------------
+   Individual subtle technology movement
+   -------------------------------------------------------------------------- */
 
 .atria-tech-float {
   animation: atria-tech-float 4s ease-in-out infinite;
+
   will-change: transform;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .atria-hero-pulse {
   animation: atria-hero-pulse 4s ease-in-out infinite;
+
   will-change: transform, opacity;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* ==========================================================================
@@ -389,7 +405,11 @@ div {
     --atria-tech-orbit-x: 150px;
     --atria-tech-orbit-y: 125px;
 
-    animation-duration: 14s;
+    /*
+       Slower animation on mobile reduces CPU/GPU workload
+       while keeping the same visual effect.
+    */
+    animation-duration: 18s;
   }
 
   .atria-tech-orbit > div:nth-child(even) {
@@ -398,6 +418,26 @@ div {
 
   .atria-tech-pill {
     transform: scale(0.72);
+  }
+
+  /*
+     Slower hero motion on mobile.
+  */
+
+  .atria-hero-float {
+    animation-duration: 8s;
+  }
+
+  .atria-hero-glow {
+    animation-duration: 10s;
+  }
+
+  .atria-tech-float {
+    animation-duration: 7s;
+  }
+
+  .atria-hero-pulse {
+    animation-duration: 7s;
   }
 }
 
@@ -432,7 +472,7 @@ div {
 
 @media (max-width: 639px) {
   .atria-company-marquee {
-    animation-duration: 24s;
+    animation-duration: 22s;
   }
 }
 
@@ -441,77 +481,119 @@ div {
     animation-duration: 36s;
   }
 }
+
 /* ==========================================================================
    SERVICE TECHNOLOGY MARQUEE
    ========================================================================== */
 
 /*
-   One single horizontal technology strip.
+   Clean single-row service technology marquee.
 
    Structure:
 
    viewport
+      |
       └── track
+            |
             ├── set 1
-            │    ├── Next.js
-            │    ├── React
-            │    ├── TypeScript
-            │    └── ...
-            │
+            |     ├── card
+            |     ├── card
+            |     └── card
+            |
             └── set 2
-                 ├── Next.js
-                 ├── React
-                 ├── TypeScript
-                 └── ...
+                  ├── card
+                  ├── card
+                  └── card
 
-   The second set allows the animation to loop seamlessly.
+   Features:
+
+   - LEFT → RIGHT
+   - hover pause
+   - no background
+   - no border
+   - no gray strip
+   - GPU-friendly transform animation
 */
+
+/* --------------------------------------------------------------------------
+   Marquee viewport
+   -------------------------------------------------------------------------- */
 
 .atria-service-marquee {
+  position: relative;
+
   width: 100%;
+  max-width: 100%;
+
   overflow: hidden;
+
+  background: transparent;
+  border: 0;
+
+  isolation: isolate;
+
+  /*
+     Prevent accidental horizontal scroll on mobile.
+  */
+  contain: layout paint;
 }
 
-/*
-   IMPORTANT:
-   The track itself MUST be flex.
-   This is what keeps everything on ONE horizontal row.
-*/
+/* --------------------------------------------------------------------------
+   Moving track
+   -------------------------------------------------------------------------- */
 
 .atria-service-marquee-track {
   display: flex;
+
   width: max-content;
+
   align-items: center;
-  gap: 0;
 
-  /*
-     -50% → 0%
-
-     This makes the technology strip move
-     from LEFT to RIGHT.
-  */
+  gap: 1.5rem;
 
   animation: atria-service-tech-marquee 32s linear infinite;
 
+  /*
+     GPU/compositor-friendly animation.
+  */
   will-change: transform;
+
+  transform: translate3d(0, 0, 0);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /*
+     Prevent the browser from trying to optimize text
+     layout while the entire track is moving.
+  */
+  contain: layout style;
 }
 
-/*
-   Each technology set is also one horizontal row.
-*/
+/* --------------------------------------------------------------------------
+   Individual duplicated set
+   -------------------------------------------------------------------------- */
 
 .atria-service-marquee-set {
   display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 0.75rem;
 
-  padding-right: 0.75rem;
+  flex-shrink: 0;
+
+  align-items: center;
+
+  gap: 1.5rem;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  contain: layout;
 }
 
-/*
-   LEFT → RIGHT
-*/
+/* --------------------------------------------------------------------------
+   Service marquee animation
+   -------------------------------------------------------------------------- */
 
 @keyframes atria-service-tech-marquee {
   from {
@@ -523,53 +605,77 @@ div {
   }
 }
 
-/*
-   Pause the ENTIRE marquee when the user
-   places the cursor over the technology strip.
-*/
+/* --------------------------------------------------------------------------
+   Pause entire marquee on hover
+   -------------------------------------------------------------------------- */
 
-.atria-service-marquee:hover
-  .atria-service-marquee-track {
+.atria-service-marquee:hover .atria-service-marquee-track {
   animation-play-state: paused;
 }
 
-/*
-   Slightly faster on mobile.
-*/
+/* ==========================================================================
+   SERVICE MARQUEE — MOBILE PERFORMANCE
+   ========================================================================== */
 
 @media (max-width: 639px) {
   .atria-service-marquee-track {
+    gap: 1rem;
+
+    /*
+       Slower than desktop so the mobile GPU has less
+       work to perform per second.
+    */
     animation-duration: 26s;
+
+    /*
+       Keep animation on compositor.
+    */
+    will-change: transform;
   }
 
   .atria-service-marquee-set {
-    gap: 0.625rem;
-    padding-right: 0.625rem;
+    gap: 1rem;
   }
 }
 
-/*
-   Large screens:
-   slower and more premium feeling.
-*/
+/* ==========================================================================
+   SERVICE MARQUEE — LARGE SCREENS
+   ========================================================================== */
 
 @media (min-width: 1536px) {
   .atria-service-marquee-track {
+    gap: 1.5rem;
     animation-duration: 38s;
+  }
+
+  .atria-service-marquee-set {
+    gap: 1.5rem;
   }
 }
 
+/* ==========================================================================
+   IMAGE / MEDIA PERFORMANCE
+   ========================================================================== */
+
 /*
-   Accessibility:
-   Respect users who have requested reduced motion.
+   Prevent inline media from creating unexpected baseline/layout work.
 */
 
-@media (prefers-reduced-motion: reduce) {
-  .atria-service-marquee-track {
-    animation: none !important;
-    transform: none !important;
-    will-change: auto;
-  }
+img,
+svg,
+video,
+canvas {
+  vertical-align: middle;
+}
+
+/*
+   Images inside animated technology cards should stay compositor-friendly.
+*/
+
+.atria-service-marquee img,
+.atria-company-marquee img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* ==========================================================================
@@ -595,8 +701,10 @@ div {
   .atria-tech-counter,
   .atria-tech-float,
   .atria-hero-pulse,
-  .atria-company-marquee {
+  .atria-company-marquee,
+  .atria-service-marquee-track {
     animation: none !important;
+    transform: none !important;
     will-change: auto;
   }
 }

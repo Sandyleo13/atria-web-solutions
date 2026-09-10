@@ -323,42 +323,129 @@ function TechnologyLogo({
 function TechnologyItem({
   technology,
 }: {
-  technology: (typeof technologies)[number];
+  technology: {
+    name: string;
+    lightImage: string;
+    darkImage: string;
+  };
 }) {
   return (
     <div
       className="
         flex
+        h-[68px]
         shrink-0
         items-center
         gap-3
         rounded-2xl
         border
-        border-[var(--border)]
-        bg-[var(--background)]
-        px-4
-        py-3
-        shadow-[var(--shadow-md)]
+        border-slate-200
+        bg-white
+        px-5
+        shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+        transition-all
+        duration-300
+
+        hover:-translate-y-0.5
+        hover:border-slate-300
+        hover:shadow-[0_8px_22px_rgba(15,23,42,0.09)]
+
+        sm:h-[74px]
         sm:gap-3.5
-        sm:px-5
-        sm:py-3.5
+        sm:px-6
+
+        lg:h-[78px]
+        lg:px-7
+
+        dark:border-white/10
+        dark:bg-[#111111]
+        dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+
+        dark:hover:border-white/15
+        dark:hover:shadow-[0_8px_22px_rgba(0,0,0,0.28)]
       "
     >
-      <TechnologyLogo technology={technology} />
+      {/* Logo */}
+      <div
+        className="
+          flex
+          h-10
+          w-10
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          border
+          border-slate-200
+          bg-slate-50
+          p-2
 
+          sm:h-11
+          sm:w-11
+
+          dark:border-white/10
+          dark:bg-white/5
+        "
+      >
+        <Image
+          src={technology.lightImage}
+          alt=""
+          width={32}
+          height={32}
+          sizes="32px"
+          className="
+            h-7
+            w-7
+            object-contain
+            dark:hidden
+          "
+        />
+
+        <Image
+          src={technology.darkImage}
+          alt=""
+          width={32}
+          height={32}
+          sizes="32px"
+          className="
+            hidden
+            h-7
+            w-7
+            object-contain
+            dark:block
+          "
+        />
+      </div>
+
+      {/* Technology name */}
       <span
         className="
           whitespace-nowrap
           text-sm
-          font-semibold
-          text-[var(--foreground)]
+          font-bold
+          tracking-[-0.01em]
+          text-slate-800
+
           sm:text-[15px]
+
+          dark:text-white
         "
       >
         {technology.name}
       </span>
 
-      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+      {/* Red separator */}
+      <span
+        aria-hidden="true"
+        className="
+          h-1.5
+          w-1.5
+          shrink-0
+          rounded-full
+          bg-red-500
+          shadow-[0_0_8px_rgba(239,68,68,.65)]
+        "
+      />
     </div>
   );
 }
@@ -415,135 +502,116 @@ export default function EcommercePage() {
       <EcommerceHero />
 
       {/* ====================================================================
-          TECHNOLOGIES WE WORK WITH
-          ==================================================================== */}
+    TECHNOLOGIES WE WORK WITH
+    ==================================================================== */}
 
-      <section
-        aria-label="Technologies we work with"
+<section
+  aria-label="Technologies we work with"
+  className="
+    relative
+    overflow-hidden
+    bg-[var(--background)]
+    py-14
+    sm:py-16
+    lg:py-20
+  "
+>
+  <Container>
+    {/* Section heading */}
+    <div
+      className="
+        mx-auto
+        mb-10
+        max-w-3xl
+        text-center
+        sm:mb-12
+        lg:mb-14
+      "
+    >
+      <p
         className="
-          relative
-          overflow-hidden
-          border-y
-          border-[var(--border)]
-          bg-[var(--card)]
-          py-14
-          sm:py-16
+          text-[11px]
+          font-bold
+          uppercase
+          tracking-[0.32em]
+          text-[var(--foreground)]
+          sm:text-xs
         "
       >
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <span
-              className="
-                inline-flex
-                rounded-full
-                border
-                border-red-500/20
-                bg-red-500/10
-                px-4
-                py-2
-                text-xs
-                font-semibold
-                uppercase
-                tracking-[0.3em]
-                text-red-500
-              "
-            >
-              Technologies We Work With
-            </span>
+        Technologies We Work With
+      </p>
 
-            <h2
-              className="
-                mt-6
-                text-3xl
-                font-bold
-                tracking-tight
-                text-[var(--foreground)]
-                sm:text-4xl
-              "
-            >
-              Modern Technology. Built for Commerce.
-            </h2>
+      <h2
+        className="
+          mt-4
+          text-3xl
+          font-bold
+          tracking-tight
+          text-[var(--foreground)]
+          sm:text-4xl
+        "
+      >
+        Modern Technology. Built for Commerce.
+      </h2>
 
-            <p
-              className="
-                mx-auto
-                mt-4
-                max-w-2xl
-                text-base
-                leading-7
-                text-[var(--muted)]
-                sm:text-lg
-                sm:leading-8
-              "
-            >
-              We combine commerce platforms, search, cloud infrastructure,
-              payments, analytics and modern development technologies to
-              create fast, secure and scalable e-commerce experiences.
-            </p>
-          </div>
-        </Container>
+      <p
+        className="
+          mx-auto
+          mt-3
+          max-w-2xl
+          text-sm
+          leading-6
+          text-[var(--muted)]
+          sm:text-[15px]
+          sm:leading-7
+        "
+      >
+        We combine commerce platforms, search, cloud infrastructure,
+        payments, analytics and modern development technologies to
+        create fast, secure and scalable e-commerce experiences.
+      </p>
+    </div>
+  </Container>
 
-        <div className="relative mt-10 w-full overflow-hidden sm:mt-12">
-          <div
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              inset-y-0
-              left-0
-              z-20
-              w-12
-              bg-gradient-to-r
-              from-[var(--card)]
-              to-transparent
-              sm:w-24
-              lg:w-36
-            "
+  {/* Technology marquee */}
+  <div className="group relative w-full overflow-hidden bg-transparent">
+    <div
+      className="
+        atria-service-marquee-track
+        flex
+        w-max
+        items-center
+        gap-4
+        group-hover:[animation-play-state:paused]
+        sm:gap-5
+        lg:gap-6
+      "
+    >
+      {/* First set */}
+      <div className="flex shrink-0 items-center gap-4 sm:gap-5 lg:gap-6">
+        {technologies.map((technology) => (
+          <TechnologyItem
+            key={`first-${technology.name}`}
+            technology={technology}
           />
+        ))}
+      </div>
 
-          <div
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              inset-y-0
-              right-0
-              z-20
-              w-12
-              bg-gradient-to-l
-              from-[var(--card)]
-              to-transparent
-              sm:w-24
-              lg:w-36
-            "
+      {/* Exact duplicate for seamless loop */}
+      <div
+        aria-hidden="true"
+        className="flex shrink-0 items-center gap-4 sm:gap-5 lg:gap-6"
+      >
+        {technologies.map((technology) => (
+          <TechnologyItem
+            key={`second-${technology.name}`}
+            technology={technology}
           />
-
-          <div className="atria-service-marquee">
-            <div className="atria-service-marquee-track">
-              <div className="flex shrink-0 items-center gap-3">
-                {technologies.map((technology) => (
-                  <TechnologyItem
-                    key={`first-${technology.name}`}
-                    technology={technology}
-                  />
-                ))}
-              </div>
-
-              <div
-                aria-hidden="true"
-                className="flex shrink-0 items-center gap-3"
-              >
-                {technologies.map((technology) => (
-                  <TechnologyItem
-                    key={`second-${technology.name}`}
-                    technology={technology}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ====================================================================
           WHAT WE BUILD

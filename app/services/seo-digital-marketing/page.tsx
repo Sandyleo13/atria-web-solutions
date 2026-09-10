@@ -284,136 +284,292 @@ export default function SeoDigitalMarketingPage() {
       <SeoMarketingHero />
 
       {/* ====================================================================
-          MARKETING MARQUEE
-          ==================================================================== */}
+    MARKETING MARQUEE
+    ==================================================================== */}
 
-      <section
-        aria-label="Digital marketing tools and technologies"
+<section
+  aria-label="Digital marketing tools and technologies"
+  className="
+    relative
+    overflow-hidden
+    bg-[var(--background)]
+    py-10
+    sm:py-12
+    lg:py-14
+  "
+>
+  <div className="atria-service-marquee w-full overflow-hidden">
+    <div className="atria-service-marquee-track flex w-max items-center">
+      {/* ================================================================
+          FIRST SET
+          ================================================================ */}
+      <div
         className="
-          relative
-          overflow-hidden
-          border-y
-          border-[var(--border)]
-          bg-[var(--card)]
-          py-5
-          sm:py-6
+          flex
+          shrink-0
+          items-center
+          gap-4
+          pr-4
+
+          sm:gap-5
+          sm:pr-5
+
+          lg:gap-6
+          lg:pr-6
         "
       >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-y-0
-            left-0
-            z-10
-            w-16
-            bg-gradient-to-r
-            from-[var(--card)]
-            to-transparent
-            sm:w-28
-          "
-        />
+        {technologies.map((technology) => (
+          <div
+            key={`marketing-first-${technology.name}`}
+            className="
+              flex
+              h-[68px]
+              shrink-0
+              items-center
+              gap-3
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              px-5
+              shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+              transition-all
+              duration-300
 
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-y-0
-            right-0
-            z-10
-            w-16
-            bg-gradient-to-l
-            from-[var(--card)]
-            to-transparent
-            sm:w-28
-          "
-        />
+              hover:-translate-y-0.5
+              hover:border-slate-300
+              hover:shadow-[0_8px_22px_rgba(15,23,42,0.09)]
 
-        <div className="atria-service-marquee">
-          <div className="atria-service-marquee-track">
-            {[...technologies, ...technologies].map(
-              (technology, index) => (
-                <div
-                  key={`${technology.name}-${index}`}
-                  aria-hidden={index >= technologies.length}
-                  className="
-                    flex
-                    shrink-0
-                    items-center
-                    gap-3
-                    rounded-full
-                    border
-                    border-[var(--border)]
-                    bg-[var(--background)]
-                    px-4
-                    py-2.5
-                    shadow-[var(--shadow-md)]
-                    sm:gap-3.5
-                    sm:px-5
-                    sm:py-3
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-9
-                      w-9
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      border
-                      border-[var(--border)]
-                      bg-[var(--card)]
-                      p-1.5
-                      sm:h-10
-                      sm:w-10
-                    "
-                  >
-                    <Image
-                      src={
-                        technology.darkImage
-                          ? technology.image
-                          : technology.image
-                      }
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="h-7 w-7 object-contain dark:hidden"
-                    />
+              sm:h-[74px]
+              sm:gap-3.5
+              sm:px-6
 
-                    <Image
-                      src={
-                        technology.darkImage || technology.image
-                      }
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="hidden h-7 w-7 object-contain dark:block"
-                    />
-                  </div>
+              lg:h-[78px]
+              lg:px-7
 
-                  <span
-                    className="
-                      whitespace-nowrap
-                      text-sm
-                      font-semibold
-                      text-[var(--foreground)]
-                      sm:text-[15px]
-                    "
-                  >
-                    {technology.name}
-                  </span>
+              dark:border-white/10
+              dark:bg-[#111111]
+              dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
 
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
-                </div>
-              ),
-            )}
+              dark:hover:border-white/15
+              dark:hover:shadow-[0_8px_22px_rgba(0,0,0,0.28)]
+            "
+          >
+            {/* Logo */}
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-slate-200
+                bg-slate-50
+                p-2
+
+                sm:h-11
+                sm:w-11
+
+                dark:border-white/10
+                dark:bg-white/5
+              "
+            >
+              <Image
+                src={technology.image}
+                alt=""
+                width={32}
+                height={32}
+                sizes="32px"
+                className="
+                  h-7
+                  w-7
+                  object-contain
+                  dark:hidden
+                "
+              />
+
+              <Image
+                src={technology.darkImage || technology.image}
+                alt=""
+                width={32}
+                height={32}
+                sizes="32px"
+                className="
+                  hidden
+                  h-7
+                  w-7
+                  object-contain
+                  dark:block
+                "
+              />
+            </div>
+
+            {/* Name */}
+            <span
+              className="
+                whitespace-nowrap
+                text-sm
+                font-bold
+                tracking-[-0.01em]
+                text-slate-800
+                sm:text-[15px]
+                dark:text-white
+              "
+            >
+              {technology.name}
+            </span>
+
+            {/* Red separator */}
+            <span
+              aria-hidden="true"
+              className="
+                h-1.5
+                w-1.5
+                shrink-0
+                rounded-full
+                bg-red-500
+                shadow-[0_0_8px_rgba(239,68,68,.65)]
+              "
+            />
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+
+      {/* ================================================================
+          SECOND SET — SEAMLESS LOOP
+          ================================================================ */}
+      <div
+        aria-hidden="true"
+        className="
+          flex
+          shrink-0
+          items-center
+          gap-4
+          pr-4
+
+          sm:gap-5
+          sm:pr-5
+
+          lg:gap-6
+          lg:pr-6
+        "
+      >
+        {technologies.map((technology) => (
+          <div
+            key={`marketing-second-${technology.name}`}
+            className="
+              flex
+              h-[68px]
+              shrink-0
+              items-center
+              gap-3
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              px-5
+              shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+
+              sm:h-[74px]
+              sm:gap-3.5
+              sm:px-6
+
+              lg:h-[78px]
+              lg:px-7
+
+              dark:border-white/10
+              dark:bg-[#111111]
+              dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+            "
+          >
+            {/* Logo */}
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-slate-200
+                bg-slate-50
+                p-2
+
+                sm:h-11
+                sm:w-11
+
+                dark:border-white/10
+                dark:bg-white/5
+              "
+            >
+              <Image
+                src={technology.image}
+                alt=""
+                width={32}
+                height={32}
+                sizes="32px"
+                className="
+                  h-7
+                  w-7
+                  object-contain
+                  dark:hidden
+                "
+              />
+
+              <Image
+                src={technology.darkImage || technology.image}
+                alt=""
+                width={32}
+                height={32}
+                sizes="32px"
+                className="
+                  hidden
+                  h-7
+                  w-7
+                  object-contain
+                  dark:block
+                "
+              />
+            </div>
+
+            {/* Name */}
+            <span
+              className="
+                whitespace-nowrap
+                text-sm
+                font-bold
+                tracking-[-0.01em]
+                text-slate-800
+                sm:text-[15px]
+                dark:text-white
+              "
+            >
+              {technology.name}
+            </span>
+
+            {/* Red separator */}
+            <span
+              aria-hidden="true"
+              className="
+                h-1.5
+                w-1.5
+                shrink-0
+                rounded-full
+                bg-red-500
+                shadow-[0_0_8px_rgba(239,68,68,.65)]
+              "
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ====================================================================
           WHAT WE DO

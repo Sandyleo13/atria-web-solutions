@@ -54,6 +54,12 @@ export default function RootLayout({
               <Navbar />
             </header>
 
+            {/* Global spacing between navbar and page content */}
+            <div
+              aria-hidden="true"
+              className="h-6 shrink-0"
+            />
+
             <PageWrapper>
               {children}
             </PageWrapper>

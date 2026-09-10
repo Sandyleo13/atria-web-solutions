@@ -1,15 +1,116 @@
 "use client";
 
+import Image from "next/image";
+
 const companies = [
-  "Pargad",
-  "Altitude Quest",
-  "Snapp Editt",
-  "Baldev Advertising",
-  "Evently",
-  "OneAxis Partners",
-  "OutPlay Sports Foundation",
-  "Mumbai Boxing Association",
+  {
+    name: "Pargad",
+    logo: "/images/company%20logos/pargad.webp",
+    logoClass: "max-h-12 max-w-[190px]",
+  },
+  {
+    name: "Altitude Quest",
+    logo: "/images/company%20logos/altitude%20quest.png",
+    logoClass: "max-h-12 max-w-[190px]",
+  },
+  {
+    name: "Snapp Editt",
+    logo: "/images/company%20logos/snappeditt.webp",
+    logoClass: "max-h-14 max-w-[230px] scale-[1.45]",
+  },
+  {
+    name: "Baldev Advertising",
+    logo: "/images/company%20logos/baldev.webp",
+    logoClass: "max-h-14 max-w-[220px]",
+  },
+  {
+    name: "Evently",
+    logo: "/images/company%20logos/evently.svg",
+    logoClass: "max-h-12 max-w-[190px]",
+  },
+  {
+    name: "OneAxis Partners",
+    logo: "/images/company%20logos/oneaxis.png",
+    logoClass: "max-h-14 max-w-[220px]",
+  },
+  {
+    name: "OutPlay Sports Foundation",
+    logo: "/images/company%20logos/outplay.webp",
+    logoClass: "max-h-14 max-w-[230px]",
+  },
+  {
+    name: "Mumbai Boxing Association",
+    logo: "/images/company%20logos/mumbai-boxing-association.jpeg",
+    logoClass: "max-h-14 max-w-[230px]",
+  },
 ];
+
+function CompanyCard({
+  company,
+  duplicate = false,
+}: {
+  company: (typeof companies)[number];
+  duplicate?: boolean;
+}) {
+  return (
+    <div
+      aria-hidden={duplicate}
+      className="
+        flex
+        h-[78px]
+        w-[220px]
+        shrink-0
+        items-center
+        justify-center
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        px-8
+        shadow-[0_4px_16px_rgba(15,23,42,0.06)]
+        transition-all
+        duration-300
+
+        hover:-translate-y-0.5
+        hover:border-slate-300
+        hover:shadow-[0_8px_22px_rgba(15,23,42,0.09)]
+
+        sm:h-[84px]
+        sm:w-[250px]
+        sm:px-10
+
+        lg:h-[88px]
+        lg:w-[280px]
+        lg:px-12
+
+        dark:border-white/10
+        dark:bg-[#111111]
+        dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+
+        dark:hover:border-white/15
+        dark:hover:shadow-[0_8px_22px_rgba(0,0,0,0.28)]
+      "
+    >
+      <Image
+  src={company.logo}
+  alt={`${company.name} logo`}
+  width={220}
+  height={64}
+  sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 250px"
+  className={`
+    h-auto
+    w-auto
+    object-contain
+    transition-transform
+    duration-300
+    ${company.logoClass}
+    sm:max-h-14
+    lg:max-h-16
+  `}
+/>
+    </div>
+  );
+}
 
 export function TrustedBrands() {
   return (
@@ -17,78 +118,56 @@ export function TrustedBrands() {
       className="
         relative
         overflow-hidden
-        border-y
-        border-[var(--border)]
         bg-[var(--background)]
-        py-10
-        sm:py-12
-        lg:py-14
+        py-14
+        sm:py-16
+        lg:py-20
       "
     >
       {/* Section heading */}
-      <div className="mx-auto mb-7 max-w-[1440px] px-5 text-center sm:px-6 lg:mb-9">
+      <div
+        className="
+          mx-auto
+          mb-10
+          max-w-[1440px]
+          px-5
+          text-center
+          sm:mb-12
+          sm:px-6
+          lg:mb-14
+        "
+      >
         <p
           className="
-            text-xs
-            font-semibold
+            text-[11px]
+            font-bold
             uppercase
-            tracking-[0.28em]
-            text-[var(--muted)]
-            sm:text-sm
+            tracking-[0.32em]
+            text-[var(--foreground)]
+            sm:text-xs
           "
         >
           Companies We've Worked With
         </p>
+
+        <p
+          className="
+            mx-auto
+            mt-3
+            max-w-xl
+            text-sm
+            leading-6
+            text-[var(--muted)]
+            sm:text-[15px]
+          "
+        >
+          Trusted by organizations that value thoughtful design,
+          reliable technology, and measurable digital experiences.
+        </p>
       </div>
 
-      {/* Marquee viewport */}
-      <div
-        className="
-          group
-          relative
-          w-full
-          overflow-hidden
-        "
-      >
-        {/* Left fade */}
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            left-0
-            top-0
-            z-10
-            h-full
-            w-16
-            bg-gradient-to-r
-            from-[var(--background)]
-            to-transparent
-            sm:w-24
-            lg:w-40
-          "
-        />
-
-        {/* Right fade */}
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            right-0
-            top-0
-            z-10
-            h-full
-            w-16
-            bg-gradient-to-l
-            from-[var(--background)]
-            to-transparent
-            sm:w-24
-            lg:w-40
-          "
-        />
-
-        {/* Moving track */}
+      {/* Marquee */}
+      <div className="group relative w-full overflow-hidden bg-transparent">
         <div
           className="
             atria-company-marquee
@@ -103,67 +182,19 @@ export function TrustedBrands() {
         >
           {/* First set */}
           {companies.map((company) => (
-            <div
-              key={`first-${company}`}
-              className="
-                flex
-                h-16
-                shrink-0
-                items-center
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--card)]
-                px-8
-                text-sm
-                font-semibold
-                text-[var(--foreground)]
-                shadow-[var(--shadow-md)]
-                transition-all
-                duration-300
-                hover:border-red-500/30
-                hover:text-red-500
-                sm:h-[72px]
-                sm:px-10
-                sm:text-base
-                lg:h-20
-                lg:px-12
-              "
-            >
-              {company}
-            </div>
+            <CompanyCard
+              key={`first-${company.name}`}
+              company={company}
+            />
           ))}
 
-          {/* Exact duplicate for seamless loop */}
+          {/* Exact duplicate for seamless animation */}
           {companies.map((company) => (
-            <div
-              key={`second-${company}`}
-              aria-hidden="true"
-              className="
-                flex
-                h-16
-                shrink-0
-                items-center
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--card)]
-                px-8
-                text-sm
-                font-semibold
-                text-[var(--foreground)]
-                shadow-[var(--shadow-md)]
-                transition-all
-                duration-300
-                sm:h-[72px]
-                sm:px-10
-                sm:text-base
-                lg:h-20
-                lg:px-12
-              "
-            >
-              {company}
-            </div>
+            <CompanyCard
+              key={`second-${company.name}`}
+              company={company}
+              duplicate
+            />
           ))}
         </div>
       </div>

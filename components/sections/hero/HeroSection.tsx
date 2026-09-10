@@ -24,22 +24,25 @@ export default function HeroSection() {
             min-h-[100svh]
             items-center
             gap-8
-            pt-28
+
+            pt-36
             pb-12
 
             sm:gap-10
-            sm:pt-32
+            sm:pt-40
             sm:pb-16
 
             lg:grid-cols-[0.85fr_1.15fr]
             lg:gap-2
-            lg:pt-28
+            lg:pt-36
 
             xl:grid-cols-[0.82fr_1.18fr]
             xl:gap-6
+            xl:pt-36
 
             2xl:grid-cols-[0.8fr_1.2fr]
             2xl:gap-8
+            2xl:pt-36
           "
         >
           {/* Content */}
