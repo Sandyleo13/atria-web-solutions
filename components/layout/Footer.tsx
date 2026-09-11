@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { AtSign, Globe2, MapPin, Phone } from "lucide-react";
 
@@ -66,13 +65,30 @@ export function Footer() {
             {/* Left */}
 
             <div>
-              <h2 className="text-4xl font-black tracking-tight text-[var(--foreground)]">
-                Atria
-              </h2>
+             <div
+  className="inline-flex items-center"
+  aria-label="Atria Web Solutions"
+>
+  {/* Light mode */}
+  <Image
+    src="/logos/atria-logo-light.png"
+    alt="Atria Web Solutions"
+    width={180}
+    height={60}
+    className="h-auto w-[140px] object-contain dark:hidden"
+    priority
+  />
 
-              <p className="mt-1 text-lg font-medium text-red-500">
-                Web Solutions
-              </p>
+  {/* Dark mode */}
+  <Image
+    src="/logos/atria-dark.webp"
+    alt="Atria Web Solutions"
+    width={180}
+    height={60}
+    className="hidden h-auto w-[140px] object-contain dark:block"
+    priority
+  />
+</div>
 
               <p className="mt-6 max-w-sm leading-8 text-[var(--muted)]">
                 Building modern websites, web applications and digital

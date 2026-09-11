@@ -1,11 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 
 import { Container } from "@/components/layout/Container";
-import { FadeIn } from "@/components/common/FadeIn";
 import { services } from "@/data/services";
 import { SectionHeader } from "@/components/common/SectionHeader";
 
@@ -59,15 +56,16 @@ export function ServicesSection() {
             const Icon = service.icon;
 
             return (
-              <FadeIn key={service.title} delay={index * 0.08}>
-                <motion.div
-                  whileHover={{
-                    y: -10,
-                    scale: 1.02,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                  }}
+              <div
+                key={service.title}
+                className="services-card-reveal"
+                style={
+  {
+    "--services-delay": `${index * 80}ms`,
+  } as CSSProperties
+}
+              >
+                <div
                   className="
                     group
                     relative
@@ -91,6 +89,9 @@ export function ServicesSection() {
 
                     transition-all
                     duration-300
+
+                    hover:-translate-y-2.5
+                    hover:scale-[1.02]
 
                     hover:border-red-500/40
                     hover:bg-red-50
@@ -219,8 +220,8 @@ export function ServicesSection() {
                     Learn More
                     <ArrowRight size={18} />
                   </Link>
-                </motion.div>
-              </FadeIn>
+                </div>
+              </div>
             );
           })}
         </div>

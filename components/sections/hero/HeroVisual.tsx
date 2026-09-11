@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -27,7 +28,6 @@ export default function HeroVisual() {
     setMounted(true);
   }, []);
 
-  // Prevent server/client theme mismatch.
   if (!mounted) {
     return null;
   }
@@ -79,6 +79,7 @@ export default function HeroVisual() {
         "
       >
         {/* Orbit ring */}
+
         <div
           aria-hidden="true"
           className="
@@ -105,6 +106,7 @@ export default function HeroVisual() {
         />
 
         {/* Dashed inner orbit */}
+
         <div
           aria-hidden="true"
           className="
@@ -132,6 +134,7 @@ export default function HeroVisual() {
         />
 
         {/* Moving orbit */}
+
         <div
           className="
             absolute
@@ -305,20 +308,13 @@ export default function HeroVisual() {
           xl:w-[680px]
         "
       >
-        <img
+        <Image
           src={heroImage}
           alt="Atria Web Solutions"
-          width={680}
-          height={680}
-          fetchPriority="high"
-          className="
-            atria-hero-float
-            absolute
-            inset-0
-            h-full
-            w-full
-            object-contain
-          "
+          fill
+          priority
+          quality={75}
+          className="atria-hero-float object-contain"
         />
       </div>
 

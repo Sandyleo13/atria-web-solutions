@@ -678,6 +678,59 @@ canvas {
   -webkit-backface-visibility: hidden;
 }
 
+
+/* ==========================================================================
+   SERVICES SECTION — PERFORMANCE-FRIENDLY CARD REVEAL
+   ========================================================================== */
+
+/*
+   Lightweight CSS replacement for the previous Framer Motion
+   card entrance animation.
+
+   Uses only opacity + transform, which are compositor-friendly.
+*/
+
+@keyframes servicesCardReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.services-card-reveal {
+  animation-name: servicesCardReveal;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-delay: var(--services-delay);
+}
+
+/* ==========================================================================
+   SERVICES CARD HOVER
+   ========================================================================== */
+
+/*
+   Keep hover movement on transform so the browser can handle it
+   efficiently without triggering layout.
+*/
+
+.services-card-reveal > .group {
+  will-change: auto;
+}
+
+/*
+   Only promote the card while it is actively hovered.
+*/
+
+.services-card-reveal > .group:hover {
+  will-change: transform;
+}
+
 /* ==========================================================================
    WHY CHOOSE US — PERFORMANCE-FRIENDLY REVEAL
    ========================================================================== */
@@ -739,17 +792,18 @@ canvas {
   }
 
   .atria-hero-float,
-  .atria-hero-glow,
-  .atria-tech-orbit,
-  .atria-tech-counter,
-  .atria-tech-float,
-  .atria-hero-pulse,
-  .atria-company-marquee,
-  .atria-service-marquee-track,
-  .why-choose-reveal-left,
-  .why-choose-reveal-right {
-    animation: none !important;
-    transform: none !important;
-    will-change: auto;
-  }
+.atria-hero-glow,
+.atria-tech-orbit,
+.atria-tech-counter,
+.atria-tech-float,
+.atria-hero-pulse,
+.atria-company-marquee,
+.atria-service-marquee-track,
+.services-card-reveal,
+.why-choose-reveal-left,
+.why-choose-reveal-right {
+  animation: none !important;
+  transform: none !important;
+  will-change: auto;
+}
 }

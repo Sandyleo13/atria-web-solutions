@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -19,9 +18,11 @@ export default function Navbar() {
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -46,32 +47,18 @@ export default function Navbar() {
           max-w-[1700px]
         "
       >
-        <motion.header
-          initial={{
-            opacity: 0,
-            y: -25,
-            scale: 0.98,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            height: scrolled ? 76 : 92,
-          }}
-          transition={{
-            duration: 0.45,
-            ease: "easeOut",
-          }}
+        <header
           className={cn(
+            "navbar-header-reveal",
             "flex items-center justify-between",
             "rounded-[30px]",
             "border border-[var(--border)]",
             "bg-[var(--navbar)]",
             "backdrop-blur-[30px]",
+            "transition-[height,box-shadow] duration-300 ease-out",
             scrolled
-              ? "shadow-[var(--shadow-lg)]"
-              : "shadow-[var(--shadow-md)]",
-            "transition-all duration-300",
+              ? "h-[76px] shadow-[var(--shadow-lg)]"
+              : "h-[92px] shadow-[var(--shadow-md)]",
           )}
         >
           <div
@@ -95,7 +82,7 @@ export default function Navbar() {
             {/* Mobile Navigation */}
             <MobileNav />
           </div>
-        </motion.header>
+        </header>
       </div>
     </div>
   );
