@@ -9,7 +9,7 @@ const companies = [
   },
   {
     name: "Altitude Quest",
-    logo: "/images/company%20logos/altitude%20quest.png",
+    logo: "/images/company%20logos/optimized/altitude-quest.webp",
   },
   {
     name: "Snapp Editt",
@@ -26,7 +26,7 @@ const companies = [
   },
   {
     name: "OneAxis Partners",
-    logo: "/images/company%20logos/oneaxis.png",
+    logo: "/images/company%20logos/optimized/oneaxis.webp",
   },
   {
     name: "OutPlay Sports Foundation",
@@ -34,7 +34,7 @@ const companies = [
   },
   {
     name: "Mumbai Boxing Association",
-    logo: "/images/company%20logos/mumbai-boxing-association.jpeg",
+    logo: "/images/company%20logos/optimized/mumbai-boxing-association.webp",
   },
 ];
 

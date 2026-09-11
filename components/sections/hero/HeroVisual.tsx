@@ -34,7 +34,7 @@ export default function HeroVisual() {
 
   const heroImage =
     resolvedTheme === "light"
-      ? HERO_IMAGES.heroLight
+      ? "/images/home/Removal-452.webp"
       : HERO_IMAGES.heroDark;
 
   return (
@@ -412,4 +412,3 @@ export default function HeroVisual() {
     </div>
   );
 }
-
