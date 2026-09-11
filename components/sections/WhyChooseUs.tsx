@@ -3,7 +3,6 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -57,12 +56,7 @@ export function WhyChooseUs() {
 
         <div className="mt-20 grid items-center gap-20 lg:grid-cols-2">
           {/* LEFT CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="why-choose-reveal-left">
             <h3
               className="
                 text-4xl
@@ -89,11 +83,16 @@ export function WhyChooseUs() {
             {/* Features */}
             <div className="mt-10 space-y-5">
               {features.map((feature) => (
-                <motion.div
+                <div
                   key={feature}
-                  whileHover={{ x: 6 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center gap-4"
+                  className="
+                    flex
+                    items-center
+                    gap-4
+                    transition-transform
+                    duration-200
+                    hover:translate-x-[6px]
+                  "
                 >
                   <div
                     className="
@@ -123,7 +122,7 @@ export function WhyChooseUs() {
                   >
                     {feature}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -160,16 +159,10 @@ export function WhyChooseUs() {
                 "
               />
             </Link>
-          </motion.div>
+          </div>
 
           {/* RIGHT IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
+          <div className="relative why-choose-reveal-right">
             {/* Image Glow */}
             <div
               className="
@@ -201,23 +194,23 @@ export function WhyChooseUs() {
             >
               {/* Light Mode Image */}
               <Image
-  src="/images/home/2.jpg"
-  alt="Atria Web Solutions Team"
-  width={1200}
-  height={900}
-  sizes="(max-width: 1024px) 100vw, 50vw"
-  priority
-  className="
-    block
-    h-full
-    w-full
-    object-cover
-    transition-transform
-    duration-700
-    group-hover:scale-105
-    dark:hidden
-  "
-/>
+                src="/images/home/2.jpg"
+                alt="Atria Web Solutions Team"
+                width={1200}
+                height={900}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                className="
+                  block
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-700
+                  group-hover:scale-105
+                  dark:hidden
+                "
+              />
 
               {/* Dark Mode Image */}
               <Image
@@ -255,7 +248,7 @@ export function WhyChooseUs() {
                 "
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </Container>
     </section>

@@ -22,7 +22,7 @@ export const teamMembers = [
   },
   {
     id: 5,
-    name: "Aakash Gupta",
+    name: "Akash Gupta",
     role: "Full Stack Developer",
     linkedin: "https://www.linkedin.com/in/akash-gupta-aa0488239/",
     email: "akash@atriawebsolutions.in"
