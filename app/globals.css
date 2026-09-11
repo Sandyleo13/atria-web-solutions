@@ -492,18 +492,18 @@ select {
    Structure:
 
    viewport
-      |
-      └── track
-            |
-            ├── set 1
-            |     ├── card
-            |     ├── card
-            |     └── card
-            |
-            └── set 2
-                  ├── card
-                  ├── card
-                  └── card
+     |
+     └── track
+           |
+           ├── set 1
+           |     ├── card
+           |     ├── card
+           |     └── card
+           |
+           └── set 2
+                 ├── card
+                 ├── card
+                 └── card
 
    Features:
 
@@ -679,6 +679,49 @@ canvas {
 }
 
 /* ==========================================================================
+   WHY CHOOSE US — PERFORMANCE-FRIENDLY REVEAL
+   ========================================================================== */
+
+@keyframes whyChooseRevealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes whyChooseRevealRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.why-choose-reveal-left,
+.why-choose-reveal-right {
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.why-choose-reveal-left {
+  animation-name: whyChooseRevealLeft;
+}
+
+.why-choose-reveal-right {
+  animation-name: whyChooseRevealRight;
+}
+
+/* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
 
@@ -702,7 +745,9 @@ canvas {
   .atria-tech-float,
   .atria-hero-pulse,
   .atria-company-marquee,
-  .atria-service-marquee-track {
+  .atria-service-marquee-track,
+  .why-choose-reveal-left,
+  .why-choose-reveal-right {
     animation: none !important;
     transform: none !important;
     will-change: auto;
