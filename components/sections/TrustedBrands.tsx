@@ -6,42 +6,35 @@ const companies = [
   {
     name: "Pargad",
     logo: "/images/company%20logos/pargad.webp",
-    logoClass: "max-h-12 max-w-[190px]",
   },
   {
     name: "Altitude Quest",
     logo: "/images/company%20logos/altitude%20quest.png",
-    logoClass: "max-h-12 max-w-[190px]",
   },
   {
     name: "Snapp Editt",
     logo: "/images/company%20logos/snappeditt.webp",
-    logoClass: "max-h-14 max-w-[230px] scale-[1.45]",
+    imageClass: "scale-[1.45]",
   },
   {
     name: "Baldev Advertising",
     logo: "/images/company%20logos/baldev.webp",
-    logoClass: "max-h-14 max-w-[220px]",
   },
   {
     name: "Evently",
     logo: "/images/company%20logos/evently.svg",
-    logoClass: "max-h-12 max-w-[190px]",
   },
   {
     name: "OneAxis Partners",
     logo: "/images/company%20logos/oneaxis.png",
-    logoClass: "max-h-14 max-w-[220px]",
   },
   {
     name: "OutPlay Sports Foundation",
     logo: "/images/company%20logos/outplay.webp",
-    logoClass: "max-h-14 max-w-[230px]",
   },
   {
     name: "Mumbai Boxing Association",
     logo: "/images/company%20logos/mumbai-boxing-association.jpeg",
-    logoClass: "max-h-14 max-w-[230px]",
   },
 ];
 
@@ -70,44 +63,44 @@ function CompanyCard({
         shadow-[0_4px_16px_rgba(15,23,42,0.06)]
         transition-all
         duration-300
-
         hover:-translate-y-0.5
         hover:border-slate-300
         hover:shadow-[0_8px_22px_rgba(15,23,42,0.09)]
-
         sm:h-[84px]
         sm:w-[250px]
         sm:px-10
-
         lg:h-[88px]
         lg:w-[280px]
         lg:px-12
-
         dark:border-white/10
         dark:bg-[#111111]
         dark:shadow-[0_4px_16px_rgba(0,0,0,0.18)]
-
         dark:hover:border-white/15
         dark:hover:shadow-[0_8px_22px_rgba(0,0,0,0.28)]
       "
     >
-      <Image
-  src={company.logo}
-  alt={`${company.name} logo`}
-  width={220}
-  height={64}
-  sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 250px"
-  className={`
-    h-auto
-    w-auto
-    object-contain
-    transition-transform
-    duration-300
-    ${company.logoClass}
-    sm:max-h-14
-    lg:max-h-16
-  `}
-/>
+      <div
+        className="
+          relative
+          h-14
+          w-full
+          max-w-[190px]
+          sm:max-w-[220px]
+          lg:h-16
+          lg:max-w-[240px]
+        "
+      >
+        <Image
+          src={company.logo}
+          alt={company.name + " logo"}
+          fill
+          sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 240px"
+          className={
+            "object-contain transition-transform duration-300 " +
+            (company.imageClass ?? "")
+          }
+        />
+      </div>
     </div>
   );
 }
@@ -183,7 +176,7 @@ export function TrustedBrands() {
           {/* First set */}
           {companies.map((company) => (
             <CompanyCard
-              key={`first-${company.name}`}
+              key={"first-" + company.name}
               company={company}
             />
           ))}
@@ -191,7 +184,7 @@ export function TrustedBrands() {
           {/* Exact duplicate for seamless animation */}
           {companies.map((company) => (
             <CompanyCard
-              key={`second-${company.name}`}
+              key={"second-" + company.name}
               company={company}
               duplicate
             />

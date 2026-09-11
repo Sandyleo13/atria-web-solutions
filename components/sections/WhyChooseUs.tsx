@@ -201,22 +201,23 @@ export function WhyChooseUs() {
             >
               {/* Light Mode Image */}
               <Image
-                src="/images/home/2.jpg"
-                alt="Atria Web Solutions Team"
-                width={1200}
-                height={900}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="
-                  block
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-700
-                  group-hover:scale-105
-                  dark:hidden
-                "
-              />
+  src="/images/home/2.jpg"
+  alt="Atria Web Solutions Team"
+  width={1200}
+  height={900}
+  sizes="(max-width: 1024px) 100vw, 50vw"
+  priority
+  className="
+    block
+    h-full
+    w-full
+    object-cover
+    transition-transform
+    duration-700
+    group-hover:scale-105
+    dark:hidden
+  "
+/>
 
               {/* Dark Mode Image */}
               <Image

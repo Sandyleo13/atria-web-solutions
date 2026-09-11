@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -20,8 +21,21 @@ const orbitAngles = [-125, -90, -55, -20, 15, 50, 85, 120];
 
 export default function HeroVisual() {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent server/client theme mismatch.
+  if (!mounted) {
+    return null;
+  }
+
   const heroImage =
-    resolvedTheme === "light" ? HERO_IMAGES.heroLight : HERO_IMAGES.heroDark;
+    resolvedTheme === "light"
+      ? HERO_IMAGES.heroLight
+      : HERO_IMAGES.heroDark;
 
   return (
     <div
@@ -156,32 +170,29 @@ export default function HeroVisual() {
                   >
                     <div
                       className="
-    atria-tech-pill
-    flex
-    h-10
-    items-center
-    gap-2
-    rounded-full
-    border
-    border-slate-400/90
-    bg-white
-    px-3
-    shadow-[0_10px_30px_rgba(15,23,42,0.22)]
-    ring-1
-    ring-slate-900/5
-    backdrop-blur-xl
-
-    dark:border-white/15
-    dark:bg-[#111111]/95
-    dark:shadow-[0_10px_30px_rgba(0,0,0,0.40)]
-    dark:ring-white/5
-
-    sm:h-11
-    sm:px-3.5
-
-    lg:h-[48px]
-    lg:px-4
-  "
+                        atria-tech-pill
+                        flex
+                        h-10
+                        items-center
+                        gap-2
+                        rounded-full
+                        border
+                        border-slate-400/90
+                        bg-white
+                        px-3
+                        shadow-[0_10px_30px_rgba(15,23,42,0.22)]
+                        ring-1
+                        ring-slate-900/5
+                        backdrop-blur-xl
+                        dark:border-white/15
+                        dark:bg-[#111111]/95
+                        dark:shadow-[0_10px_30px_rgba(0,0,0,0.40)]
+                        dark:ring-white/5
+                        sm:h-11
+                        sm:px-3.5
+                        lg:h-[48px]
+                        lg:px-4
+                      "
                     >
                       <span
                         aria-hidden="true"
@@ -223,15 +234,15 @@ export default function HeroVisual() {
 
                       <span
                         className="
-    whitespace-nowrap
-    text-[9px]
-    font-bold
-    tracking-wide
-    text-slate-900
-    dark:text-white
-    sm:text-[10px]
-    lg:text-[11px]
-  "
+                          whitespace-nowrap
+                          text-[9px]
+                          font-bold
+                          tracking-wide
+                          text-slate-900
+                          dark:text-white
+                          sm:text-[10px]
+                          lg:text-[11px]
+                        "
                       >
                         {name}
                       </span>
@@ -312,17 +323,24 @@ export default function HeroVisual() {
       </div>
 
       {/* ================================================================
-          PROJECT STAT — MOBILE
+          PROJECT STAT — DESKTOP PARTNERS
           ================================================================ */}
 
       <div className="absolute bottom-5 left-1/2 z-30 hidden -translate-x-1/2 items-center gap-3 lg:flex">
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur-xl">
-          <BadgeCheck size={16} className="text-red-500" /> Meta Partner
+          <BadgeCheck size={16} className="text-red-500" />
+          Meta Partner
         </div>
+
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur-xl">
-          <BadgeCheck size={16} className="text-red-500" /> Google Partner
+          <BadgeCheck size={16} className="text-red-500" />
+          Google Partner
         </div>
       </div>
+
+      {/* ================================================================
+          PROJECT STAT — MOBILE
+          ================================================================ */}
 
       <div
         className="
@@ -387,8 +405,11 @@ export default function HeroVisual() {
           400+
         </h3>
 
-        <p className="mt-1 text-sm text-[var(--muted)]">Successful Projects</p>
+        <p className="mt-1 text-sm text-[var(--muted)]">
+          Successful Projects
+        </p>
       </div>
     </div>
   );
 }
+
