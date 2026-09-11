@@ -179,9 +179,9 @@ export default function HeroContent() {
         className="mt-14 grid grid-cols-3 gap-4"
       >
         {[
-          ["50+", "Projects"],
+          ["400+", "Projects"],
           ["100+", "Clients"],
-          ["5+", "Years"],
+          ["15+", "Years"],
         ].map(([value, label]) => (
           <div
             key={label}

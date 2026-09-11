@@ -7,7 +7,7 @@ export const metrics = [
 
 export const projects = [
   {
-    name: "SnapEdit",
+    name: "Snappeditt",
     category: "AI Photo Editing Platform",
     description:
       "An AI-powered image editing platform focused on fast background removal, enhancement and creative editing.",
@@ -16,16 +16,7 @@ export const projects = [
     href: "/portfolio/snapedit",
     featured: true,
   },
-  {
-    name: "Box of Vacation",
-    category: "Travel Booking Platform",
-    description:
-      "A modern travel booking platform offering seamless vacation planning and package management.",
-    technologies: ["Next.js", "MongoDB", "Node.js"],
-    accent: "from-sky-500 via-blue-300 to-amber-200",
-    href: "/portfolio/box-of-vacation",
-    featured: true,
-  },
+  
   {
     name: "Travelopod",
     category: "Travel CRM Solution",
@@ -73,7 +64,7 @@ export const testimonials = [
     id: 1,
     name: "Vivek Sharma",
     role: "CEO",
-    company: "SnapEdit",
+    company: "Snappeditt",
     rating: 5,
     quote:
       "Atria Web Solutions completely transformed our product. Their communication, attention to detail and technical expertise made the entire process effortless.",
@@ -81,16 +72,6 @@ export const testimonials = [
 
   {
     id: 2,
-    name: "Neha Patel",
-    role: "Founder",
-    company: "Box of Vacation",
-    rating: 5,
-    quote:
-      "Working with Atria felt like working with an in-house team. Every milestone was delivered on time and exceeded our expectations.",
-  },
-
-  {
-    id: 3,
     name: "Rohan Verma",
     role: "Director",
     company: "ATZ CRM",
@@ -100,7 +81,7 @@ export const testimonials = [
   },
 
   {
-    id: 4,
+    id: 3,
     name: "Arjun Mehta",
     role: "CTO",
     company: "Travelopod",
