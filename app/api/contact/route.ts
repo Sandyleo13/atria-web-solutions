@@ -32,10 +32,10 @@ export async function POST(request: Request) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       // Temporary sender for local/testing
-      from: "Atria Web Solutions <onboarding@resend.dev>",
+      from: "Atria Web Solutions <hello@atriawebsolutions.in>",
 
       // Resend testing recipient
-      to: ["sandipandas0816@gmail.com"],
+      to: ["mansi@atriawebsolutions.in"],
 
       // Clicking Reply will reply directly to the person
       // who submitted the contact form.
